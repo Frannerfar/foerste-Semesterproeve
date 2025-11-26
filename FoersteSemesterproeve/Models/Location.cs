@@ -8,5 +8,14 @@ namespace FoersteSemesterproeve.Models
 {
     class Location
     {
+        string name;
+        int id;
+        List<Activity> activities;
+        int? maxCapacity;
+
+        public Location()
+        {
+            
+        }
     }
 }
