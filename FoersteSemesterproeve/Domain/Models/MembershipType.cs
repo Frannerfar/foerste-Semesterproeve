@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FoersteSemesterproeve.Models
+namespace FoersteSemesterproeve.Domain.Models
 {
-    class Membershipstype
+    class MembershipType
     {
         //string name;
         //int id;
         //int monthlyPayDKK;
         //int yearlyPayDKK;
 
-        public Membershipstype() 
+        public MembershipType() 
         {
             
         }

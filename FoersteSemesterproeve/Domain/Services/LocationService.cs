@@ -1,0 +1,34 @@
+﻿using FoersteSemesterproeve.Domain.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FoersteSemesterproeve.Domain.Services
+{
+    internal class LocationService
+    {
+
+        public List<Location> locations;
+
+        public LocationService() 
+        {
+            locations = populateLocations();
+        }
+
+
+        private List<Location> populateLocations()
+        {
+            List<Location> locations = new List<Location>();
+
+            locations.Add(new Location());
+            locations.Add(new Location());
+            locations.Add(new Location());
+            locations.Add(new Location());
+            locations.Add(new Location());
+
+            return locations;
+        }
+    }
+}

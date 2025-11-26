@@ -1,4 +1,5 @@
-﻿using FoersteSemesterproeve.Presentation;
+﻿using FoersteSemesterproeve.Domain.Services;
+using FoersteSemesterproeve.Presentation;
 using FoersteSemesterproeve.Views;
 using System.Text;
 using System.Windows;
@@ -20,6 +21,11 @@ namespace FoersteSemesterproeve
     public partial class MainWindow : Window
     {
         NavigationRouter router;
+
+        UserService userService = new UserService();
+        ActivityService activityService = new ActivityService();
+        LocationService locationService = new LocationService();
+        MembershipService membershipService = new MembershipService();
 
         // Sæt til false, hvis der skal testes med login
         bool isDeveloping = true;
