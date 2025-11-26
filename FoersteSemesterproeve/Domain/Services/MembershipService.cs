@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace FoersteSemesterproeve.Domain.Services
 {
-    internal class MembershipService
+    public class MembershipService
     {
-        List<MembershipType> membershipTypes;
+        public List<MembershipType> membershipTypes;
 
         public MembershipService()
         {

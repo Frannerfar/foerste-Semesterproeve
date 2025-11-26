@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FoersteSemesterproeve.Domain.Services
 {
-    internal class LocationService
+    public class LocationService
     {
 
         public List<Location> locations;

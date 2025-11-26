@@ -7,7 +7,7 @@ using FoersteSemesterproeve.Domain.Models;
 
 namespace FoersteSemesterproeve.Domain.Services
 {
-    internal class ActivityService
+    public class ActivityService
     {
         public List<Activity> activities;
 
