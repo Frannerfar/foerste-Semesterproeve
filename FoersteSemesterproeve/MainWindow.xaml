@@ -5,8 +5,43 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FoersteSemesterproeve"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="500" MinWidth="800" Width="900">
     <Grid>
+        <DockPanel>
+            <StackPanel DockPanel.Dock="Top" Margin="0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+                        <Button Background="LightSlateGray" Content="Home" Margin="0" FontSize="18" Height="80" MinWidth="100" Visibility="Visible" Cursor="Hand" BorderThickness="0" Padding="8,4" Click="Home_Click" />
+                        <Button Background="LightSlateGray" Content="Activities" Margin="0" FontSize="18" Height="80" MinWidth="100" Visibility="Visible" Cursor="Hand" BorderThickness="0" Padding="8,4" Click="Activities_Click" />
+                        <Button Background="LightSlateGray" Content="Trainers" Margin="0" FontSize="18" Height="80" MinWidth="100" Visibility="Visible" Cursor="Hand" BorderThickness="0" Padding="8,4" Click="Trainers_Click" />
+                        <Button Background="LightSlateGray" Content="Locations" Margin="0" FontSize="18" Height="80" MinWidth="100" Visibility="Visible" Cursor="Hand" BorderThickness="0" Padding="8,4" Click="Locations_Click" />
+                        <Button Background="LightSlateGray" Content="Members" Margin="0" FontSize="18" Height="80" MinWidth="100" Visibility="Visible" Cursor="Hand" BorderThickness="0" Padding="8,4" Click="Members_Click" />
+                        <Button Background="LightSlateGray" Content="Memberships" Margin="0" FontSize="18" Height="80" MinWidth="100" Visibility="Visible" Cursor="Hand" BorderThickness="0" Padding="8,4" Click="Memberships_Click" />
+                    </StackPanel>
 
+                    <Border Grid.Row="0" Grid.Column="1" Background="LightSlateGray">
+                        
+                    </Border>
+                    
+                    <Border Width="100" Grid.Row="0" Grid.Column="2" BorderBrush="Black" BorderThickness="2">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock HorizontalAlignment="Center">USER</TextBlock>
+                            <Button Click="Profile_Click">PROFILE</Button>
+                        </StackPanel>
+                    </Border>            
+                </Grid>
+            </StackPanel>
+            <ContentControl x:Name="MainContent" Margin="4" />
+            <Button Content="Button" HorizontalAlignment="Left" Margin="151,107,0,0" VerticalAlignment="Top" Click="Test"/>
+        </DockPanel>
     </Grid>
 </Window>
