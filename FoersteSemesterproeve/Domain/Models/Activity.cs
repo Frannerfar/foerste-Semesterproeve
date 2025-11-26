@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FoersteSemesterproeve.Domain.Models
 {
-    class Activity
+    public class Activity
     {
         //public string title;
         //public DateTime startTime;

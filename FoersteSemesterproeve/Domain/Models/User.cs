@@ -6,26 +6,38 @@ using System.Threading.Tasks;
 
 namespace FoersteSemesterproeve.Domain.Models
 {
-    class User
+    public class User
     {
-        //string firstName;
-        //string lastName;
-        //string email;
-        //string address;
-        //string city;
-        //string password;
-        //bool iscoach;
-        //bool isadmin;
-        //DateOnly dateofBirth;
-        //int postal;
-        //bool hasPaid;
-        //int id;
-        //List<Activity> list;
-        //Membershipstype membershipstype;
+        public int id;
+        public string firstName { get; set; }
+        public string lastName { get; set; }
+        public string email { get; set; }
+        public string address;
+        public string city;
+        public string password;
+        public bool isCoach;
+        public bool isAdmin;
+        public DateOnly dateofBirth;
+        public int postal;
+        public bool hasPaid;
+        //public List<Activity> list;
+        //public MembershipType membershipType;
 
-        public User() 
+        public User(int id, string firstName, string lastName, string email, string address, string city, string password, bool isCoach, bool isAdmin, DateOnly dateofBirth, int postal, bool hasPaid) 
         {
-            
+            this.id = id;
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.email = email;
+            this.address = address;
+            this.city = city;
+            this.password = password;
+            this.isCoach = isCoach;
+            this.isAdmin = isAdmin;
+            this.dateofBirth = dateofBirth;
+            this.postal = postal;
+            this.hasPaid = hasPaid;
+
         }
     }
 }

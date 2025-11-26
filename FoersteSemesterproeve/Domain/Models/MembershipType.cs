@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FoersteSemesterproeve.Domain.Models
 {
-    class MembershipType
+    public class MembershipType
     {
         //string name;
         //int id;
