@@ -21,11 +21,25 @@ namespace FoersteSemesterproeve
     {
         NavigationRouter router;
 
+        // Sæt til false, hvis der skal testes med login
+        bool isDeveloping = true;
+
         public MainWindow()
         {
             InitializeComponent();
             router = new NavigationRouter(MainContent, MenuGrid);
-            router.Navigate(Route.Login);
+
+            // Hvis vi "udvikler/tester"
+            if(isDeveloping)
+            {
+                router.Navigate(Route.Home);
+                MenuGrid.Visibility = Visibility.Visible;
+            }
+            // Hvis vi kører med login skærm fra start.
+            else
+            {
+                router.Navigate(Route.Login);
+            }
         }
 
         private void Test(object sender, RoutedEventArgs e)
