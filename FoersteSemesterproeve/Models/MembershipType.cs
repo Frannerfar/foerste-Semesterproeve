@@ -8,10 +8,10 @@ namespace FoersteSemesterproeve.Models
 {
     class Membershipstype
     {
-        string name;
-        int id;
-        int monthlyPayDKK;
-        int yearlyPayDKK;
+        //string name;
+        //int id;
+        //int monthlyPayDKK;
+        //int yearlyPayDKK;
 
         public Membershipstype() 
         {
