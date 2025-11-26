@@ -56,8 +56,15 @@ namespace FoersteSemesterproeve.Presentation.Pages
                             button.Visibility = Visibility.Collapsed;
                         }
                     }
- 
-                    router.Navigate(NavigationRouter.Route.Home);
+                    else
+                    {
+                        foreach (Button button in adminButtons)
+                        {
+                            button.Visibility = Visibility.Visible;
+                        }
+                    }
+
+                        router.Navigate(NavigationRouter.Route.Home);
                     menuGrid.Visibility = Visibility.Visible;
 
                 }
