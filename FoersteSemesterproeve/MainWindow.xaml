@@ -44,8 +44,8 @@
                     
                     <Border Width="100" Grid.Row="0" Grid.Column="2" BorderBrush="Black" BorderThickness="2">
                         <StackPanel Orientation="Vertical">
-                            <TextBlock HorizontalAlignment="Center">USER</TextBlock>
-                            <Button Click="Profile_Click">PROFILE</Button>
+                            <TextBlock x:Name="UserText" HorizontalAlignment="Center"></TextBlock>
+                            <Button x:Name="UserProfileButton" Click="Profile_Click">PROFILE</Button>
                             <Button Click="LogOut_Click">Log out</Button>
                         </StackPanel>
                     </Border>            

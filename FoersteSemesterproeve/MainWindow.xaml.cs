@@ -33,7 +33,7 @@ namespace FoersteSemesterproeve
         public MainWindow()
         {
             InitializeComponent();
-            router = new NavigationRouter(MainContent, MenuGrid, userService, activityService, locationService, membershipService);
+            router = new NavigationRouter(MainContent, MenuGrid, UserText, UserProfileButton, userService, activityService, locationService, membershipService);
 
             // Hvis vi "udvikler/tester"
             if(isDeveloping)

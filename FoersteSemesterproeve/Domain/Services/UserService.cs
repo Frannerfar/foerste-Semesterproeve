@@ -9,6 +9,8 @@ namespace FoersteSemesterproeve.Domain.Services
 {
     public class UserService
     {
+        public User? authenticatedUser;
+        public User? targetUser;
         public List<User> users;
 
         public UserService() 
@@ -34,6 +36,15 @@ namespace FoersteSemesterproeve.Domain.Services
             users.Add(new User(10, "Sofie", "Mortensen", "sofie.mortensen@hotmail.com", "Stationsvej 5", "Skanderborg", "sofiePW", true, true, new DateOnly(1996, 4, 9), 8660, true));
 
             return users;
+        }
+
+        public bool isUserPasswordCorrect(User user, string password)
+        {
+            if (password == user.password)
+            {
+                return true;
+            }
+            return false;
         }
 
         public void DeleteUserByObject(User user)

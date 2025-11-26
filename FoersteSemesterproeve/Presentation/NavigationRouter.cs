@@ -23,12 +23,14 @@ namespace FoersteSemesterproeve.Presentation
         Route currentRoute;
         ContentControl control;
         Grid menuGrid;
-        Dictionary<Route, UserControl> routes;
+        Dictionary<Route, Func<UserControl>> routes;
 
         private UserService userService;
         private ActivityService activityService;
         private LocationService locationService;
         private MembershipService membershipService;
+        private TextBlock userText;
+        private Button userProfileButton;
 
         /// <summary>
         ///     Constructor der modtager referencer til 
@@ -37,7 +39,7 @@ namespace FoersteSemesterproeve.Presentation
         /// <author>Martin</author>
         /// <created>2025-11-25</created>
         /// <updated
-        public NavigationRouter(ContentControl contentControl, Grid menuGrid, UserService userService, ActivityService activityService, LocationService locationService, MembershipService membershipService)
+        public NavigationRouter(ContentControl contentControl, Grid menuGrid, TextBlock userText, Button userProfileButton, UserService userService, ActivityService activityService, LocationService locationService, MembershipService membershipService)
         {
             this.control = contentControl;
             this.menuGrid = menuGrid;
@@ -46,17 +48,21 @@ namespace FoersteSemesterproeve.Presentation
             this.activityService = activityService;
             this.locationService = locationService;
             this.membershipService = membershipService;
+            this.userText = userText;
+            this.userProfileButton = userProfileButton;
 
-            routes = new Dictionary<Route, UserControl>
+            routes = new Dictionary<Route, Func<UserControl>>
             {
-                { Route.Login, new LoginPage(this, menuGrid) },
-                { Route.Home, new HomePage() },
-                { Route.Activities, new ActivitiesPage() },
-                { Route.Members, new MembersPage(this, userService) },
-                { Route.Trainers, new TrainersPage() },
-                { Route.Locations, new LocationsPage() },
-                { Route.Memberships, new MembershipsPage() },
-                { Route.Profile, new ProfilePage() },
+                { Route.Login, () => new LoginPage(this, menuGrid, userService, userText, userProfileButton) },
+                { Route.Home, () =>new HomePage() },
+                { Route.Activities, () => new ActivitiesPage() },
+                { Route.Members, () =>new MembersPage(this, userService) },
+                { Route.Trainers, () =>new TrainersPage() },
+                { Route.Locations, () => new LocationsPage() },
+                { Route.Memberships, () => new MembershipsPage() },
+                { Route.Profile, () =>new ProfilePage() },
+                { Route.AddUser, () => new AddUserPage() },
+                { Route.EditUser, () => new EditUserPage(this, userService) },
             };
         }
 
@@ -70,7 +76,7 @@ namespace FoersteSemesterproeve.Presentation
         /// <updated
         public void Navigate(Route route)
         {
-            if (!routes.TryGetValue(route, out UserControl? view))
+            if (!routes.TryGetValue(route, out Func<UserControl>? view))
             {
                 MessageBox.Show($"No view registered for route {route}.", nameof(route));
                 this.Navigate(Route.Home);
@@ -78,10 +84,9 @@ namespace FoersteSemesterproeve.Presentation
             }
             else
             {
-                control.Content = view;
+                control.Content = view();
                 currentRoute = route;
             }
-
         }
 
         public enum Route
@@ -93,7 +98,9 @@ namespace FoersteSemesterproeve.Presentation
             Trainers,
             Locations,
             Memberships,
-            Profile
+            Profile,
+            AddUser,
+            EditUser
         }
 
     }

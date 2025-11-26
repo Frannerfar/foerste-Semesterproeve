@@ -57,7 +57,9 @@ namespace FoersteSemesterproeve.Presentation.Pages
             User user = (User)button.Tag;
             if (user != null)
             {
-                MessageBox.Show($"EDIT USER: {user.firstName} {user.lastName}");
+                userService.targetUser = user;
+                router.Navigate(NavigationRouter.Route.EditUser);
+                //MessageBox.Show($"EDIT USER: {user.firstName} {user.lastName}");
             }
         }
 
