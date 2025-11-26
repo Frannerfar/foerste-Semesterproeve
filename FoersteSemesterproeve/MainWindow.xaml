@@ -42,11 +42,12 @@
                         
                     </Border>
                     
-                    <Border Width="100" Grid.Row="0" Grid.Column="2" BorderBrush="Black" BorderThickness="2">
+                    <Border Width="100" Grid.Row="0" Grid.Column="2">
                         <StackPanel Orientation="Vertical">
-                            <TextBlock x:Name="UserText" HorizontalAlignment="Center"></TextBlock>
-                            <Button x:Name="UserProfileButton" Click="Profile_Click">PROFILE</Button>
-                            <Button Click="LogOut_Click">Log out</Button>
+                            <Button x:Name="UserProfileButton" Click="Profile_Click" Cursor="Hand">
+                                <Image Source="/Data/Assets/Profile.png" Height="56" Width="35" />
+                            </Button>
+                            <Button Click="LogOut_Click" Cursor="Hand">Log out</Button>
                         </StackPanel>
                     </Border>            
                 </Grid>

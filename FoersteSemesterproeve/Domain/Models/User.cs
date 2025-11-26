@@ -59,5 +59,11 @@ namespace FoersteSemesterproeve.Domain.Models
                 return "❌";
             }
         }
+
+        public void CheckBothMarks()
+        {
+            this.isCoachText = SetMark(isCoach);
+            this.isAdminText = SetMark(isAdmin);
+        }
     }
 }

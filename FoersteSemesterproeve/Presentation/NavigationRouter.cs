@@ -29,7 +29,6 @@ namespace FoersteSemesterproeve.Presentation
         private ActivityService activityService;
         private LocationService locationService;
         private MembershipService membershipService;
-        private TextBlock userText;
         private Button userProfileButton;
 
         /// <summary>
@@ -39,7 +38,7 @@ namespace FoersteSemesterproeve.Presentation
         /// <author>Martin</author>
         /// <created>2025-11-25</created>
         /// <updated
-        public NavigationRouter(ContentControl contentControl, Grid menuGrid, TextBlock userText, Button userProfileButton, UserService userService, ActivityService activityService, LocationService locationService, MembershipService membershipService)
+        public NavigationRouter(ContentControl contentControl, Grid menuGrid, Button userProfileButton, UserService userService, ActivityService activityService, LocationService locationService, MembershipService membershipService)
         {
             this.control = contentControl;
             this.menuGrid = menuGrid;
@@ -48,12 +47,11 @@ namespace FoersteSemesterproeve.Presentation
             this.activityService = activityService;
             this.locationService = locationService;
             this.membershipService = membershipService;
-            this.userText = userText;
             this.userProfileButton = userProfileButton;
 
             routes = new Dictionary<Route, Func<UserControl>>
             {
-                { Route.Login, () => new LoginPage(this, menuGrid, userService, userText, userProfileButton) },
+                { Route.Login, () => new LoginPage(this, menuGrid, userService, userProfileButton) },
                 { Route.Home, () =>new HomePage() },
                 { Route.Activities, () => new ActivitiesPage() },
                 { Route.Members, () =>new MembersPage(this, userService) },
@@ -61,7 +59,7 @@ namespace FoersteSemesterproeve.Presentation
                 { Route.Locations, () => new LocationsPage() },
                 { Route.Memberships, () => new MembershipsPage() },
                 { Route.Profile, () =>new ProfilePage() },
-                { Route.AddUser, () => new AddUserPage() },
+                { Route.AddUser, () => new AddUserPage(this, userService) },
                 { Route.EditUser, () => new EditUserPage(this, userService) },
             };
         }

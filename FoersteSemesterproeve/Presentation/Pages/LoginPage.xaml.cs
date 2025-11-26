@@ -26,17 +26,15 @@ namespace FoersteSemesterproeve.Presentation.Pages
         NavigationRouter router;
         UserService userService;
         Grid menuGrid;
-        TextBlock userText;
         Button userProfileButton;
 
 
-        public LoginPage(NavigationRouter router, Grid menuGrid, UserService userService, TextBlock userText, Button userProfileButton)
+        public LoginPage(NavigationRouter router, Grid menuGrid, UserService userService, Button userProfileButton)
         {
             InitializeComponent();
             this.menuGrid = menuGrid;
             this.router = router;
             this.userService = userService;
-            this.userText = userText;
             this.userProfileButton = userProfileButton;
         }
 
@@ -48,7 +46,6 @@ namespace FoersteSemesterproeve.Presentation.Pages
                 bool isCorrect = userService.isUserPasswordCorrect(possibleUser, PasswordBox.Password);
                 if (isCorrect) { 
                     userService.authenticatedUser = possibleUser;
-                    userText.Text = possibleUser.firstName;
                     userProfileButton.Tag = possibleUser;
                     router.Navigate(NavigationRouter.Route.Home);
                     menuGrid.Visibility = Visibility.Visible;

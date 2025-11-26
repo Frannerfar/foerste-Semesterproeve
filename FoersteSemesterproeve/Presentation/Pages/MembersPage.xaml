@@ -38,11 +38,13 @@
                                         Margin="5"
                                         Padding="5"
                                         Tag="{Binding}"
+                                        Cursor="Hand"
                                         Click="EditUser_Click"/>
 
                                     <Button Content="Delete"
                                         Margin="5"
                                         Padding="5"
+                                        Cursor="Hand"
                                         Tag="{Binding}"
                                         Click="DeleteUser_Click"/>
                                 </StackPanel>

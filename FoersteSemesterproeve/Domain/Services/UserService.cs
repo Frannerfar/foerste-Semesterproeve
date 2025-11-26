@@ -52,5 +52,10 @@ namespace FoersteSemesterproeve.Domain.Services
             users.Remove(user);
             // TODO: Fjern alle referencer
         }
+
+        public void AddUser(string firstName, string lastName, string email, string city, string address, DateOnly date, int postal, bool isAdmin, bool isCoach, bool hasPaid)
+        {
+            this.users.Add(new User(100, firstName, lastName, email, address, city, "1234", isCoach, isAdmin, date, postal, hasPaid));
+        }
     }
 }

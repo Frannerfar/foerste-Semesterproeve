@@ -29,7 +29,7 @@
                     </StackPanel>
 
                     <StackPanel Orientation="Vertical" Margin="30" Width="200">
-                        <Button Width="200" BorderBrush="Black" Height="25" FontSize="14" BorderThickness="1" Background="DodgerBlue" Click="LoginButton_Click">Login</Button>
+                        <Button Width="200" BorderBrush="Black" Cursor="Hand" Height="25" FontSize="14" BorderThickness="1" Background="DodgerBlue" Click="LoginButton_Click">Login</Button>
                     </StackPanel>
 
                 </StackPanel>

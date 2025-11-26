@@ -33,7 +33,7 @@ namespace FoersteSemesterproeve
         public MainWindow()
         {
             InitializeComponent();
-            router = new NavigationRouter(MainContent, MenuGrid, UserText, UserProfileButton, userService, activityService, locationService, membershipService);
+            router = new NavigationRouter(MainContent, MenuGrid, UserProfileButton, userService, activityService, locationService, membershipService);
 
             // Hvis vi "udvikler/tester"
             if(isDeveloping)
@@ -45,21 +45,6 @@ namespace FoersteSemesterproeve
             else
             {
                 router.Navigate(Route.Login);
-            }
-        }
-
-        private void Test(object sender, RoutedEventArgs e)
-        {
-            DialogBox dialogBox = new DialogBox("Kan du lide hotdog?");
-            dialogBox.ShowDialog();
-            if(dialogBox.DialogResult == true)
-            {
-                // HVIS JA
-                MessageBox.Show("NICE!");
-            }
-            else
-            {
-                // HVIS NEJ
             }
         }
 
