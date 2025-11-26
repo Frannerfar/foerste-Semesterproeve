@@ -7,6 +7,57 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock FontSize="30">MEMBERS PAGE</TextBlock>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.Column="0" MaxWidth="1000" Margin="10">
+            <Button Click="AddUser_Click" Width="30" Height="30" FontSize="20" Background="AliceBlue" HorizontalAlignment="Right">+</Button>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="0" MaxWidth="1000" Margin="10">
+            <DataGrid x:Name="MemberDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" HeadersVisibility="Column">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding id}"/>
+                    <DataGridTextColumn Header="First Name" Binding="{Binding firstName}"/>
+                    <DataGridTextColumn Header="Last Name" Binding="{Binding lastName}"/>
+                    <DataGridTextColumn Header="Email" Binding="{Binding email}"/>
+                    <DataGridTextColumn Header="Trainer" Binding="{Binding isCoachText}"/>
+                    <DataGridTextColumn Header="Admin" Binding="{Binding isAdminText}"/>
+
+                    <DataGridTemplateColumn Header="Actions">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Content="Edit"
+                                        Margin="5"
+                                        Padding="5"
+                                        Tag="{Binding}"
+                                        Click="EditUser_Click"/>
+
+                                    <Button Content="Delete"
+                                        Margin="5"
+                                        Padding="5"
+                                        Tag="{Binding}"
+                                        Click="DeleteUser_Click"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="0">
+            
+            
+        </StackPanel>
+
+
     </Grid>
 </UserControl>

@@ -1,4 +1,5 @@
-﻿using FoersteSemesterproeve.Presentation.Pages;
+﻿using FoersteSemesterproeve.Domain.Services;
+using FoersteSemesterproeve.Presentation.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,12 @@ using static FoersteSemesterproeve.Presentation.NavigationRouter;
 
 namespace FoersteSemesterproeve.Presentation
 {
+    /// <summary>
+    /// Håndterer navigation mellem forskellige pages / usercontrolsi samme Window
+    /// </summary>
+    /// <author>Martin</author>
+    /// <created>2025-11-25</created>
+    /// <remarks>Bruges af MainWindow til UI routing</remarks>
     public class NavigationRouter
     {
         Route currentRoute;
@@ -18,16 +25,34 @@ namespace FoersteSemesterproeve.Presentation
         Grid menuGrid;
         Dictionary<Route, UserControl> routes;
 
-        public NavigationRouter(ContentControl mainContentController, Grid menuGrid)
+        private UserService userService;
+        private ActivityService activityService;
+        private LocationService locationService;
+        private MembershipService membershipService;
+
+        /// <summary>
+        ///     Constructor der modtager referencer til 
+        ///     ContentControl (Element vi sætter UserControls under) og Grid (Menu).
+        /// </summary>
+        /// <author>Martin</author>
+        /// <created>2025-11-25</created>
+        /// <updated
+        public NavigationRouter(ContentControl contentControl, Grid menuGrid, UserService userService, ActivityService activityService, LocationService locationService, MembershipService membershipService)
         {
-            this.control = mainContentController;
+            this.control = contentControl;
             this.menuGrid = menuGrid;
+
+            this.userService = userService;
+            this.activityService = activityService;
+            this.locationService = locationService;
+            this.membershipService = membershipService;
+
             routes = new Dictionary<Route, UserControl>
             {
                 { Route.Login, new LoginPage(this, menuGrid) },
                 { Route.Home, new HomePage() },
                 { Route.Activities, new ActivitiesPage() },
-                { Route.Members, new MembersPage() },
+                { Route.Members, new MembersPage(this, userService) },
                 { Route.Trainers, new TrainersPage() },
                 { Route.Locations, new LocationsPage() },
                 { Route.Memberships, new MembershipsPage() },
@@ -35,7 +60,14 @@ namespace FoersteSemesterproeve.Presentation
             };
         }
 
-
+        /// <summary>
+        ///     Constructor der modtager referencer til 
+        ///     ContentControl (Element vi sætter UserControls under) og Grid (Menu).
+        /// </summary>
+        /// <param name="route">Using the enum Route to decide routing direction</param>
+        /// <author>Martin</author>
+        /// <created>2025-11-25</created>
+        /// <updated
         public void Navigate(Route route)
         {
             if (!routes.TryGetValue(route, out UserControl? view))
