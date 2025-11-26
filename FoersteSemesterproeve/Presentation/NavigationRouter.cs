@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.JavaScript;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using static FoersteSemesterproeve.Presentation.NavigationRouter;
 
@@ -35,11 +36,16 @@ namespace FoersteSemesterproeve.Presentation
         {
             if (!routes.TryGetValue(route, out UserControl? view))
             {
-                throw new ArgumentException($"No view registered for route {route}.", nameof(route));
+                MessageBox.Show($"No view registered for route {route}.", nameof(route));
+                this.Navigate(Route.Home);
+                //throw new ArgumentException($"No view registered for route {route}.", nameof(route));
+            }
+            else
+            {
+                control.Content = view;
+                currentRoute = route;
             }
 
-            control.Content = view;
-            currentRoute = route;
         }
 
         public enum Route
