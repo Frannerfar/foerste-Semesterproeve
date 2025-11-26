@@ -33,13 +33,21 @@ namespace FoersteSemesterproeve
         public MainWindow()
         {
             InitializeComponent();
-            router = new NavigationRouter(MainContent, MenuGrid, UserProfileButton, userService, activityService, locationService, membershipService);
+            List<Button> adminButtons = new List<Button>();
+            adminButtons.Add(TrainersButton);
+            adminButtons.Add(LocationsButton);
+            adminButtons.Add(MembershipsButton);
+            adminButtons.Add(MembersButton);
+            router = new NavigationRouter(MainContent, MenuGrid, UserProfileButton, adminButtons, userService, activityService, locationService, membershipService);
+
+
 
             // Hvis vi "udvikler/tester"
-            if(isDeveloping)
+            if (isDeveloping)
             {
                 router.Navigate(Route.Home);
                 MenuGrid.Visibility = Visibility.Visible;
+                userService.authenticatedUser = userService.users.FirstOrDefault(u => u.email == "admin@admin.dk");
             }
             // Hvis vi kører med login skærm fra start.
             else

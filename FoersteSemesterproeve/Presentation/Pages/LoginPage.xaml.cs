@@ -27,15 +27,17 @@ namespace FoersteSemesterproeve.Presentation.Pages
         UserService userService;
         Grid menuGrid;
         Button userProfileButton;
+        List<Button> adminButtons;
 
 
-        public LoginPage(NavigationRouter router, Grid menuGrid, UserService userService, Button userProfileButton)
+        public LoginPage(NavigationRouter router, Grid menuGrid, UserService userService, Button userProfileButton, List<Button> adminButtons)
         {
             InitializeComponent();
             this.menuGrid = menuGrid;
             this.router = router;
             this.userService = userService;
             this.userProfileButton = userProfileButton;
+            this.adminButtons = adminButtons;
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
@@ -47,8 +49,17 @@ namespace FoersteSemesterproeve.Presentation.Pages
                 if (isCorrect) { 
                     userService.authenticatedUser = possibleUser;
                     userProfileButton.Tag = possibleUser;
+                    if(!possibleUser.isAdmin)
+                    {
+                        foreach(Button button in adminButtons)
+                        {
+                            button.Visibility = Visibility.Collapsed;
+                        }
+                    }
+ 
                     router.Navigate(NavigationRouter.Route.Home);
                     menuGrid.Visibility = Visibility.Visible;
+
                 }
             }
             PasswordBox.Clear();

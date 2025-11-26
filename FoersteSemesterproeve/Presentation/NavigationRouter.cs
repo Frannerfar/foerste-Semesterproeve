@@ -30,6 +30,7 @@ namespace FoersteSemesterproeve.Presentation
         private LocationService locationService;
         private MembershipService membershipService;
         private Button userProfileButton;
+        private List<Button> adminButtons;
 
         /// <summary>
         ///     Constructor der modtager referencer til 
@@ -38,7 +39,7 @@ namespace FoersteSemesterproeve.Presentation
         /// <author>Martin</author>
         /// <created>2025-11-25</created>
         /// <updated
-        public NavigationRouter(ContentControl contentControl, Grid menuGrid, Button userProfileButton, UserService userService, ActivityService activityService, LocationService locationService, MembershipService membershipService)
+        public NavigationRouter(ContentControl contentControl, Grid menuGrid, Button userProfileButton, List<Button> adminButtons, UserService userService, ActivityService activityService, LocationService locationService, MembershipService membershipService)
         {
             this.control = contentControl;
             this.menuGrid = menuGrid;
@@ -48,10 +49,11 @@ namespace FoersteSemesterproeve.Presentation
             this.locationService = locationService;
             this.membershipService = membershipService;
             this.userProfileButton = userProfileButton;
+            this.adminButtons = adminButtons;
 
             routes = new Dictionary<Route, Func<UserControl>>
             {
-                { Route.Login, () => new LoginPage(this, menuGrid, userService, userProfileButton) },
+                { Route.Login, () => new LoginPage(this, menuGrid, userService, userProfileButton, adminButtons) },
                 { Route.Home, () =>new HomePage() },
                 { Route.Activities, () => new ActivitiesPage() },
                 { Route.Members, () =>new MembersPage(this, userService) },
