@@ -11,6 +11,9 @@
     <Compile Update="Presentation\Pages\LocationsPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Presentation\Pages\LoginPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Presentation\Pages\MembersPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

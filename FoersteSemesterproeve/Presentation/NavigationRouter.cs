@@ -11,17 +11,20 @@ using static FoersteSemesterproeve.Presentation.NavigationRouter;
 
 namespace FoersteSemesterproeve.Presentation
 {
-    internal class NavigationRouter
+    public class NavigationRouter
     {
         Route currentRoute;
         ContentControl control;
+        Grid menuGrid;
         Dictionary<Route, UserControl> routes;
 
-        public NavigationRouter(ContentControl mainContentController)
+        public NavigationRouter(ContentControl mainContentController, Grid menuGrid)
         {
             this.control = mainContentController;
+            this.menuGrid = menuGrid;
             routes = new Dictionary<Route, UserControl>
             {
+                { Route.Login, new LoginPage(this, menuGrid) },
                 { Route.Home, new HomePage() },
                 { Route.Activities, new ActivitiesPage() },
                 { Route.Members, new MembersPage() },
@@ -31,6 +34,7 @@ namespace FoersteSemesterproeve.Presentation
                 { Route.Profile, new ProfilePage() },
             };
         }
+
 
         public void Navigate(Route route)
         {
@@ -50,6 +54,7 @@ namespace FoersteSemesterproeve.Presentation
 
         public enum Route
         {
+            Login,
             Home,
             Activities,
             Members,

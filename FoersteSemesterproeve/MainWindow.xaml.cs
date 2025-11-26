@@ -24,14 +24,23 @@ namespace FoersteSemesterproeve
         public MainWindow()
         {
             InitializeComponent();
-            router = new NavigationRouter(MainContent);
-            router.Navigate(Route.Home);
+            router = new NavigationRouter(MainContent, MenuGrid);
+            router.Navigate(Route.Login);
         }
 
         private void Test(object sender, RoutedEventArgs e)
         {
-            DialogBox dialogBox = new DialogBox("test test!!:D");
+            DialogBox dialogBox = new DialogBox("Kan du lide hotdog?");
             dialogBox.ShowDialog();
+            if(dialogBox.DialogResult == true)
+            {
+                // HVIS JA
+                MessageBox.Show("NICE!");
+            }
+            else
+            {
+                // HVIS NEJ
+            }
         }
 
         private void Home_Click(object sender, RoutedEventArgs e)
@@ -67,6 +76,12 @@ namespace FoersteSemesterproeve
         private void Profile_Click(object sender, RoutedEventArgs e)
         {
             router.Navigate(Route.Profile);
+        }
+
+        private void LogOut_Click(object sender, RoutedEventArgs e)
+        {
+            MenuGrid.Visibility = Visibility.Collapsed;
+            router.Navigate(Route.Login);
         }
     }
 }
