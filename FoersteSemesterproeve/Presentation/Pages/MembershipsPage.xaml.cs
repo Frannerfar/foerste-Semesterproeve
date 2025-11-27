@@ -1,6 +1,8 @@
 ﻿using FoersteSemesterproeve.Domain.Models;
+using FoersteSemesterproeve.Domain.Services;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,27 +23,33 @@ namespace FoersteSemesterproeve.Presentation.Pages
     /// </summary>
     public partial class MembershipsPage : UserControl
     {
-        public MembershipsPage()
+        NavigationRouter router;
+        MembershipService membershipService;
+        public MembershipsPage(NavigationRouter router, MembershipService membershipServiceInput)
         {
             InitializeComponent();
 
-            MembershipType noneMember = new MembershipType("NONE", 0, 0);
-            None.Text = noneMember.name;
-            noneList.Items.Add($"{noneMember.monthlyPayDKK} DKK MONTHLY");
-            noneList.Items.Add($"{noneMember.yearlyPayDKK} DKK YEARLY");
+            this.router = router;
+            membershipService = membershipServiceInput;
 
-            MembershipType standardMember = new MembershipType("STANDARD", 200, 2400);
-            Standard.Text = standardMember.name;
-            standardList.Items.Add($"{standardMember.monthlyPayDKK} DKK MONTHLY");
-            standardList.Items.Add($"{standardMember.yearlyPayDKK} DKK YEARLY");
-            standardList.Items.Add("FREE ACCESS TO THE GYM");
-            
-            MembershipType proMember = new MembershipType("PRO", 400, 4800);
-            Pro.Text = proMember.name;
-            proList.Items.Add($"{proMember.monthlyPayDKK} DKK MONTHLY");
-            proList.Items.Add($"{proMember.yearlyPayDKK} DKK YEARLY");
-            proList.Items.Add("FREE ACCESS TO THE GYM");
-            proList.Items.Add("PERSONALIZED TRAININGPLAN");
+
+            for(int i = 0; i < membershipService.membershipTypes.Count; i++)
+            {
+                None.Text = membershipService.membershipTypes[0].name;
+                noneList.Items.Add($"Monthly Pay {membershipService.membershipTypes[0].monthlyPayDKK} DKK");
+                noneList.Items.Add($"Yearly Pay {membershipService.membershipTypes[0].yearlyPayDKK} DKK");
+                
+                Standard.Text = membershipService.membershipTypes[1].name;
+                standardList.Items.Add($"Monthly Pay {membershipService.membershipTypes[1].monthlyPayDKK} DKK");
+                standardList.Items.Add($"Yearly Pay {membershipService.membershipTypes[1].yearlyPayDKK} DKK");
+                    
+                Pro.Text = membershipService.membershipTypes[2].name;
+                proList.Items.Add($"Monthly Pay {membershipService.membershipTypes[2].monthlyPayDKK} DKK");
+                proList.Items.Add($"Yearly Pay {membershipService.membershipTypes[2].yearlyPayDKK} DKK");
+                break;
+            }
+
+
         }
     }
 }

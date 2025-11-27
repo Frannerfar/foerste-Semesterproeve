@@ -59,7 +59,7 @@ namespace FoersteSemesterproeve.Presentation
                 { Route.Members, () =>new MembersPage(this, userService) },
                 { Route.Trainers, () =>new TrainersPage() },
                 { Route.Locations, () => new LocationsPage() },
-                { Route.Memberships, () => new MembershipsPage() },
+                { Route.Memberships, () => new MembershipsPage(this, membershipService) },
                 { Route.Profile, () =>new ProfilePage() },
                 { Route.AddUser, () => new AddUserPage(this, userService) },
                 { Route.EditUser, () => new EditUserPage(this, userService) },

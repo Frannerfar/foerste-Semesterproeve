@@ -22,11 +22,9 @@ namespace FoersteSemesterproeve.Domain.Services
         {
             List<MembershipType> membershipTypes = new List<MembershipType>();
 
-            membershipTypes.Add(new MembershipType("NONE", 38326, 78376546));
-            membershipTypes.Add(new MembershipType("ishdfuihs", 982347, 2837));
-            membershipTypes.Add(new MembershipType("bsb", 344, 445));
-            membershipTypes.Add(new MembershipType("ahfd", 283, 9586));
-            membershipTypes.Add(new MembershipType("sdfkj", 7594, 1202834));
+            membershipTypes.Add(new MembershipType("NONE", 0, 0));
+            membershipTypes.Add(new MembershipType("STANDARD", 200, 2400));
+            membershipTypes.Add(new MembershipType("PRO", 400, 4800));
 
             return membershipTypes;
         }
