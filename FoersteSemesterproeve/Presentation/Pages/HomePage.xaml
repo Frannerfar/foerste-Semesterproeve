@@ -6,7 +6,77 @@
              xmlns:local="clr-namespace:FoersteSemesterproeve.Presentation.Pages"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!-- 5 Kolonner -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <!-- Home Page -->
         <TextBlock FontSize="30">HOME PAGE</TextBlock>
+        
+        <!-- kolonne 0: Mandag -->
+        <StackPanel Grid.Row="1" Grid.Column="0"
+                    Margin="10">
+            <TextBlock Text="Mandag"
+                       FontSize="20"
+                       HorizontalAlignment="Center"
+                       FontWeight="Bold"
+                       Margin="0 0 0 5"/>
+            <Border Background="White" Height="200" CornerRadius="8"/>
+        </StackPanel>
+        
+        <!-- Kolonne 1: Tirsdag-->
+        <StackPanel Grid.Row="1" Grid.Column="1"
+            Margin="10">
+            <TextBlock Text="Tirsdag"
+               FontSize="20"
+               HorizontalAlignment="Center"
+               FontWeight="Bold"
+               Margin="0 0 0 5"/>
+            <Border Background="White" Height="200" CornerRadius="8"/>
+        </StackPanel>
+        
+        <!-- Kolonne 2: Onsdag-->
+        <StackPanel Grid.Row="1" Grid.Column="2"
+            Margin="10">
+            <TextBlock Text="Onsdag"
+               FontSize="20"
+               HorizontalAlignment="Center"
+               FontWeight="Bold"
+               Margin="0 0 0 5"/>
+            <Border Background="White" Height="200" CornerRadius="8"/>
+        </StackPanel>
+
+        <!-- Kolonne 3: Torsdag-->
+        <StackPanel Grid.Row="1" Grid.Column="3"
+            Margin="10">
+            <TextBlock Text="Torsdag"
+               FontSize="20"
+               HorizontalAlignment="Center"
+               FontWeight="Bold"
+               Margin="0 0 0 5"/>
+            <Border Background="White" Height="200" CornerRadius="8"/>
+        </StackPanel>
+        
+        <!-- Kolonne 4: Fredag-->
+        <StackPanel Grid.Row="1" Grid.Column="4"
+            Margin="10">
+            <TextBlock Text="Fredag"
+               FontSize="20"
+               HorizontalAlignment="Center"
+               FontWeight="Bold"
+               Margin="0 0 0 5"/>
+            <Border Background="White" Height="200" CornerRadius="8"/>
+        </StackPanel>
     </Grid>
+
 </UserControl>

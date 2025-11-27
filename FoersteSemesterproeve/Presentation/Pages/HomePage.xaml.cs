@@ -1,5 +1,8 @@
-﻿using System;
+﻿using FoersteSemesterproeve.Domain.Models;
+using FoersteSemesterproeve.Domain.Services;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +23,22 @@ namespace FoersteSemesterproeve.Presentation.Pages
     /// </summary>
     public partial class HomePage : UserControl
     {
-        public HomePage()
+        NavigationRouter navigationRouter;
+        UserService userService;
+        ActivityService activityService;
+         
+        public HomePage(NavigationRouter navigationRouter, UserService userService, ActivityService activityService)
         {
+            
             InitializeComponent();
+            this.navigationRouter = navigationRouter;
+            this.userService = userService;
+            this.activityService = activityService;
+            for (int i = 0; i < this.userService.users.Count; i++)
+            {
+            
+                Debug.WriteLine($"{this.userService.users[i].firstName}");
+            }
         }
     }
 }

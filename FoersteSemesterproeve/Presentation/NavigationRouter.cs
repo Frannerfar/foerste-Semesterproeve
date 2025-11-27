@@ -54,7 +54,7 @@ namespace FoersteSemesterproeve.Presentation
             routes = new Dictionary<Route, Func<UserControl>>
             {
                 { Route.Login, () => new LoginPage(this, menuGrid, userService, userProfileButton, adminButtons) },
-                { Route.Home, () =>new HomePage() },
+                { Route.Home, () =>new HomePage(this, userService, activityService) },
                 { Route.Activities, () => new ActivitiesPage() },
                 { Route.Members, () =>new MembersPage(this, userService) },
                 { Route.Trainers, () =>new TrainersPage() },
