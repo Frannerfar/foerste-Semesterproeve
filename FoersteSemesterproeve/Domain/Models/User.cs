@@ -25,7 +25,7 @@ namespace FoersteSemesterproeve.Domain.Models
         public DateOnly dateofBirth;
         public int postal;
         public bool hasPaid;
-        //public List<Activity> list;
+        public List<Activity> activityList;
         //public MembershipType membershipType;
 
         public User(int id, string firstName, string lastName, string email, string address, string city, string password, bool isCoach, bool isAdmin, DateOnly dateofBirth, int postal, bool hasPaid) 
@@ -44,6 +44,7 @@ namespace FoersteSemesterproeve.Domain.Models
             this.hasPaid = hasPaid;
             this.isCoachText = SetMark(isCoach);
             this.isAdminText = SetMark(isAdmin);
+            this.activityList = new List<Activity>();
         }
 
         private string SetMark(bool statement)

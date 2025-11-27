@@ -1,6 +1,7 @@
 ﻿using FoersteSemesterproeve.Domain.Services;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,12 +24,26 @@ namespace FoersteSemesterproeve.Presentation.Pages
     {
         NavigationRouter router;
         ActivityService activityService;
-        public ActivitiesPage(NavigationRouter navigationRouter, ActivityService activityService)
+        UserService userService;
+        
+        public ActivitiesPage(NavigationRouter navigationRouter, ActivityService activityService, UserService userService)
         {
 
             InitializeComponent();
             this.router = navigationRouter;
             this.activityService = activityService;
+            this.userService = userService;
         }
+
+        private void JoinButtonClick(object sender, RoutedEventArgs e)
+        {
+            if (userService.authenticatedUser != null)
+            {
+                activityService.JoinActivity(activityService.activities[0], userService.authenticatedUser);
+                Debug.WriteLine($"{userService.authenticatedUser.firstName} has joined {activityService.activities[0].title}");
+            }
+
+        }
+
     }
 }
