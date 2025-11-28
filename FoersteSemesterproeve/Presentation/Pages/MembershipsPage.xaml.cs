@@ -1,5 +1,6 @@
 ﻿using FoersteSemesterproeve.Domain.Models;
 using FoersteSemesterproeve.Domain.Services;
+using FoersteSemesterproeve.Views;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -61,8 +62,46 @@ namespace FoersteSemesterproeve.Presentation.Pages
                 membershipTypeYearly.TextAlignment = TextAlignment.Center;
                 membershipStack.Children.Add(membershipTypeYearly);
 
-                Grid.SetRow(membershipStack, i);
-                Grid.SetColumn(membershipStack, i);
+                Button editButton = new Button();
+                editButton.Content = "Edit";
+                editButton.FontSize = 10;
+                editButton.Tag = membershipService.membershipTypes[i];
+                editButton.Click += EditMembershipTypeButton_Click;
+                membershipStack.Children.Add(editButton);
+
+                Button deleteButton = new Button();
+                deleteButton.Content = "Delete";
+                deleteButton.FontSize = 10;
+                deleteButton.Click += DeleteMembershipTypeButton_Click;
+                membershipStack.Children.Add(deleteButton);
+            }
+
+
+        }
+
+        private void AddMembershipTypeButton_Click(object sender, RoutedEventArgs e)
+        {
+            router.Navigate(NavigationRouter.Route.AddMembershipType);
+        }
+
+        private void EditMembershipTypeButton_Click(object sender, RoutedEventArgs e)
+        {
+            router.Navigate(NavigationRouter.Route.EditMembershipType);
+        }
+
+        private void DeleteMembershipTypeButton_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            MembershipType membershipType = (MembershipType)button.Tag;
+
+            if(membershipType != null)
+            {
+                DialogBox dialogBox = new DialogBox($"Are you sure you want to delete {membershipType.name}?");
+                dialogBox.ShowDialog();
+                if(dialogBox.DialogResult == true)
+                {
+                    membershipService.DeleteMembershipTypeByObject(membershipType);
+                }
             }
         }
     }
