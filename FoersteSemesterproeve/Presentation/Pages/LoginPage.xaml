@@ -5,8 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FoersteSemesterproeve.Presentation.Pages"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="600" d:DesignWidth="800">
     <Grid>
+        <Grid x:Name="Background" Background="#80000000" Visibility="Visible">
+            <Image Source="/Data/Assets/Background.jpg" Stretch="UniformToFill"  />
+        </Grid>
+
         <StackPanel x:Name="LoginPanel" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -17,23 +21,28 @@
                 </Grid.RowDefinitions>
 
                 <StackPanel Grid.Row="0" Grid.Column="0">
+                    <Border BorderThickness="1" Background="#D8FFFFFF" CornerRadius="30" BorderBrush="DarkGray" Padding="60, 90, 60, 90">
+                        <StackPanel>
+                            <StackPanel Orientation="Vertical" Margin="10 20" Width="auto">
+                                <Label Content="FITpeople Manager" FontSize="24" FontStyle="Italic" FontFamily="Franklin Gothic Heavy" Foreground="#FF282879" FontWeight="Bold" BorderThickness="0" HorizontalAlignment="Center"/>
+                            </StackPanel>
 
-                    <StackPanel Orientation="Vertical" Margin="10" Width="200">
-                        <Label Content="Username" BorderThickness="0"/>
-                        <TextBox x:Name="UsernameBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="200" Height="25" BorderBrush="Black" BorderThickness="1"/>
-                    </StackPanel>
+                            <StackPanel Orientation="Vertical" Margin="10" Width="250">
+                                <Label Content="Username" BorderThickness="0" FontSize="14"/>
+                                <TextBox x:Name="UsernameBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="250" Height="30" FontSize="16" BorderBrush="Black" BorderThickness="1"/>
+                            </StackPanel>
 
-                    <StackPanel Orientation="Vertical" Margin="10" Width="200">
-                        <Label Content="Password" BorderThickness="0"/>
-                        <PasswordBox x:Name="PasswordBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="200" Height="25" BorderBrush="Black" BorderThickness="1"/>
-                    </StackPanel>
+                            <StackPanel Orientation="Vertical" Margin="10" Width="250">
+                                <Label Content="Password" BorderThickness="0" FontSize="14"/>
+                                <PasswordBox x:Name="PasswordBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="250" Height="30" FontSize="16" BorderBrush="Black" BorderThickness="1"/>
+                            </StackPanel>
 
-                    <StackPanel Orientation="Vertical" Margin="30" Width="200">
-                        <Button Width="200" BorderBrush="Black" Cursor="Hand" Height="25" FontSize="14" BorderThickness="1" Background="DodgerBlue" Click="LoginButton_Click">Login</Button>
-                    </StackPanel>
-
+                            <StackPanel Orientation="Vertical" Margin="30" Width="auto">
+                                <Button Width="250" BorderBrush="Black" Cursor="Hand" Height="30" FontSize="16" BorderThickness="1" Background="DodgerBlue" Click="LoginButton_Click">Login</Button>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
                 </StackPanel>
-
             </Grid>
         </StackPanel>
     </Grid>
