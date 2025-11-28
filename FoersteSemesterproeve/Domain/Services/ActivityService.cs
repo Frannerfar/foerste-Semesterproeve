@@ -64,5 +64,6 @@ namespace FoersteSemesterproeve.Domain.Services
             user.activityList.Remove(activity);
             return true;
         }
+
     }
 }
