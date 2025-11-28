@@ -9,6 +9,7 @@ namespace FoersteSemesterproeve.Domain.Services
 {
     public class MembershipService
     {
+        public MembershipType targetMembershipType;
         public List<MembershipType> membershipTypes;
 
         public MembershipService()
@@ -28,6 +29,16 @@ namespace FoersteSemesterproeve.Domain.Services
             membershipTypes.Add(new MembershipType("ULTRA PRO", 1000, 12000));
 
             return membershipTypes;
+        }
+
+        public void AddMembershipType(string title, int monthly, int yearly)
+        {
+            this.membershipTypes.Add(new MembershipType(title, monthly, yearly));
+        }
+
+        public void DeleteMembershipTypeByObject(MembershipType membershipType)
+        {
+            membershipTypes.Remove(membershipType);
         }
     }
 }
