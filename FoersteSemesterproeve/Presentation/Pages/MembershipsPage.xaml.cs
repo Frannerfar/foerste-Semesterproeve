@@ -32,24 +32,38 @@ namespace FoersteSemesterproeve.Presentation.Pages
             this.router = router;
             membershipService = membershipServiceInput;
 
+            GridMembershipTypes.HorizontalAlignment = HorizontalAlignment.Center;
 
             for(int i = 0; i < membershipService.membershipTypes.Count; i++)
             {
-                None.Text = membershipService.membershipTypes[0].name;
-                noneList.Items.Add($"Monthly Pay {membershipService.membershipTypes[0].monthlyPayDKK} DKK");
-                noneList.Items.Add($"Yearly Pay {membershipService.membershipTypes[0].yearlyPayDKK} DKK");
-                
-                Standard.Text = membershipService.membershipTypes[1].name;
-                standardList.Items.Add($"Monthly Pay {membershipService.membershipTypes[1].monthlyPayDKK} DKK");
-                standardList.Items.Add($"Yearly Pay {membershipService.membershipTypes[1].yearlyPayDKK} DKK");
-                    
-                Pro.Text = membershipService.membershipTypes[2].name;
-                proList.Items.Add($"Monthly Pay {membershipService.membershipTypes[2].monthlyPayDKK} DKK");
-                proList.Items.Add($"Yearly Pay {membershipService.membershipTypes[2].yearlyPayDKK} DKK");
-                break;
+                GridMembershipTypes.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star), MinWidth = 0, MaxWidth = 900 });
+
+                StackPanel membershipStack = new StackPanel();
+                Grid.SetRow(membershipStack, 0);
+                Grid.SetColumn(membershipStack, i);
+                membershipStack.Orientation = Orientation.Vertical;
+                membershipStack.Margin = new Thickness(25, 0, 25, 0);
+                GridMembershipTypes.Children.Add(membershipStack);
+
+                TextBlock membershipTypeName = new TextBlock();
+                membershipTypeName.Text = membershipService.membershipTypes[i].name;
+                membershipTypeName.FontSize = 20;
+                membershipTypeName.TextAlignment = TextAlignment.Center;
+                membershipStack.Children.Add(membershipTypeName);
+
+                TextBlock membershipTypeMonthly = new TextBlock();
+                membershipTypeMonthly.Text = $"MONTHLY {membershipService.membershipTypes[i].monthlyPayDKK}DKK";
+                membershipTypeMonthly.TextAlignment = TextAlignment.Center;
+                membershipStack.Children.Add(membershipTypeMonthly);
+
+                TextBlock membershipTypeYearly = new TextBlock();
+                membershipTypeYearly.Text = $"YEARLY {membershipService.membershipTypes[i].yearlyPayDKK}DKK";
+                membershipTypeYearly.TextAlignment = TextAlignment.Center;
+                membershipStack.Children.Add(membershipTypeYearly);
+
+                Grid.SetRow(membershipStack, i);
+                Grid.SetColumn(membershipStack, i);
             }
-
-
         }
     }
 }

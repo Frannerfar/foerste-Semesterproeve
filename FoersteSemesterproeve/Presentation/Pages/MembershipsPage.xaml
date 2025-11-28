@@ -19,54 +19,13 @@
 
         <TextBlock FontSize="30" Grid.Row="0" Grid.Column="1" Text="MEMBERSHIPS" HorizontalAlignment="Center" />
 
-        <Grid Name="membershipTypes" Grid.Row="1" Grid.Column="1">
+        <Grid Name="GridMembershipTypes" Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="250"/>
-                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-
-            <TextBlock Grid.Row="0" Grid.Column="0" 
-                       Name="None"
-                       HorizontalAlignment="Center"
-                       FontSize="40"/>
-            <ListView Grid.Row="1" Grid.Column="0"
-                      Name="noneList"
-                      FontSize="15"
-                      HorizontalAlignment="Center"
-                      HorizontalContentAlignment="Center"
-                      BorderThickness="0"
-                      IsHitTestVisible="False"/>
-            
-            
-            <TextBlock Grid.Row="0" Grid.Column="1"
-                       Name="Standard"
-                       HorizontalAlignment="Center"
-                       FontSize="40"/>
-            <ListView Grid.Row="1" Grid.Column="1"
-                      Name="standardList"
-                      FontSize="15"
-                      HorizontalAlignment="Center"
-                      HorizontalContentAlignment="Center"
-                      BorderThickness="0"
-                      IsHitTestVisible="False"/>
-            
-            
-            <TextBlock Grid.Row="0" Grid.Column="2" 
-                       Name="Pro"
-                       HorizontalAlignment="Center"
-                       FontSize="40"/>
-            <ListView Grid.Row="1" Grid.Column="2"
-                      Name="proList"
-                      FontSize="15"
-                      HorizontalAlignment="Center"
-                      HorizontalContentAlignment="Center"
-                      IsHitTestVisible="False"
-                      BorderThickness="0"/>
         </Grid>
     </Grid>
 </UserControl>

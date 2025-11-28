@@ -25,6 +25,7 @@ namespace FoersteSemesterproeve.Domain.Services
             membershipTypes.Add(new MembershipType("NONE", 0, 0));
             membershipTypes.Add(new MembershipType("STANDARD", 200, 2400));
             membershipTypes.Add(new MembershipType("PRO", 400, 4800));
+            membershipTypes.Add(new MembershipType("ULTRA PRO", 1000, 12000));
 
             return membershipTypes;
         }
