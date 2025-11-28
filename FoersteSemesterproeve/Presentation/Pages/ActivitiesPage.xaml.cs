@@ -40,7 +40,7 @@ namespace FoersteSemesterproeve.Presentation.Pages
             if (userService.authenticatedUser != null)
             {
                 activityService.JoinActivity(activityService.activities[0], userService.authenticatedUser);
-                Debug.WriteLine($"{userService.authenticatedUser.firstName} has joined {activityService.activities[0].title}");
+                //Debug.WriteLine($"{userService.authenticatedUser.firstName} has joined {activityService.activities[0].title}");
             }
 
         }
