@@ -63,7 +63,9 @@ namespace FoersteSemesterproeve.Presentation
                 { Route.Profile, () =>new ProfilePage() },
                 { Route.AddUser, () => new AddUserPage(this, userService) },
                 { Route.EditUser, () => new EditUserPage(this, userService) },
-                { Route.AddActivities, () => new AddActivitiesPage(this activityService) }
+                { Route.AddActivities, () => new AddActivitiesPage(this, activityService) },
+                { Route.EditMembershipType, () => new EditMembershipTypePage(this, membershipService) },
+                { Route.AddMembershipType, () => new AddMembershipTypePage(this, membershipService) }
                 
             };
         }
@@ -103,7 +105,9 @@ namespace FoersteSemesterproeve.Presentation
             Profile,
             AddUser,
             EditUser,
-            AddActivities
+            AddActivities,
+            EditMembershipType,
+            AddMembershipType
         }
 
     }
