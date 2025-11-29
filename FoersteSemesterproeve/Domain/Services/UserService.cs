@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FoersteSemesterproeve.Data.Repositories;
+using FoersteSemesterproeve.Domain.Interfaces;
 using FoersteSemesterproeve.Domain.Models;
 
 namespace FoersteSemesterproeve.Domain.Services
@@ -17,13 +18,13 @@ namespace FoersteSemesterproeve.Domain.Services
         public List<User> users;
         public MembershipService membershipService;
 
-        public UserRepository userRepository;
+        private IUserRepository userRepository;
 
-        public UserService(MembershipService membershipService) 
+        public UserService(MembershipService membershipService, IUserRepository userRepository) 
         {
             this.membershipService = membershipService;
 
-            this.userRepository = new UserRepository(membershipService);
+            this.userRepository = userRepository;
 
             users = populateUsers();
         }
