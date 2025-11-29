@@ -13,16 +13,33 @@ using FoersteSemesterproeve.Domain.Interfaces;
 
 namespace FoersteSemesterproeve.Data.Repositories
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <author>Martin</author>
+    /// <created>29-11-2025</created>
     public class UserRepository : IUserRepository
     {
         string filepath = Path.Combine(Environment.CurrentDirectory, "Data", "Files", "users.json");
         MembershipService membershipService;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <author>Martin</author>
+        /// <created>29-11-2025</created>
+        /// <param name="membershipService"></param>
         public UserRepository(MembershipService membershipService) 
         {
             this.membershipService = membershipService;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <author>Martin</author>
+        /// <created>29-11-2025</created>
+        /// <returns></returns>
         public List<User> LoadUsers()
         {
             string userJson = File.ReadAllText(filepath);
@@ -39,6 +56,12 @@ namespace FoersteSemesterproeve.Data.Repositories
             return new List<User>();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <author>Martin</author>
+        /// <created>29-11-2025</created>
+        /// <param name="users"></param>
         public void SaveUsers(List<User> users) 
         {
             List<UserDto> userDtos = ConvertToDto(users);
@@ -51,6 +74,13 @@ namespace FoersteSemesterproeve.Data.Repositories
             SaveFile(filepath, jsonText);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <author>Martin</author>
+        /// <created>29-11-2025</created>
+        /// <param name="users"></param>
+        /// <returns></returns>
         public int GetNewId(List<User> users)
         {
             int count = users.Count;
@@ -76,7 +106,13 @@ namespace FoersteSemesterproeve.Data.Repositories
             }
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <author>Martin</author>
+        /// <created>29-11-2025</created>
+        /// <param name="users"></param>
+        /// <returns></returns>
         private List<UserDto> ConvertToDto(List<User> users)
         {
             List<UserDto> userDtos = users.Select(u => new UserDto 
@@ -102,6 +138,14 @@ namespace FoersteSemesterproeve.Data.Repositories
             return userDtos;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <author>Martin</author>
+        /// <created>29-11-2025</created>
+        /// <param name="dtos"></param>
+        /// <param name="membershipTypes"></param>
+        /// <returns></returns>
         private List<User> ConvertFromDto(List<UserDto> dtos, List<MembershipType> membershipTypes)
         {
             List<User> users = dtos.Select(d => new User(
@@ -125,7 +169,13 @@ namespace FoersteSemesterproeve.Data.Repositories
             return users;
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <author>Martin</author>
+        /// <created>29-11-2025</created>
+        /// <param name="path"></param>
+        /// <returns></returns>
         private string LoadFile(string path)
         {
             string text = File.ReadAllText(path);
@@ -135,6 +185,13 @@ namespace FoersteSemesterproeve.Data.Repositories
             return text;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <author>Martin</author>
+        /// <created>29-11-2025</created>
+        /// <param name="path"></param>
+        /// <param name="text"></param>
         private void SaveFile(string path, string text)
         {
             File.WriteAllText(path, text);

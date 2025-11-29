@@ -7,6 +7,11 @@ using System.Threading.Tasks;
 
 namespace FoersteSemesterproeve.Domain.Interfaces
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <author>Martin</author>
+    /// <created>29-11-2025</created>
     public interface IUserRepository
     {
         List<User> LoadUsers();

@@ -20,7 +20,9 @@ namespace FoersteSemesterproeve.Presentation.Pages
     /// <summary>
     /// Interaction logic for LoginPage.xaml
     /// </summary>
-    /// <Author
+    /// <author>Martin</author>
+    /// <created>26-11-2025</created>
+    /// <updated>27-11-2025</updated>
     public partial class LoginPage : UserControl
     {
         NavigationRouter router;
@@ -29,7 +31,17 @@ namespace FoersteSemesterproeve.Presentation.Pages
         Button userProfileButton;
         List<Button> adminButtons;
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <author>Martin</author>
+        /// <created>26-11-2025</created>
+        /// <updated>28-11-2025</updated>
+        /// <param name="router"></param>
+        /// <param name="menuGrid"></param>
+        /// <param name="userService"></param>
+        /// <param name="userProfileButton"></param>
+        /// <param name="adminButtons"></param>
         public LoginPage(NavigationRouter router, Grid menuGrid, UserService userService, Button userProfileButton, List<Button> adminButtons)
         {
             InitializeComponent();
@@ -40,6 +52,14 @@ namespace FoersteSemesterproeve.Presentation.Pages
             this.adminButtons = adminButtons;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <author>Martin</author>
+        /// <created>26-11-2025</created>
+        /// <updated>27-11-2025</updated>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             User? possibleUser = userService.users.FirstOrDefault(u => u.email == UsernameBox.Text);

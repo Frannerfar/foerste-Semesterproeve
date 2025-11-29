@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace FoersteSemesterproeve.Data.DTO
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <author>Martin</author>
+    /// <created>29-11-2025</created>
     public class UserDto
     {
         public int Id { get; set; }
@@ -45,8 +50,12 @@ namespace FoersteSemesterproeve.Data.DTO
 
         public int Gender { get; set; }
 
-        
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <author>Martin</author>
+        /// <created>29-11-2025</created>
         public UserDto()
         {
 

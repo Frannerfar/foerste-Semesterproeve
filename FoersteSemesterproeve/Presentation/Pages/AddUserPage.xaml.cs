@@ -23,11 +23,22 @@ namespace FoersteSemesterproeve.Presentation.Pages
     /// <summary>
     /// Interaction logic for AddUserPage.xaml
     /// </summary>
+    /// <author>Martin</author>
+    /// <created>26-11-2025</created>
+    /// <updated>27-11-2025</updated>
     public partial class AddUserPage : UserControl
     {
         NavigationRouter router;
         UserService userService;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <author>Martin</author>
+        /// <created>26-11-2025</created>
+        /// <updated>29-11-2025</updated>
+        /// <param name="router"></param>
+        /// <param name="userService"></param>
         public AddUserPage(NavigationRouter router, UserService userService)
         {
             InitializeComponent();
@@ -55,6 +66,14 @@ namespace FoersteSemesterproeve.Presentation.Pages
             MembershipComboBox.SelectedIndex = 0;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <author>Martin</author>
+        /// <created>27-11-2025</created>
+        /// <updated>29-11-2025</updated>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
             bool flag = false;
@@ -122,6 +141,14 @@ namespace FoersteSemesterproeve.Presentation.Pages
             }
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <author>Martin</author>
+        /// <created>28-11-2025</created>
+        /// <param name="box"></param>
+        /// <returns></returns>
         public bool GetCheckBoxValue(CheckBox box)
         {
             if(box.IsChecked == true)
@@ -131,6 +158,15 @@ namespace FoersteSemesterproeve.Presentation.Pages
             return false;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <author>Martin</author>
+        /// <created>28-11-2025</created>
+        /// <updated>29-11-2025</updated>
+        /// <param name="datePicker"></param>
+        /// <param name="flag"></param>
+        /// <returns></returns>
         public bool ValidateDatePicker(DatePicker datePicker, Label flag)
         {
             if (datePicker.SelectedDate is not DateTime dt)
@@ -144,7 +180,14 @@ namespace FoersteSemesterproeve.Presentation.Pages
                 return false;
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <author>Martin</author>
+        /// <created>28-11-2025</created>
+        /// <param name="textBox"></param>
+        /// <param name="flag"></param>
+        /// <returns></returns>
         public bool ValidateRequiredTextBox(TextBox textBox, Label flag)
         {
             if(isValidString(textBox.Text)) 
@@ -159,6 +202,14 @@ namespace FoersteSemesterproeve.Presentation.Pages
             }
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <author>Martin</author>
+        /// <created>28-11-2025</created>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public bool isValidString(string input)
         {
             if(string.IsNullOrEmpty(input))
@@ -168,6 +219,13 @@ namespace FoersteSemesterproeve.Presentation.Pages
             return true;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <author>Martin</author>
+        /// <created>29-11-2025</created>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             router.Navigate(NavigationRouter.Route.Members);

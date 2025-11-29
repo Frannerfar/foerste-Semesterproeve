@@ -21,6 +21,9 @@ namespace FoersteSemesterproeve.Presentation.Pages
     /// <summary>
     /// Interaction logic for MemberView.xaml
     /// </summary>
+    /// <author>Martin</author>
+    /// <created>26-11-2025</created>
+    /// <updated>27-11-2025</updated>
     public partial class MembersPage : UserControl
     {
         UserService userService;
@@ -35,7 +38,12 @@ namespace FoersteSemesterproeve.Presentation.Pages
             populateDataGrid();
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <author>Martin</author>
+        /// <created>26-11-2025</created>
+        /// <updated></updated>
         public void populateDataGrid()
         {
             MemberDataGrid.Items.Clear();
@@ -45,12 +53,28 @@ namespace FoersteSemesterproeve.Presentation.Pages
             }
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <author>Martin</author>
+        /// <created>26-11-2025</created>
+        /// <updated>27-11-2025</updated>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddUser_Click(object sender, RoutedEventArgs e)
         {
             router.Navigate(NavigationRouter.Route.AddUser);
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <author>Martin</author>
+        /// <created>26-11-2025</created>
+        /// <updated>27-11-2025</updated>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EditUser_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
@@ -63,6 +87,14 @@ namespace FoersteSemesterproeve.Presentation.Pages
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <author>Martin</author>
+        /// <created>26-11-2025</created>
+        /// <updated>27-11-2025</updated>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteUser_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
@@ -82,11 +114,6 @@ namespace FoersteSemesterproeve.Presentation.Pages
                     populateDataGrid();
                 }
             }
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

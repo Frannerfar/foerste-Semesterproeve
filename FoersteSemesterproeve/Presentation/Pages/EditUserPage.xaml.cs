@@ -21,11 +21,23 @@ namespace FoersteSemesterproeve.Presentation.Pages
     /// <summary>
     /// Interaction logic for EditUserPage.xaml
     /// </summary>
+    /// <author>Martin</author>
+    /// <created>26-11-2025</created>
+    /// <updated></updated>
     public partial class EditUserPage : UserControl
     {
         NavigationRouter router;
         UserService userService;
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <author>Martin</author>
+        /// <created>26-11-2025</created>
+        /// <updated>29-11-2025</updated>
+        /// <param name="router"></param>
+        /// <param name="userService"></param>
         public EditUserPage(NavigationRouter router, UserService userService)
         {
             InitializeComponent();
@@ -75,6 +87,15 @@ namespace FoersteSemesterproeve.Presentation.Pages
             }
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <author>Martin</author>
+        /// <created>26-11-2025</created>
+        /// <updated>29-11-2025</updated>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
             if (userService.targetUser != null) { 
@@ -106,11 +127,25 @@ namespace FoersteSemesterproeve.Presentation.Pages
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <author>Martin</author>
+        /// <created>29-11-2025</created>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             router.Navigate(NavigationRouter.Route.Members);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <author>Martin</author>
+        /// <created>29-11-2025</created>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             if (userService.targetUser != null) 
@@ -130,6 +165,14 @@ namespace FoersteSemesterproeve.Presentation.Pages
             } 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <author>Martin</author>
+        /// <created>28-11-2025</created>
+        /// <updated>29-11-2025</updated>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ActivitiesButton_Click(object sender, RoutedEventArgs e)
         {
             router.Navigate(NavigationRouter.Route.UserActivities);

@@ -9,6 +9,12 @@ using FoersteSemesterproeve.Domain.Models;
 
 namespace FoersteSemesterproeve.Domain.Services
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <author>Martin</author>
+    /// <created>26-11-2025</created>
+    /// <updated>29-11-2025</updated>
     public class UserService
     {
         // Kunne flyttes til en AuthService, hvis vi udbyggede Authentication i applikationen
@@ -20,6 +26,14 @@ namespace FoersteSemesterproeve.Domain.Services
 
         private IUserRepository userRepository;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <author>Martin</author>
+        /// <created>26-11-2025</created>
+        /// <updated>29-11-2025</updated>
+        /// <param name="membershipService"></param>
+        /// <param name="userRepository"></param>
         public UserService(MembershipService membershipService, IUserRepository userRepository) 
         {
             this.membershipService = membershipService;
@@ -30,7 +44,13 @@ namespace FoersteSemesterproeve.Domain.Services
         }
 
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <author>Martin</author>
+        /// <created>26-11-2025</created>
+        /// <updated>28-11-2025</updated>
+        /// <returns></returns>
         private List<User> populateUsers()
         {
             List<User> users = new List<User>();
@@ -49,6 +69,15 @@ namespace FoersteSemesterproeve.Domain.Services
             return users;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <author>Martin</author>
+        /// <created>26-11-2025</created>
+        /// <updated>27-11-2025</updated>
+        /// <param name="user"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public bool isUserPasswordCorrect(User user, string password)
         {
             if (password == user.password)
@@ -58,12 +87,37 @@ namespace FoersteSemesterproeve.Domain.Services
             return false;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <author>Martin</author>
+        /// <created>26-11-2025</created>
+        /// <updated>27-11-2025</updated>
+        /// <param name="user"></param>
         public void DeleteUserByObject(User user)
         {
             users.Remove(user);
             // TODO: Fjern alle referencer
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <author>Martin</author>
+        /// <created>26-11-2025</created>
+        /// <updated>29-11-2025</updated>
+        /// <param name="firstName"></param>
+        /// <param name="lastName"></param>
+        /// <param name="email"></param>
+        /// <param name="city"></param>
+        /// <param name="address"></param>
+        /// <param name="date"></param>
+        /// <param name="postal"></param>
+        /// <param name="isAdmin"></param>
+        /// <param name="isCoach"></param>
+        /// <param name="hasPaid"></param>
+        /// <param name="membershipType"></param>
+        /// <param name="gender"></param>
         public void AddUser(string firstName, string lastName, string email, string city, string address, DateOnly date, int? postal, bool isAdmin, bool isCoach, bool hasPaid, MembershipType membershipType, User.Gender gender)
         {
             int newId = userRepository.GetNewId(this.users);

@@ -9,6 +9,12 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace FoersteSemesterproeve.Domain.Models
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <author>Martin</author>
+    /// <created>26-11-2025</created>
+    /// <updated>29-11-2025</updated>
     public class User
     {
         public int id { get; set; }
@@ -35,6 +41,26 @@ namespace FoersteSemesterproeve.Domain.Models
 
         public Gender gender;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <author>Martin</author>
+        /// <created>26-11-2025</created>
+        /// <updated>28-11-2025</updated>
+        /// <param name="id"></param>
+        /// <param name="firstName"></param>
+        /// <param name="lastName"></param>
+        /// <param name="email"></param>
+        /// <param name="address"></param>
+        /// <param name="city"></param>
+        /// <param name="password"></param>
+        /// <param name="isCoach"></param>
+        /// <param name="isAdmin"></param>
+        /// <param name="dateofBirth"></param>
+        /// <param name="postal"></param>
+        /// <param name="hasPaid"></param>
+        /// <param name="membershipType"></param>
+        /// <param name="gender"></param>
         public User(int id, string firstName, string lastName, string email, string address, string city, string password, bool isCoach, bool isAdmin, DateOnly dateofBirth, int? postal, bool hasPaid, MembershipType membershipType, Gender gender) 
         {
             this.id = id;
@@ -57,12 +83,24 @@ namespace FoersteSemesterproeve.Domain.Models
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <author>Martin</author>
+        /// <created>28-11-2025</created>
         public enum Gender
         {
             Male,
             Female
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <author>Martin</author>
+        /// <created>27-11-2025</created>
+        /// <param name="statement"></param>
+        /// <returns></returns>
         private string SetMark(bool statement)
         {
             if(statement)
@@ -77,6 +115,11 @@ namespace FoersteSemesterproeve.Domain.Models
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <author>Martin</author>
+        /// <created>27-11-2025</created>
         public void CheckBothMarks()
         {
             this.isCoachText = SetMark(isCoach);
