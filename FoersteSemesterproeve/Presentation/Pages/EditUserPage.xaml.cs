@@ -129,5 +129,10 @@ namespace FoersteSemesterproeve.Presentation.Pages
                 }
             } 
         }
+
+        private void ActivitiesButton_Click(object sender, RoutedEventArgs e)
+        {
+            router.Navigate(NavigationRouter.Route.UserActivities);
+        }
     }
 }

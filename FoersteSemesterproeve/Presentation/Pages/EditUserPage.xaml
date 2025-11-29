@@ -166,7 +166,7 @@
                                 <TextBlock FontWeight="Bold" FontSize="14" >Actions</TextBlock>
                                 <StackPanel Margin="10, 15, 10, 15" Orientation="Vertical">
                                     <Label Content="See list of joined activities" x:Name="ActivitiesListLabel" />
-                                    <Button x:Name="ActivitiesButton" Padding="5" FontSize="14" Background="#FF3DA4F3" BorderBrush="Black" Cursor="Hand">Joined Activities --></Button>
+                                    <Button x:Name="ActivitiesButton" Padding="5" FontSize="14" Background="#FF3DA4F3" BorderBrush="Black" Cursor="Hand" Click="ActivitiesButton_Click">Joined Activities --></Button>
                                 </StackPanel>
 
                                 <StackPanel Margin="10, 15, 10, 15" Orientation="Vertical">
