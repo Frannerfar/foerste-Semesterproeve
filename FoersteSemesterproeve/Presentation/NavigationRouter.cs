@@ -13,10 +13,11 @@ using static FoersteSemesterproeve.Presentation.NavigationRouter;
 namespace FoersteSemesterproeve.Presentation
 {
     /// <summary>
-    /// Håndterer navigation mellem forskellige pages / usercontrolsi samme Window
+    ///     Håndterer navigation mellem forskellige pages / usercontrolsi samme Window
     /// </summary>
     /// <author>Martin</author>
     /// <created>2025-11-25</created>
+    /// <updated></updated>
     /// <remarks>Bruges af MainWindow til UI routing</remarks>
     public class NavigationRouter
     {
@@ -38,7 +39,6 @@ namespace FoersteSemesterproeve.Presentation
         /// </summary>
         /// <author>Martin</author>
         /// <created>2025-11-25</created>
-        /// <updated
         public NavigationRouter(ContentControl contentControl, Grid menuGrid, Button userProfileButton, List<Button> adminButtons, UserService userService, ActivityService activityService, LocationService locationService, MembershipService membershipService)
         {
             this.control = contentControl;
@@ -63,10 +63,10 @@ namespace FoersteSemesterproeve.Presentation
                 { Route.Profile, () =>new ProfilePage() },
                 { Route.AddUser, () => new AddUserPage(this, userService) },
                 { Route.EditUser, () => new EditUserPage(this, userService) },
+                { Route.UserActivities, () => new UserActivitiesPage(this, userService) }, 
                 { Route.AddActivities, () => new AddActivitiesPage(this, activityService) },
                 { Route.EditMembershipType, () => new EditMembershipTypePage(this, membershipService) },
                 { Route.AddMembershipType, () => new AddMembershipTypePage(this, membershipService) }
-                
             };
         }
 
@@ -77,7 +77,6 @@ namespace FoersteSemesterproeve.Presentation
         /// <param name="route">Using the enum Route to decide routing direction</param>
         /// <author>Martin</author>
         /// <created>2025-11-25</created>
-        /// <updated
         public void Navigate(Route route)
         {
             if (!routes.TryGetValue(route, out Func<UserControl>? view))
@@ -93,6 +92,12 @@ namespace FoersteSemesterproeve.Presentation
             }
         }
 
+        /// <summary>
+        ///     Enum til navngivning af unikke værdier.
+        ///     Bruges til routing.
+        /// </summary>
+        /// <author>Martin</author>
+        /// <created>2025-11-25</created>
         public enum Route
         {
             Login,
@@ -105,6 +110,7 @@ namespace FoersteSemesterproeve.Presentation
             Profile,
             AddUser,
             EditUser,
+            UserActivities,
             AddActivities,
             EditMembershipType,
             AddMembershipType

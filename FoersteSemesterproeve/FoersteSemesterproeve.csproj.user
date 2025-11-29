@@ -35,6 +35,9 @@
     <Compile Update="Presentation\Pages\TrainersPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Presentation\Pages\UserActivitiesPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Presentation\Views\DialogBox.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

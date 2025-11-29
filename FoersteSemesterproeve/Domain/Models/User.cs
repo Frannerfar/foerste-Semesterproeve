@@ -9,26 +9,59 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace FoersteSemesterproeve.Domain.Models
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <author>Martin</author>
+    /// <created>26-11-2025</created>
+    /// <updated>29-11-2025</updated>
     public class User
     {
         public int id { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
         public string email { get; set; }
-        public string address;
         public string city;
-        public string password;
+        public string address;
+        public int? postal;
+        
+        public DateOnly dateofBirth;
         public bool isCoach;
         public bool isAdmin;
+        public bool hasPaid;
+
+        public string password;
+        
         public string isCoachText { get; set; }
         public string isAdminText { get; set; }
-        public DateOnly dateofBirth;
-        public int postal;
-        public bool hasPaid;
+        
         public List<Activity> activityList;
-        //public MembershipType membershipType;
+        
+        public MembershipType membershipType { get; set; }
 
-        public User(int id, string firstName, string lastName, string email, string address, string city, string password, bool isCoach, bool isAdmin, DateOnly dateofBirth, int postal, bool hasPaid) 
+        public Gender gender;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <author>Martin</author>
+        /// <created>26-11-2025</created>
+        /// <updated>28-11-2025</updated>
+        /// <param name="id"></param>
+        /// <param name="firstName"></param>
+        /// <param name="lastName"></param>
+        /// <param name="email"></param>
+        /// <param name="address"></param>
+        /// <param name="city"></param>
+        /// <param name="password"></param>
+        /// <param name="isCoach"></param>
+        /// <param name="isAdmin"></param>
+        /// <param name="dateofBirth"></param>
+        /// <param name="postal"></param>
+        /// <param name="hasPaid"></param>
+        /// <param name="membershipType"></param>
+        /// <param name="gender"></param>
+        public User(int id, string firstName, string lastName, string email, string address, string city, string password, bool isCoach, bool isAdmin, DateOnly dateofBirth, int? postal, bool hasPaid, MembershipType membershipType, Gender gender) 
         {
             this.id = id;
             this.firstName = firstName;
@@ -45,8 +78,29 @@ namespace FoersteSemesterproeve.Domain.Models
             this.isCoachText = SetMark(isCoach);
             this.isAdminText = SetMark(isAdmin);
             this.activityList = new List<Activity>();
+            this.membershipType = membershipType;
+            this.gender = gender;
+
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <author>Martin</author>
+        /// <created>28-11-2025</created>
+        public enum Gender
+        {
+            Male,
+            Female
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <author>Martin</author>
+        /// <created>27-11-2025</created>
+        /// <param name="statement"></param>
+        /// <returns></returns>
         private string SetMark(bool statement)
         {
             if(statement)
@@ -61,6 +115,11 @@ namespace FoersteSemesterproeve.Domain.Models
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <author>Martin</author>
+        /// <created>27-11-2025</created>
         public void CheckBothMarks()
         {
             this.isCoachText = SetMark(isCoach);
