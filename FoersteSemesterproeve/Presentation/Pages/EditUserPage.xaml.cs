@@ -1,4 +1,6 @@
-﻿using FoersteSemesterproeve.Domain.Services;
+﻿using FoersteSemesterproeve.Domain.Models;
+using FoersteSemesterproeve.Domain.Services;
+using FoersteSemesterproeve.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,24 +32,47 @@ namespace FoersteSemesterproeve.Presentation.Pages
             this.router = router;
             this.userService = userService;
 
+
             if (userService.targetUser != null)
             {
+                EditUserText.Text = $"'{userService.targetUser.firstName} {userService.targetUser.lastName}'";
+                
                 FirstNameBox.Text = userService.targetUser?.firstName;
                 LastNameBox.Text = userService.targetUser?.lastName;
                 EmailBox.Text = userService.targetUser?.email;
                 CityBox.Text = userService.targetUser?.city;
                 AddressBox.Text = userService.targetUser?.address;
                 PostalBox.Text = userService.targetUser?.postal.ToString();
-            
+
+                DatePicker.SelectedDate = new DateTime(userService.targetUser.dateofBirth, new TimeOnly(0, 0));
+                
+
                 if(userService.targetUser.isAdmin) { AdminCheckbox.IsChecked = true; }
 
                 if(userService.targetUser.isCoach) { TrainerCheckbox.IsChecked = true; }
 
                 if(userService.targetUser.hasPaid) { HasPaidCheckbox.IsChecked = true; }
-            }
-            
 
-            
+                for(int i = 0; i < userService.membershipService.membershipTypes.Count; i++)
+                {
+                    MembershipComboBox.Items.Add(userService.membershipService.membershipTypes[i].name);
+                    if(userService.membershipService.membershipTypes[i] == userService.targetUser?.membershipType)
+                    {
+                        MembershipComboBox.SelectedIndex = i;
+                    }
+                }
+
+                User.Gender[] genders = Enum.GetValues<User.Gender>();
+
+                for (int i = 0; i < genders.Length; i++)
+                {
+                    GenderComboBox.Items.Add(genders[i].ToString());
+                    if (userService?.targetUser?.gender != null && genders[i] == userService?.targetUser?.gender)
+                    {
+                        GenderComboBox.SelectedIndex = i;
+                    }
+                }
+            }
         }
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
@@ -73,9 +98,36 @@ namespace FoersteSemesterproeve.Presentation.Pages
                     userService.targetUser.hasPaid = (bool)HasPaidCheckbox.IsChecked;
                 }
 
+                userService.targetUser.membershipType = userService.membershipService.membershipTypes[MembershipComboBox.SelectedIndex];
+
+
                 userService.targetUser.CheckBothMarks();
                 router.Navigate(NavigationRouter.Route.Members);
             }
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            router.Navigate(NavigationRouter.Route.Members);
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (userService.targetUser != null) 
+            {
+                if (userService.targetUser.isAdmin)
+                {
+                    MessageBox.Show("You can't delete an admin");
+                    return;
+                }
+                DialogBox dialogBox = new DialogBox($"Are you sure you want to delete {userService.targetUser.firstName} {userService.targetUser.lastName}?");
+                dialogBox.ShowDialog();
+                if (dialogBox.DialogResult == true)
+                {
+                    userService.users.Remove(userService.targetUser);
+                    router.Navigate(NavigationRouter.Route.Members);
+                }
+            } 
         }
     }
 }

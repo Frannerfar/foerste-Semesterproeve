@@ -15,20 +15,27 @@ namespace FoersteSemesterproeve.Domain.Models
         public string firstName { get; set; }
         public string lastName { get; set; }
         public string email { get; set; }
-        public string address;
         public string city;
-        public string password;
+        public string address;
+        public int? postal;
+        
+        public DateOnly dateofBirth;
         public bool isCoach;
         public bool isAdmin;
+        public bool hasPaid;
+
+        public string password;
+        
         public string isCoachText { get; set; }
         public string isAdminText { get; set; }
-        public DateOnly dateofBirth;
-        public int postal;
-        public bool hasPaid;
+        
         public List<Activity> activityList;
-        //public MembershipType membershipType;
+        
+        public MembershipType membershipType { get; set; }
 
-        public User(int id, string firstName, string lastName, string email, string address, string city, string password, bool isCoach, bool isAdmin, DateOnly dateofBirth, int postal, bool hasPaid) 
+        public Gender gender;
+
+        public User(int id, string firstName, string lastName, string email, string address, string city, string password, bool isCoach, bool isAdmin, DateOnly dateofBirth, int? postal, bool hasPaid, MembershipType membershipType, Gender gender) 
         {
             this.id = id;
             this.firstName = firstName;
@@ -45,6 +52,15 @@ namespace FoersteSemesterproeve.Domain.Models
             this.isCoachText = SetMark(isCoach);
             this.isAdminText = SetMark(isAdmin);
             this.activityList = new List<Activity>();
+            this.membershipType = membershipType;
+            this.gender = gender;
+
+        }
+
+        public enum Gender
+        {
+            Male,
+            Female
         }
 
         private string SetMark(bool statement)

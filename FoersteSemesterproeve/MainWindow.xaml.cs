@@ -22,10 +22,10 @@ namespace FoersteSemesterproeve
     {
         NavigationRouter router;
 
-        UserService userService = new UserService();
-        ActivityService activityService = new ActivityService();
-        LocationService locationService = new LocationService();
-        MembershipService membershipService = new MembershipService();
+        MembershipService membershipService;
+        UserService userService;
+        ActivityService activityService;
+        LocationService locationService;
 
         // Sæt til false, hvis der skal testes med login
         bool isDeveloping = true;
@@ -38,9 +38,12 @@ namespace FoersteSemesterproeve
             adminButtons.Add(LocationsButton);
             adminButtons.Add(MembershipsButton);
             adminButtons.Add(MembersButton);
+
+            membershipService = new MembershipService();
+            userService = new UserService(membershipService);
+            activityService = new ActivityService();
+            locationService = new LocationService();
             router = new NavigationRouter(MainContent, MenuGrid, UserProfileButton, adminButtons, userService, activityService, locationService, membershipService);
-
-
 
             // Hvis vi "udvikler/tester"
             if (isDeveloping)

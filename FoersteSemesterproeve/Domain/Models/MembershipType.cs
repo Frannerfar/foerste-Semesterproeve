@@ -8,7 +8,7 @@ namespace FoersteSemesterproeve.Domain.Models
 {
     public class MembershipType
     {
-        public string name;
+        public string name { get; set; }
         int id;
         public int monthlyPayDKK;
         public int yearlyPayDKK;
