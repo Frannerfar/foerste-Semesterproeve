@@ -9,10 +9,11 @@ using System.Threading.Tasks;
 using FoersteSemesterproeve.Data.DTO;
 using FoersteSemesterproeve.Domain.Models;
 using FoersteSemesterproeve.Domain.Services;
+using FoersteSemesterproeve.Domain.Interfaces;
 
 namespace FoersteSemesterproeve.Data.Repositories
 {
-    public class UserRepository
+    public class UserRepository : IUserRepository
     {
         string filepath = Path.Combine(Environment.CurrentDirectory, "Data", "Files", "users.json");
         MembershipService membershipService;
