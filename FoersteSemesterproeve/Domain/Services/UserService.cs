@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FoersteSemesterproeve.Data.Repositories;
 using FoersteSemesterproeve.Domain.Models;
 
 namespace FoersteSemesterproeve.Domain.Services
@@ -16,9 +17,14 @@ namespace FoersteSemesterproeve.Domain.Services
         public List<User> users;
         public MembershipService membershipService;
 
+        public UserRepository userRepository;
+
         public UserService(MembershipService membershipService) 
         {
             this.membershipService = membershipService;
+
+            this.userRepository = new UserRepository(membershipService);
+
             users = populateUsers();
         }
 
@@ -59,7 +65,9 @@ namespace FoersteSemesterproeve.Domain.Services
 
         public void AddUser(string firstName, string lastName, string email, string city, string address, DateOnly date, int? postal, bool isAdmin, bool isCoach, bool hasPaid, MembershipType membershipType, User.Gender gender)
         {
-            this.users.Add(new User(100, firstName, lastName, email, address, city, "1234", isCoach, isAdmin, date, postal, hasPaid, membershipType, gender));
+            int newId = userRepository.GetNewId(this.users);
+            this.users.Add(new User(newId, firstName, lastName, email, address, city, "1234", isCoach, isAdmin, date, postal, hasPaid, membershipType, gender));
+            userRepository.SaveUsers(users);
         }
     }
 }

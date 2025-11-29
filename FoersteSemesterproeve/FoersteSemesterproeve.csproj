@@ -33,9 +33,9 @@
     <Resource Include="Data\Files\membershiptypes.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Data\Files\users.json">
+    <Content Include="Data\Files\users.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    </Content>
   </ItemGroup>
 
 </Project>
