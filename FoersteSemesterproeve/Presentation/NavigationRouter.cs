@@ -57,7 +57,7 @@ namespace FoersteSemesterproeve.Presentation
                 { Route.Home, () =>new HomePage(this, userService, activityService) },
                 { Route.Activities, () => new ActivitiesPage(this, activityService, userService) },
                 { Route.Members, () =>new MembersPage(this, userService) },
-                { Route.Trainers, () =>new TrainersPage() },
+                { Route.Trainers, () =>new TrainersPage(this, userService) },
                 { Route.Locations, () => new LocationsPage() },
                 { Route.Memberships, () => new MembershipsPage(this, membershipService) },
                 { Route.AddMembershipType, () => new AddMembershipTypePage(this, membershipService) },
