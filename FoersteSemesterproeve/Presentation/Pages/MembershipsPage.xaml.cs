@@ -35,8 +35,32 @@ namespace FoersteSemesterproeve.Presentation.Pages
 
             GridMembershipTypes.HorizontalAlignment = HorizontalAlignment.Center;
 
-            for(int i = 0; i < membershipService.membershipTypes.Count; i++)
+            DrawMembershipTypes();
+        }
+
+        private void AddMembershipTypeButton_Click(object sender, RoutedEventArgs e)
+        {
+            router.Navigate(NavigationRouter.Route.AddMembershipType);
+        }
+
+        private void EditMembershipTypeButton_Click(object sender, RoutedEventArgs e)
+        {
+            Button editButton = (Button)sender;
+            MembershipType membershipType = (MembershipType)editButton.Tag;
+
+            membershipService.targetMembershipType = membershipType;
+
+            router.Navigate(NavigationRouter.Route.EditMembershipType);
+        }
+
+        private void DrawMembershipTypes()
+        {
+            GridMembershipTypes.Children.Clear();
+            GridMembershipTypes.ColumnDefinitions.Clear();
+
+            for (int i = 0; i < membershipService.membershipTypes.Count; i++)
             {
+
                 GridMembershipTypes.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star), MinWidth = 0, MaxWidth = 900 });
 
                 StackPanel membershipStack = new StackPanel();
@@ -72,21 +96,10 @@ namespace FoersteSemesterproeve.Presentation.Pages
                 Button deleteButton = new Button();
                 deleteButton.Content = "Delete";
                 deleteButton.FontSize = 10;
+                deleteButton.Tag = membershipService.membershipTypes[i];
                 deleteButton.Click += DeleteMembershipTypeButton_Click;
                 membershipStack.Children.Add(deleteButton);
             }
-
-
-        }
-
-        private void AddMembershipTypeButton_Click(object sender, RoutedEventArgs e)
-        {
-            router.Navigate(NavigationRouter.Route.AddMembershipType);
-        }
-
-        private void EditMembershipTypeButton_Click(object sender, RoutedEventArgs e)
-        {
-            router.Navigate(NavigationRouter.Route.EditMembershipType);
         }
 
         private void DeleteMembershipTypeButton_Click(object sender, RoutedEventArgs e)
@@ -100,7 +113,8 @@ namespace FoersteSemesterproeve.Presentation.Pages
                 dialogBox.ShowDialog();
                 if(dialogBox.DialogResult == true)
                 {
-                    membershipService.DeleteMembershipTypeByObject(membershipType);
+                    membershipService.membershipTypes.Remove(membershipType);
+                    DrawMembershipTypes();
                 }
             }
         }

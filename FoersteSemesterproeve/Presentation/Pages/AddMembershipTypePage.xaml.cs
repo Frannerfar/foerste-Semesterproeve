@@ -39,15 +39,15 @@ namespace FoersteSemesterproeve.Presentation.Pages
 
         private void SaveNewMembershipTypeButton_Click(object sender, RoutedEventArgs e)
         {
-            if(membershipService.targetMembershipType != null)
-            {
+            
                 membershipService.AddMembershipType(
                     TitleInput.Text,
                     int.Parse(MonthlyInput.Text),
                     int.Parse(YearlyInput.Text));
-            }
+                
+                router.Navigate(NavigationRouter.Route.Memberships);
+            
 
-            router.Navigate(NavigationRouter.Route.Memberships);
         }
     }
 }

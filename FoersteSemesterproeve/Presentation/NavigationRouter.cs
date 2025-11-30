@@ -60,13 +60,13 @@ namespace FoersteSemesterproeve.Presentation
                 { Route.Trainers, () =>new TrainersPage() },
                 { Route.Locations, () => new LocationsPage() },
                 { Route.Memberships, () => new MembershipsPage(this, membershipService) },
+                { Route.AddMembershipType, () => new AddMembershipTypePage(this, membershipService) },
+                { Route.EditMembershipType, () => new EditMembershipTypePage(this, membershipService) },
                 { Route.Profile, () =>new ProfilePage() },
                 { Route.AddUser, () => new AddUserPage(this, userService) },
                 { Route.EditUser, () => new EditUserPage(this, userService) },
                 { Route.UserActivities, () => new UserActivitiesPage(this, userService) }, 
                 { Route.AddActivities, () => new AddActivitiesPage(this, activityService) },
-                { Route.EditMembershipType, () => new EditMembershipTypePage(this, membershipService) },
-                { Route.AddMembershipType, () => new AddMembershipTypePage(this, membershipService) }
             };
         }
 
@@ -107,13 +107,13 @@ namespace FoersteSemesterproeve.Presentation
             Trainers,
             Locations,
             Memberships,
+            AddMembershipType,
+            EditMembershipType,
             Profile,
             AddUser,
             EditUser,
             UserActivities,
-            AddActivities,
-            EditMembershipType,
-            AddMembershipType
+            AddActivities
         }
 
     }

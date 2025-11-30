@@ -23,5 +23,8 @@
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"
                    FontSize="30"/>
+
+        <TextBlock x:Name="MembershipTypeName"
+                   Grid.Row="1" Grid.Column="1"/>
     </Grid>
 </UserControl>

@@ -30,6 +30,10 @@ namespace FoersteSemesterproeve.Presentation.Pages
 
             this.router = router;
             this.membershipService = membershipService;
+            if(membershipService.targetMembershipType != null)
+            {
+                MembershipTypeName.Text = membershipService.targetMembershipType.name;
+            }
         }
     }
 }
