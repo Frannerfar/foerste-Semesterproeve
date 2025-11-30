@@ -9,7 +9,7 @@ namespace FoersteSemesterproeve.Domain.Services
 {
     public class MembershipService
     {
-        public MembershipType targetMembershipType;
+        public MembershipType? targetMembershipType;
         public List<MembershipType> membershipTypes;
 
         public MembershipService()

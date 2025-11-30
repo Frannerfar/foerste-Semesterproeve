@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FoersteSemesterproeve.Domain.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,7 @@ namespace FoersteSemesterproeve.Presentation.Pages
     /// </summary>
     public partial class AddActivitiesPage : UserControl
     {
-        public AddActivitiesPage()
+        public AddActivitiesPage(NavigationRouter router, ActivityService activityServiceInput)
         {
             InitializeComponent();
         }
