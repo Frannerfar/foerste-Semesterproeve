@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FoersteSemesterproeve.Domain.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,20 @@ namespace FoersteSemesterproeve.Presentation.Pages
         public LocationsPage()
         {
             InitializeComponent();
+        }
+        private void AddLocationButton_Click(object sender, RoutedEventArgs e)
+        {
+            //if (userService.authenticatedUser.isAdmin)
+            {
+                //Dialogbox "Only admins can create activities"
+                return;
+            }
+
+           // if (string.IsNullOrEmpty())
+            {
+                //Dialogbox "Title cannot be empty"
+                return;
+            }
         }
     }
 }

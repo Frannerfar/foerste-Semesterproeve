@@ -9,8 +9,8 @@
     <Grid>
 
         <!-- Layout: 
-             Row 0 = HomePage (fast top-menu)
-             Row 1 = Actual AddActivities content 
+             HomePage (fastlåst top-menu)
+             AddActivities (skabelon) 
         -->
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -23,7 +23,7 @@
         </StackPanel>
 
 
-        <!-- AddActivities -->
+        
         <Grid Grid.Row="1" Margin="40">
 
             <Grid.RowDefinitions>
@@ -42,96 +42,121 @@
                        Text="Create Activity"
                        FontSize="28"
                        FontWeight="SemiBold"
-                       Margin="0 0 0 20"/>
+                       Margin="0 0 0 5"/>
 
 
-            <!-- Aktivitet skabelon -->
-            <Grid Grid.Row="1" Grid.ColumnSpan="2">
+            <!-- Aktivitet skabelon med Scrollviewer (eneste måde der kunne være plads til det) -->
+            <ScrollViewer Grid.Row="1" Grid.ColumnSpan="2" VerticalScrollBarVisibility="Auto">
+                <Grid Margin="0,0,0,20">
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
-                <!-- Title -->
-                <TextBlock Text="Title:" 
-                           Grid.Row="0" 
-                           Margin="0 4"/>
-                <TextBox x:Name="TitleBox" 
-                         Grid.Row="0" 
-                         Grid.Column="1"
-                         Margin="0 4" 
-                         Padding="5"/>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-                <!-- Description -->
-                <TextBlock Text="Description:" 
-                           Grid.Row="1" 
-                           Margin="0 4"/>
-                <TextBox x:Name="DescriptionBox" 
-                         Grid.Row="1" 
-                         Grid.Column="1"
-                         Margin="0 4" 
-                         Padding="5" 
-                         Height="60" 
-                         TextWrapping="Wrap"/>
+                    <!-- Title -->
+                    <TextBlock Text="Title:" 
+                               Grid.Row="0" 
+                               Margin="0 0 0 3"/>
+                    <TextBox x:Name="TitleBox" 
+                             Grid.Row="1" 
+                             Margin="0 0 0 10" 
+                             Padding="5"/>
 
-                <!-- Trainer -->
-                <TextBlock Text="Trainer:" 
-                           Grid.Row="2" 
-                           Grid.Column="1" 
-                           Margin="0 4"/>
-                <TextBox x:Name="TrainerBox" 
-                         Grid.Row="2" 
-                         Grid.Column="1"
-                         Margin="0 4" 
-                         Padding="5"/>
+                    <!-- Description -->
+                    <TextBlock Text="Description:" 
+                               Grid.Row="2" 
+                               Margin="0 0 0 3"/>
+                    <TextBox x:Name="DescriptionBox" 
+                             Grid.Row="3" 
+                             Height="80" 
+                             TextWrapping="Wrap"
+                             Margin="0 0 0 10" 
+                             Padding="5"/>
 
-                <!-- Location -->
-                <TextBlock Text="Location:" 
-                           Grid.Row="3" 
-                           Margin="0 4"/>
-                <TextBox x:Name="LocationBox" 
-                         Grid.Row="3" 
-                         Margin="0 4" 
-                         Padding="5"/>
+                    <!-- Trainer -->
+                    <TextBlock Text="Trainer:" 
+                               Grid.Row="4" 
+                               Margin="0 0 0 3"/>
+                    <TextBox x:Name="TrainerBox" 
+                             Grid.Row="5" 
+                             Margin="0 0 0 10" 
+                             Padding="5"/>
 
-                <TextBlock Text="Participant:"
-                           Grid.Row="4"
-                           Margin="0 4"/>
-                <TextBox x:Name="Participant"
-                         Grid.Row="3"
-                         Margin="0 4"
-                         Padding="5"/>
+                    <!-- Location -->
+                    <TextBlock Text="Location:" 
+                               Grid.Row="6" 
+                               Margin="0 0 0 3"/>
+                    <TextBox x:Name="LocationBox" 
+                             Grid.Row="7" 
+                             Margin="0 0 0 10" 
+                             Padding="5"/>
 
+                    <!-- Participant -->
+                    <TextBlock Text="Participant:" 
+                               Grid.Row="8" 
+                               Margin="0 0 0 3"/>
+                    <TextBox x:Name="ParticipantBox" 
+                             Grid.Row="9" 
+                             Margin="0 0 0 10" 
+                             Padding="5"/>
 
+                    <!-- Start Date + Time -->
+                    <TextBlock Text="Start:" 
+                               Grid.Row="10" 
+                               Margin="0 0 0 3"/>
+                    
+                    <StackPanel Grid.Row="11" 
+                                Orientation="Horizontal" 
+                                Margin="0 0 0 10">
+                        <DatePicker x:Name="StartDatePicker" 
+                                    Width="150"/>
+                        <ComboBox x:Name="StartTimeCombo" 
+                                  Width="80" 
+                                  Margin="10 0 0 0"/>
+                    </StackPanel>
 
-                <!-- Start Date + Time -->
-                <TextBlock Text="Start:" 
-                           Grid.Row="5" 
-                           Margin="0 4"/>
-                <StackPanel Grid.Row="5" Grid.Column="1"
-                            Orientation="Horizontal" Margin="0 4">
-                    <DatePicker x:Name="StartDatePicker" Width="150"/>
-                    <ComboBox x:Name="StartTimeCombo" Width="80"/>
-                </StackPanel>
-
-                <!-- Deadline Date + Time -->
-                <TextBlock Text="Deadline:" 
-                           Grid.Row="6" 
-                           Margin="0 4"/>
-                <StackPanel Grid.Row="6" Grid.Column="1"
-                            Orientation="Horizontal" Margin="0 4">
-                    <DatePicker x:Name="DeadlineDatePicker" Width="150"/>
-                    <ComboBox x:Name="DeadlineTimeCombo" Width="80"/>
-                </StackPanel>
-
-            </Grid>
+                    <!-- Deadline -->
+                    <TextBlock Text="Deadline:" 
+                               Grid.Row="12" 
+                               Margin="0 0 0 3"/>
+                    
+                    <StackPanel Grid.Row="13" Orientation="Horizontal" Margin="0 0 0 10">
+                        <DatePicker x:Name="DeadlineDatePicker" 
+                                    Width="150"/>
+                        <ComboBox x:Name="DeadlineTimeCombo" 
+                                  Width="80" 
+                                  Margin="10 0 0 0"/>
+                    </StackPanel>
+                    
+                    <!-- Create Button -->
+                    <Button x:Name="AddActivitiesClickButton"
+                            Grid.Row="14"
+                            Content="Create Activities"
+                            Width="160"
+                            Height="40"
+                            Margin="0 20 0 0"
+                            HorizontalAlignment="Left"
+                            Click="CreateButtonClick"/>
+                </Grid>
+            </ScrollViewer>
         </Grid>
     </Grid>
 

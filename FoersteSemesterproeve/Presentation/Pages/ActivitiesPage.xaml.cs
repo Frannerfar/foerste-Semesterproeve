@@ -25,7 +25,7 @@ namespace FoersteSemesterproeve.Presentation.Pages
         NavigationRouter router;
         ActivityService activityService;
         UserService userService;
-        
+
         public ActivitiesPage(NavigationRouter navigationRouter, ActivityService activityService, UserService userService)
         {
 
@@ -33,6 +33,8 @@ namespace FoersteSemesterproeve.Presentation.Pages
             this.router = navigationRouter;
             this.activityService = activityService;
             this.userService = userService;
+
+            
         }
 
         private void JoinButtonClick(object sender, RoutedEventArgs e)
@@ -45,5 +47,6 @@ namespace FoersteSemesterproeve.Presentation.Pages
 
         }
 
+       
     }
 }
