@@ -39,15 +39,29 @@ namespace FoersteSemesterproeve.Presentation.Pages
 
         private void SaveNewMembershipTypeButton_Click(object sender, RoutedEventArgs e)
         {
-            
-                membershipService.AddMembershipType(
-                    TitleInput.Text,
-                    int.Parse(MonthlyInput.Text),
-                    int.Parse(YearlyInput.Text));
-                
-                router.Navigate(NavigationRouter.Route.Memberships);
-            
+            bool isMonthlyInteger = int.TryParse(MonthlyInput.Text, out int monthlyInputInteger);
+            bool isYearlyInteger = int.TryParse(YearlyInput.Text, out int yearlyInputInteger);
 
+            if(string.IsNullOrEmpty(TitleInput.Text))
+            {
+                MessageBox.Show("Title can not be empty");
+                return;
+            }
+            if(isMonthlyInteger == false)
+            {
+                MessageBox.Show("Monthly Pay only takes numbers");
+                return;
+            }
+
+            if(isYearlyInteger == false)
+            {
+                MessageBox.Show("Yearly Pay only takes numbers");
+                return;
+            }
+
+            membershipService.AddMembershipType(TitleInput.Text, monthlyInputInteger, yearlyInputInteger);
+
+            router.Navigate(NavigationRouter.Route.Memberships);
         }
     }
 }

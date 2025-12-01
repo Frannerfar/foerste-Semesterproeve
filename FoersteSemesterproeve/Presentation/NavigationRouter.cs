@@ -57,7 +57,7 @@ namespace FoersteSemesterproeve.Presentation
                 { Route.Home, () =>new HomePage(this, userService, activityService) },
                 { Route.Activities, () => new ActivitiesPage(this, activityService, userService) },
                 { Route.Members, () =>new MembersPage(this, userService) },
-                { Route.Trainers, () =>new TrainersPage() },
+                { Route.Trainers, () =>new TrainersPage(this, userService) },
                 { Route.Locations, () => new LocationsPage() },
                 { Route.Memberships, () => new MembershipsPage(this, membershipService) },
                 { Route.AddMembershipType, () => new AddMembershipTypePage(this, membershipService) },
@@ -67,6 +67,7 @@ namespace FoersteSemesterproeve.Presentation
                 { Route.EditUser, () => new EditUserPage(this, userService) },
                 { Route.UserActivities, () => new UserActivitiesPage(this, userService) }, 
                 { Route.AddActivities, () => new AddActivitiesPage(this, activityService, userService) },
+                { Route.ViewTrainerInfo, () => new ViewTrainerInfoPage(this, userService) }
             };
         }
 
@@ -113,7 +114,8 @@ namespace FoersteSemesterproeve.Presentation
             AddUser,
             EditUser,
             UserActivities,
-            AddActivities
+            AddActivities,
+            ViewTrainerInfo
         }
 
     }

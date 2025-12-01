@@ -24,7 +24,71 @@
                    HorizontalAlignment="Center"
                    FontSize="30"/>
 
-        <TextBlock x:Name="MembershipTypeName"
-                   Grid.Row="1" Grid.Column="1"/>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="1" Grid.Column="1"
+               Text="TITLE:"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               FontSize="10"/>
+            <TextBox Grid.Row="2" Grid.Column="1"
+             x:Name="TitleInput"
+             HorizontalContentAlignment="Center"
+             VerticalContentAlignment="Center"
+             VerticalAlignment="Top"
+             Height="20"/>
+
+            <TextBlock Grid.Row="3" Grid.Column="1"
+               Text="Monthly pay DKK"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               FontSize="10"/>
+            <TextBox Grid.Row="4" Grid.Column="1"
+             x:Name="MonthlyInput"
+             HorizontalContentAlignment="Center"
+             VerticalContentAlignment="Center"
+             VerticalAlignment="Top"
+             Height="20"/>
+
+            <TextBlock Grid.Row="5" Grid.Column="1"
+               Text="Yearly pay DKK"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               FontSize="10"/>
+            <TextBox Grid.Row="6" Grid.Column="1"
+             x:Name="YearlyInput"
+             HorizontalContentAlignment="Center"
+             VerticalContentAlignment="Center"
+             VerticalAlignment="Top"
+             Height="20"/>
+
+            <StackPanel Grid.Row="7" Grid.Column="1" VerticalAlignment="Top" Orientation="Horizontal" HorizontalAlignment="Center" Margin="20, 10, 20, 0">
+                <Button Content="CANCEL"
+                Margin="0, 0, 50, 0"
+                Background="Red"
+                x:Name="CancelAddMembershipTypeButton" 
+                Click="CancelAddMembershipTypeButton_Click"/>
+                <Button Content="SAVE"
+                Background="Green"
+                x:Name="SaveNewMembershipTypeButton" Click="SaveNewMembershipTypeButton_Click"
+                />
+            </StackPanel>
+
+        </Grid>
     </Grid>
 </UserControl>
