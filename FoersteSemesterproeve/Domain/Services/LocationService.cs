@@ -32,6 +32,11 @@ namespace FoersteSemesterproeve.Domain.Services
 
             return locations;
         }
+
+        public void AddLocation(string name, string description, int? capacity)
+        {
+            locations.Add(new Location(name, description, capacity));
+        }
         //Hvordan ser en oversigt af lokaler ud(ala stil med Homepage, hvor kolonner indeholder hver deres lokale med gældende aktiviteter):
     }
 }

@@ -7,6 +7,46 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="100" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="50" />
+
+        </Grid.ColumnDefinitions>
+
+
+        <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock x:Name="TargetLocationName" FontSize="20"></TextBlock>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical">
+            <!--<Label></Label>-->
+            <StackPanel>
+                <Label x:Name="LocationNameFlag" Visibility="Collapsed" Foreground="Red">Required field!</Label>
+                <Label x:Name="LocationNameLabel">Name</Label>
+                <TextBox x:Name="LocationNameBox" />
+            </StackPanel>
+
+            <StackPanel>
+                <Label x:Name="LocationDescriptionFlag" Visibility="Collapsed" Foreground="Red">Required field!</Label>
+                <Label x:Name="LocationDescriptionLabel">Description</Label>
+                <TextBox x:Name="LocationDescriptionBox" />
+            </StackPanel>
+
+            <StackPanel>
+                <Label x:Name="LocationCapacityFlag" Visibility="Collapsed" Foreground="Red">Required field!</Label>
+                <Label x:Name="LocationCapacityLabel">Max Capacity: (leave empty for unlimited)</Label>
+                <TextBox x:Name="LocationCapacityBox" />
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Padding="10 5 10 5" Background="Green" Click="SaveButton_Click">Save</Button>
+        </StackPanel>
     </Grid>
 </UserControl>
