@@ -6,159 +6,71 @@
              xmlns:local="clr-namespace:FoersteSemesterproeve.Presentation.Pages"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid Margin="30">
 
-        <!-- Layout: 
-             HomePage (fastlåst top-menu)
-             AddActivities (skabelon) 
-        -->
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
+        <TextBlock Text="Create Activity"
+                   FontSize="28"
+                   FontWeight="SemiBold"
+                   Margin="0 0 0 20"/>
 
-            <TextBlock FontSize="30">HOME PAGE</TextBlock>
-        </StackPanel>
+        <ScrollViewer Grid.Row="1"
+                      VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Disabled">
 
+            <StackPanel Grid.Row="1" Width="350" Orientation="Vertical" VerticalAlignment="Top">
 
-        
-        <Grid Grid.Row="1" Margin="40">
+                <!-- TITLE -->
+                <TextBlock Text="Title"/>
+                <TextBox x:Name="TitleBox" 
+                     Margin="0 0 0 10"/>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+                <!-- COACH -->
+                <TextBlock Text="Coach"/>
+                <ComboBox x:Name="CoachPicker"
+                      DisplayMemberPath="firstName"
+                      Margin="0 0 0 10"/>
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+                <!-- LOCATION -->
+                <TextBlock Text="Location"/>
+                <ComboBox x:Name="LocationPicker"
+                      DisplayMemberPath="Name"
+                      Margin="0 0 0 10"/>
 
+                <!-- MAX CAPACITY -->
+                <TextBlock Text="Max Capacity"/>
+                <TextBox x:Name="CapacityBox" Margin="0 0 0 10"/>
 
-            <!-- Page Title -->
-            <TextBlock Grid.Row="0" Grid.ColumnSpan="2"
-                       Text="Create Activity"
-                       FontSize="28"
-                       FontWeight="SemiBold"
-                       Margin="0 0 0 5"/>
+                <!-- START -->
+                <TextBlock Text="Start Time"/>
+                <DatePicker x:Name="StartDatePicker"/>
+                <TextBox x:Name="StartTimeBox" Margin="0 0 0 10"/>
 
+                <!-- END -->
+                <TextBlock Text="End Time"/>
+                <DatePicker x:Name="EndDatePicker"/>
+                <TextBox x:Name="EndTimeBox" Margin="0 0 0 10"/>
 
-            <!-- Aktivitet skabelon med Scrollviewer (eneste måde der kunne være plads til det) -->
-            <ScrollViewer Grid.Row="1" Grid.ColumnSpan="2" VerticalScrollBarVisibility="Auto">
-                <Grid Margin="0,0,0,20">
+                <!-- BUTTONS -->
+                <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                    <Button Content="Add"
+                        Width="120"
+                        Margin="0 0 10 0"
+                        Click="AddActivity_Click"/>
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
+                    <Button Content="Cancel"
+                        Width="120"
+                        Click="Cancel_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <!-- Title -->
-                    <TextBlock Text="Title:" 
-                               Grid.Row="0" 
-                               Margin="0 0 0 3"/>
-                    <TextBox x:Name="TitleBox" 
-                             Grid.Row="1" 
-                             Margin="0 0 0 10" 
-                             Padding="5"/>
-
-                    <!-- Description -->
-                    <TextBlock Text="Description:" 
-                               Grid.Row="2" 
-                               Margin="0 0 0 3"/>
-                    <TextBox x:Name="DescriptionBox" 
-                             Grid.Row="3" 
-                             Height="80" 
-                             TextWrapping="Wrap"
-                             Margin="0 0 0 10" 
-                             Padding="5"/>
-
-                    <!-- Trainer -->
-                    <TextBlock Text="Trainer:" 
-                               Grid.Row="4" 
-                               Margin="0 0 0 3"/>
-                    <TextBox x:Name="TrainerBox" 
-                             Grid.Row="5" 
-                             Margin="0 0 0 10" 
-                             Padding="5"/>
-
-                    <!-- Location -->
-                    <TextBlock Text="Location:" 
-                               Grid.Row="6" 
-                               Margin="0 0 0 3"/>
-                    <TextBox x:Name="LocationBox" 
-                             Grid.Row="7" 
-                             Margin="0 0 0 10" 
-                             Padding="5"/>
-
-                    <!-- Participant -->
-                    <TextBlock Text="Participant:" 
-                               Grid.Row="8" 
-                               Margin="0 0 0 3"/>
-                    <TextBox x:Name="ParticipantBox" 
-                             Grid.Row="9" 
-                             Margin="0 0 0 10" 
-                             Padding="5"/>
-
-                    <!-- Start Date + Time -->
-                    <TextBlock Text="Start:" 
-                               Grid.Row="10" 
-                               Margin="0 0 0 3"/>
-                    
-                    <StackPanel Grid.Row="11" 
-                                Orientation="Horizontal" 
-                                Margin="0 0 0 10">
-                        <DatePicker x:Name="StartDatePicker" 
-                                    Width="150"/>
-                        <ComboBox x:Name="StartTimeCombo" 
-                                  Width="80" 
-                                  Margin="10 0 0 0"/>
-                    </StackPanel>
-
-                    <!-- Deadline -->
-                    <TextBlock Text="Deadline:" 
-                               Grid.Row="12" 
-                               Margin="0 0 0 3"/>
-                    
-                    <StackPanel Grid.Row="13" Orientation="Horizontal" Margin="0 0 0 10">
-                        <DatePicker x:Name="DeadlineDatePicker" 
-                                    Width="150"/>
-                        <ComboBox x:Name="DeadlineTimeCombo" 
-                                  Width="80" 
-                                  Margin="10 0 0 0"/>
-                    </StackPanel>
-                    
-                    <!-- Create Button -->
-                    <Button x:Name="AddActivitiesClickButton"
-                            Grid.Row="14"
-                            Content="Create Activities"
-                            Width="160"
-                            Height="40"
-                            Margin="0 20 0 0"
-                            HorizontalAlignment="Left"
-                            Click="CreateButtonClick"/>
-                </Grid>
-            </ScrollViewer>
-        </Grid>
     </Grid>
+
 
 
 </UserControl>

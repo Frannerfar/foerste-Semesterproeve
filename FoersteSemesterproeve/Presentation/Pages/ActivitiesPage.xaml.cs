@@ -37,6 +37,13 @@ namespace FoersteSemesterproeve.Presentation.Pages
             
         }
 
+
+        private void LoadActivities()
+        {
+            //ActivitiesList.ItemsSource = null;
+            //ActivitiesList.ItemsSource = activityService.activities;
+            ActivitiesList.ItemsSource = activityService.GetAllActivities(); 
+        }
         private void JoinButtonClick(object sender, RoutedEventArgs e)
         {
             if (userService.authenticatedUser != null)

@@ -22,11 +22,7 @@ namespace FoersteSemesterproeve.Domain.Services
         {
             List<Location> locations = new List<Location>();
 
-            locations.Add(new Location());
-            locations.Add(new Location());
-            locations.Add(new Location());
-            locations.Add(new Location());
-            locations.Add(new Location());
+            
 
             return locations;
 

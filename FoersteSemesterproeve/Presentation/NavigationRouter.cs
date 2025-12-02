@@ -66,7 +66,7 @@ namespace FoersteSemesterproeve.Presentation
                 { Route.AddUser, () => new AddUserPage(this, userService) },
                 { Route.EditUser, () => new EditUserPage(this, userService) },
                 { Route.UserActivities, () => new UserActivitiesPage(this, userService) }, 
-                { Route.AddActivities, () => new AddActivitiesPage(this, activityService, userService) },
+                { Route.AddActivities, () => new AddActivitiesPage(this, activityService, userService, locationService) },
                 { Route.ViewTrainerInfo, () => new ViewTrainerInfoPage(this, userService) }
             };
         }

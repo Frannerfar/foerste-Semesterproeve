@@ -1,8 +1,9 @@
 ﻿using FoersteSemesterproeve.Domain.Models;
 using FoersteSemesterproeve.Domain.Services;
+using Activity = FoersteSemesterproeve.Domain.Models.Activity;
 using System;
 using System.Collections.Generic;
-//using System.Diagnostics;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,68 +27,95 @@ namespace FoersteSemesterproeve.Presentation.Pages
         NavigationRouter router;
         ActivityService activityService;
         UserService userService;
-        public AddActivitiesPage(NavigationRouter navigationRouter, ActivityService activityService, UserService userService)
+        LocationService locationService;
+        public AddActivitiesPage(NavigationRouter navigationRouter, ActivityService activityService, UserService userService, LocationService locationService)
         {
             InitializeComponent();
             this.router = navigationRouter;
             this.activityService = activityService;
             this.userService = userService;
-            CheckAdminPermissions();
+            this.locationService = locationService;
+
+            CoachPicker.ItemsSource = userService.users.Where(u => u.isCoach).ToList();
+            LocationPicker.ItemsSource = locationService.locations;
+
         }
 
-        private void CheckAdminPermissions()
-        {
-            if (userService.authenticatedUser == null || !userService.authenticatedUser.isAdmin)
-            {
-                // lukker alle felter hvis det ikke er en admin 
-                TitleBox.IsEnabled = false;
-                DescriptionBox.IsEnabled = false;
-                TrainerBox.IsEnabled = false;
-                LocationBox.IsEnabled = false;
-                ParticipantBox.IsEnabled = false;
-                StartTimeCombo.IsEnabled = false;
-                StartDatePicker.IsEnabled = false;
-                DeadlineTimeCombo.IsEnabled = false;
-                DeadlineDatePicker.IsEnabled = false;
-
-               
-            }
-
-            
-        }
-        private void CreateButtonClick(object sender, RoutedEventArgs e)
-        {
-            if (userService.authenticatedUser.isAdmin)
-            {
-                //Dialogbox "Only admins can create activities"
-                return;
-            }
-
-            if(string.IsNullOrEmpty(TitleBox.Text)) 
-            {
-                //Dialogbox "Title cannot be empty"
-                return;
-            }
-            // Bro det her sutter åbenbart ved den ikke at jeg prøver at intacisere et nyt objekt af typen aktivitet 
-            Activity activity = new Activity()
-            {
-                //Title = TitleBox.Text,
-                //Description = DescriptionBox.Text,
-                //Trainer = TrainerBox.Text,
-            };
-
-            // Save into service
-            activityService.activities.Add(activity);
-
-            MessageBox.Show("Activity created!");
-
-            ClearFields();
-        }
         
+        private void AddActivity_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                // ----- VALIDERING -----
+                if (string.IsNullOrWhiteSpace(TitleBox.Text))
+                {
+                    MessageBox.Show("Title is required.");
+                    return;
+                }
 
-        private void ClearFields()
+                if (CoachPicker.SelectedItem is not User coach)
+                {
+                    MessageBox.Show("You must select a coach.");
+                    return;
+                }
+
+                if (LocationPicker.SelectedItem is not Location location)
+                {
+                    MessageBox.Show("You must select a location.");
+                    return;
+                }
+
+                if (!int.TryParse(CapacityBox.Text, out int maxCap))
+                {
+                    MessageBox.Show("Max capacity must be a number.");
+                    return;
+                }
+
+                // ----- DATE & TIME -----
+                var start = ParseDateTime(StartDatePicker, StartTimeBox.Text);
+                var end = ParseDateTime(EndDatePicker, EndTimeBox.Text);
+
+                if (end <= start)
+                {
+                    MessageBox.Show("End time must be after start time.");
+                    return;
+                }
+
+                // ----- CREATE ACTIVITY -----
+                Activity activity = new Activity
+                {
+                    title = TitleBox.Text,
+                    //coach = coach,
+                    location = location,
+                    maxCapacity = maxCap,
+                    startTime = start,
+                    endTime = end
+                };
+
+                activityService.AddActivity(activity);
+
+                MessageBox.Show("Activity created successfully!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+        }
+
+
+        private DateTime ParseDateTime(DatePicker picker, string timeText)
+        {
+            var date = picker.SelectedDate ?? DateTime.Today;
+
+            var time = TimeSpan.Parse(timeText); // "10:30" → TimeSpan
+
+            return date.Date + time;
+        }
+
+        private void Cancel_Click(object sender, RoutedEventArgs e)
         {
 
+            MessageBox.Show("Cancelled.");
         }
     }
 }
