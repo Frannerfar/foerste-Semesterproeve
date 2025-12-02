@@ -7,6 +7,130 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock FontSize="30">PROFILE PAGE</TextBlock>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="50" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MinWidth="50" />
+                <ColumnDefinition MinWidth="600" Width="*" MaxWidth="1000"/>
+                <ColumnDefinition MinWidth="50" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="70"/>
+
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock x:Name="YourProfileText" FontSize="30" FontWeight="Bold">Your Profile</TextBlock>
+                </StackPanel>
+            </Grid>
+
+            <ScrollViewer Grid.Row="1" Grid.Column="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0">
+                        <Border Padding="20 10 20 20" Margin="10" CornerRadius="20" BorderThickness="1" BorderBrush="LightGray">
+                            <StackPanel>
+                                <TextBlock FontWeight="Bold" FontSize="14" >User Information</TextBlock>
+
+                                <StackPanel Orientation="Vertical" Margin="0 30 0 15" HorizontalAlignment="Left" Width="200">
+                                    <Label Content="First Name" x:Name="FirstNameLabel" />
+                                    <TextBox x:Name="FirstNameBox" Height="26" FontSize="14" VerticalContentAlignment="Center" Padding="5 0 5 0" IsEnabled="False"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Vertical" Margin="0 15" HorizontalAlignment="Left" Width="200">
+                                    <Label Content="Last Name" x:Name="LastNameLabel" />
+                                    <TextBox x:Name="LastNameBox" Height="26" FontSize="14" VerticalContentAlignment="Center" Padding="5 0 5 0" IsEnabled="False"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Vertical" Margin="0 15" HorizontalAlignment="Left" Width="200">
+                                    <Label Content="Email" x:Name="EmailLabel" />
+                                    <TextBox x:Name="EmailBox" Height="26" FontSize="14" VerticalContentAlignment="Center" Padding="5 0 5 0" IsEnabled="False"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Vertical" Margin="0 15" HorizontalAlignment="Left" Width="200">
+                                    <Label Content="Date of Birth" x:Name="DOBLabel" />
+                                    <DatePicker x:Name="DatePicker" Cursor="Hand" Height="26" FontSize="14" VerticalContentAlignment="Center" Padding="5 0 5 0" IsEnabled="False"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Vertical" Margin="0 15" HorizontalAlignment="Left" Width="200">
+                                    <Label Content="Gender" x:Name="GenderLabel" />
+                                    <ComboBox x:Name="GenderComboBox" Cursor="Hand" Height="26" FontSize="14" VerticalContentAlignment="Center" Padding="5 0 5 0" IsEnabled="False"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+
+                        <Border  Padding="20 10 20 20" Margin="10" CornerRadius="20" BorderThickness="1" BorderBrush="LightGray">
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock FontWeight="Bold" FontSize="14" >Billing Address</TextBlock>
+
+                                <StackPanel Orientation="Vertical" Margin="0 30 0 15">
+                                    <Label Content="City" x:Name="CityLabel" />
+                                    <TextBox x:Name="CityBox" Height="26" FontSize="14" VerticalContentAlignment="Center" Padding="5 0 5 0" IsEnabled="False"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Vertical" Margin="0 15">
+                                    <Label Content="Address" x:Name="AddressLabel" />
+                                    <TextBox x:Name="AddressBox" Height="26" FontSize="14" VerticalContentAlignment="Center" Padding="5 0 5 0" IsEnabled="False"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Vertical" Margin="0 15">
+                                    <Label Content="Postal" x:Name="PostalLabel" />
+                                    <TextBox x:Name="PostalBox" Height="26" FontSize="14" VerticalContentAlignment="Center" Padding="5 0 5 0" IsEnabled="False"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                    
+                    <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical">
+                        <Border  Padding="20 10 20 20" Margin="10" CornerRadius="20" BorderThickness="1" BorderBrush="LightGray">
+                            <StackPanel>
+                                <TextBlock FontWeight="Bold" FontSize="14" >Membership</TextBlock>
+                                <StackPanel Margin="0 15">
+                                    <StackPanel Margin="10, 0, 10, 0" Orientation="Vertical">
+                                        <Label Content="Membership" x:Name="MembershipLabel" />
+                                        <ComboBox x:Name="MembershipComboBox" Cursor="Hand" Height="26" FontSize="14" VerticalContentAlignment="Center" Padding="5 0 5 0" IsEnabled="False"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+
+                        <Border  Padding="20 10 20 20" Margin="10" CornerRadius="20" BorderThickness="1" BorderBrush="LightGray">
+                            <StackPanel>
+                                <TextBlock FontWeight="Bold" FontSize="14" >Activities</TextBlock>
+                                <StackPanel Margin="10, 15, 10, 15" Orientation="Vertical">
+                                    <Label Content="See list of joined activities" x:Name="ActivitiesListLabel" />
+                                    <Button x:Name="ActivitiesButton" Padding="5" FontSize="14" Background="#FF3DA4F3" BorderBrush="Black" Cursor="Hand" Click="ActivitiesButton_Click">Joined Activities --></Button>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+
+                    </StackPanel>
+                </Grid>
+            </ScrollViewer>
+        </Grid>
     </Grid>
 </UserControl>

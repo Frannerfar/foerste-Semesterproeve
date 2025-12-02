@@ -26,12 +26,14 @@ namespace FoersteSemesterproeve.Presentation.Pages
     {
         NavigationRouter router;
         MembershipService membershipService;
-        public MembershipsPage(NavigationRouter router, MembershipService membershipServiceInput)
+        UserService userService;
+        public MembershipsPage(NavigationRouter router, MembershipService membershipServiceInput, UserService userService)
         {
             InitializeComponent();
 
             this.router = router;
             membershipService = membershipServiceInput;
+            this.userService = userService;
 
             GridMembershipTypes.HorizontalAlignment = HorizontalAlignment.Center;
 
@@ -86,6 +88,20 @@ namespace FoersteSemesterproeve.Presentation.Pages
                 membershipTypeYearly.TextAlignment = TextAlignment.Center;
                 membershipStack.Children.Add(membershipTypeYearly);
 
+                int amountOfUsers = 0;
+                for(int j = 0; j < userService.users.Count; j++)
+                {
+                    if (membershipService.membershipTypes[i] == userService.users[j].membershipType)
+                    {
+                        amountOfUsers++;
+                    }
+                }
+
+                TextBlock membersOnThisMembership = new TextBlock();
+                membersOnThisMembership.Text = $"Current members on this membership: {amountOfUsers}";
+                membersOnThisMembership.TextAlignment = TextAlignment.Center;
+                membershipStack.Children.Add(membersOnThisMembership);
+
                 Button editButton = new Button();
                 editButton.Content = "Edit";
                 editButton.FontSize = 10;
@@ -107,15 +123,26 @@ namespace FoersteSemesterproeve.Presentation.Pages
             Button button = (Button)sender;
             MembershipType membershipType = (MembershipType)button.Tag;
 
+            for(int i = 0; i < userService.users.Count; i++)
+            {
+                if (userService.users[i].membershipType == membershipType)
+                {
+                    MessageBox.Show("You can't delete a membership type that is in use");
+                    return;
+                }
+
+            }
+
             if(membershipType != null)
             {
                 DialogBox dialogBox = new DialogBox($"Are you sure you want to delete {membershipType.name}?");
                 dialogBox.ShowDialog();
-                if(dialogBox.DialogResult == true)
+                if (dialogBox.DialogResult == true)
                 {
                     membershipService.membershipTypes.Remove(membershipType);
                     DrawMembershipTypes();
                 }
+                
             }
         }
     }
