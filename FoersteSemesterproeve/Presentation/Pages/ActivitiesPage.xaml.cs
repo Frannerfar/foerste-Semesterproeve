@@ -33,7 +33,7 @@ namespace FoersteSemesterproeve.Presentation.Pages
             this.router = navigationRouter;
             this.activityService = activityService;
             this.userService = userService;
-
+            LoadActivities();
             
         }
 
@@ -54,6 +54,9 @@ namespace FoersteSemesterproeve.Presentation.Pages
 
         }
 
-       
+        private void AddActivityClick(object sender, RoutedEventArgs e)
+        {
+            router.Navigate(NavigationRouter.Route.AddActivities);
+        }
     }
 }
