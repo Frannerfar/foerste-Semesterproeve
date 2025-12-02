@@ -143,15 +143,18 @@ namespace FoersteSemesterproeve.Presentation.Pages
                 Button buttonEdit = new Button();
                 buttonEdit.Content = "Edit";
                 buttonEdit.Padding = new Thickness(10, 5, 10, 5);
-                buttonEdit.Margin = new Thickness(0, 0, 10, 0);
+                buttonEdit.Margin = new Thickness(5);
+                buttonEdit.Cursor = Cursors.Hand;
                 buttonEdit.Click += EditButton_Click;
                 buttonEdit.Tag = locationService.locations[i];
-                buttonEdit.Background = new SolidColorBrush(Colors.Green);
+                buttonEdit.Background = new SolidColorBrush(Colors.LawnGreen);
                 buttonsPanel.Children.Add(buttonEdit);
 
                 Button buttonDelete = new Button();
                 buttonDelete.Content = "Delete";
                 buttonDelete.Padding = new Thickness(10, 5, 10, 5);
+                buttonDelete.Margin = new Thickness(5);
+                buttonDelete.Cursor = Cursors.Hand;
                 buttonDelete.Click += DeleteButton_Click;
                 buttonDelete.Tag = locationService.locations[i];
                 buttonDelete.Background = new SolidColorBrush(Colors.Red);
