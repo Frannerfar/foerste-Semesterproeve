@@ -8,16 +8,14 @@ namespace FoersteSemesterproeve.Domain.Models
 {
     public class Activity
     {
-        public string title;
-        //public string description;
-        //public User coach;
-        public Location location;
-        public int? maxCapacity;
-        public DateTime startTime;
-        public DateTime endTime;
-        public List<User> participants;
-        //public int id;
-        //public List<Membershipstype> members;
+        public string title { get; set; }
+        public User coach { get; set; }
+        public Location location { get; set; }
+        public int? maxCapacity {  get; set; }
+        public DateTime startTime { get; set; }
+        public DateTime endTime { get; set; }
+        public List<User> participants { get; set; }
+        
 
         public Activity ()
         {
@@ -25,7 +23,7 @@ namespace FoersteSemesterproeve.Domain.Models
             participants = new List<User> ();
             maxCapacity = 10;
             startTime = DateTime.Now;
-            endTime = DateTime.Now;
+            endTime = DateTime.Now.AddHours(1);
 
         }
     }
