@@ -9,19 +9,24 @@ namespace FoersteSemesterproeve.Domain.Models
     public class Activity
     {
         public string title;
-        //public DateTime startTime;
-        //public DateTime endTime;
-        public List<User> participants;
-        //public Location location;
+        //public string description;
+        public User coach;
+        public Location location;
         public int? maxCapacity;
+        public DateTime startTime;
+        public DateTime endTime;
+        public List<User> participants;
         //public int id;
         //public List<Membershipstype> members;
 
         public Activity ()
         {
+            title = "hula bula";
             participants = new List<User> ();
             maxCapacity = 10;
-            title = "hula bula";
+            startTime = DateTime.Now;
+            endTime = DateTime.Now;
+
         }
     }
 }
