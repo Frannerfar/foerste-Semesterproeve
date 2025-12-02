@@ -60,16 +60,35 @@ namespace FoersteSemesterproeve.Presentation.Pages
             GridMembershipTypes.Children.Clear();
             GridMembershipTypes.ColumnDefinitions.Clear();
 
+            int rows = 0;
+            int columns = 0;
+            int iRemainder = 0;
+            int amountOfItemsPerRow = 4;
             for (int i = 0; i < membershipService.membershipTypes.Count; i++)
             {
+                // modulus dividere to variabler og returnere derefter den resterende mængde
+                iRemainder = i % amountOfItemsPerRow;
+                if(iRemainder == 0)
+                {
+                    GridMembershipTypes.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
+                    rows++;
+                    if(columns == 0)
+                    {
+                        GridMembershipTypes.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star), MinWidth = 0, MaxWidth = 900 });
+                    }
+                }
 
-                GridMembershipTypes.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star), MinWidth = 0, MaxWidth = 900 });
+                if(iRemainder != 0 && columns < amountOfItemsPerRow)
+                {
+                    GridMembershipTypes.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star), MinWidth = 0, MaxWidth = 900 });
+                    columns++;
+                }
 
                 StackPanel membershipStack = new StackPanel();
-                Grid.SetRow(membershipStack, 0);
-                Grid.SetColumn(membershipStack, i);
+                Grid.SetRow(membershipStack, rows);
+                Grid.SetColumn(membershipStack, iRemainder);
                 membershipStack.Orientation = Orientation.Vertical;
-                membershipStack.Margin = new Thickness(25, 0, 25, 0);
+                membershipStack.Margin = new Thickness(25, 25, 25, 25);
                 GridMembershipTypes.Children.Add(membershipStack);
 
                 TextBlock membershipTypeName = new TextBlock();

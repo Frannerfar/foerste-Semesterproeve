@@ -127,6 +127,12 @@
                                 </StackPanel>
                             </StackPanel>
                         </Border>
+                        
+                        <StackPanel Margin="30, 20, 30, 20">
+                                <Button x:Name="EditInfoButton" Margin="0, 10, 0, 0" Padding="5" FontSize="14" Background="Yellow" BorderBrush="Black" Cursor="Hand" Click="EditInfoButton_Click" >Edit information</Button>
+                                <Button x:Name="SaveEditInfoButton" Margin="0, 10, 0, 0" Padding="5" FontSize="14" Background="Green" BorderBrush="Black" Cursor="Hand" Visibility="Hidden" Click="SaveEditInfoButton_Click">Save</Button>
+                                <Button x:Name="CancelEditModeButton" Margin="0, 10, 0, 0" Padding="5" FontSize="14" Background="Red" BorderBrush="Black" Cursor="Hand" Visibility="Hidden" Click="CancelEditModeButton_Click">Cancel</Button>
+                            </StackPanel>
 
                     </StackPanel>
                 </Grid>

@@ -20,7 +20,7 @@
 
         <StackPanel x:Name="TrainerInfoStackPanel" Grid.Row="1" Grid.Column="1"
                     HorizontalAlignment="Center"
-                    VerticalAlignment="Center">
+                    VerticalAlignment="Top">
             <TextBlock Text="Full Name"
                        TextAlignment="Center"
                        FontSize="20"/>
@@ -32,6 +32,12 @@
                        Margin="0, 20, 0, 0"/>
             <TextBlock x:Name="EmailBlock"
                        TextAlignment="Center"/>
+
+            <TextBlock Text="Activities:"
+                       TextAlignment="Center"
+                       FontSize="20"
+                       Margin="0, 20, 0, 0"/>
+            <ListBox x:Name="TrainerActivitiesList"/>
         </StackPanel>
 
         <Button x:Name="BackToTrainersPageButton"
