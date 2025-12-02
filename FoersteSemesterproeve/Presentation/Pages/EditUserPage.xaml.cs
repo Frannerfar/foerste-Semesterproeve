@@ -121,6 +121,7 @@ namespace FoersteSemesterproeve.Presentation.Pages
 
                 userService.targetUser.membershipType = userService.membershipService.membershipTypes[MembershipComboBox.SelectedIndex];
 
+                userService.targetUser.gender = (User.Gender)GenderComboBox.SelectedIndex;
 
                 userService.targetUser.CheckBothMarks();
                 router.Navigate(NavigationRouter.Route.Members);
