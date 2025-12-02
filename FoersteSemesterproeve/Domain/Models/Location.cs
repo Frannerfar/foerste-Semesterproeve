@@ -8,14 +8,17 @@ namespace FoersteSemesterproeve.Domain.Models
 {
     public class Location
     {
-        string name;
-        //int id;
-        //List<Activity> activities;
-        //int? maxCapacity;f
+        //public int id;
+        public string name;
+        public string description;
+        public int? maxCapacity;
+        //public List<Activity> activities;
 
-        public Location(string name)
+        public Location(string name, string description, int? maxCapacity)
         {
-            name = string.Empty;
+            this.name = name;
+            this.description = description;
+            this.maxCapacity = maxCapacity;
         }
     }
 }

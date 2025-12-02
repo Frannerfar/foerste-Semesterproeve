@@ -8,7 +8,13 @@
     <Compile Update="Presentation\Pages\AddActivitiesPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Presentation\Pages\AddLocationPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Presentation\Pages\AddUserPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Presentation\Pages\EditLocationPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Presentation\Pages\EditUserPage.xaml.cs">
@@ -38,9 +44,9 @@
     <Compile Update="Presentation\Pages\UserActivitiesPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-	<Compile Update="Presentation\Pages\ViewTrainerInfoPage.xaml.cs">
-	  <SubType>Code</SubType>
-	</Compile>
+    <Compile Update="Presentation\Pages\ViewTrainerInfoPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Presentation\Views\DialogBox.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

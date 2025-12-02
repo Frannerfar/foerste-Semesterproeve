@@ -67,7 +67,7 @@ namespace FoersteSemesterproeve.Domain.Services
                 {
                     title = "Yoga for fædre",
                     //coach = new User(1, "Klaus", "Klamhugger","","","","",true,false,new DateOnly(),0, true),
-                    location = new Location("Sal 1."),
+                    //location = new Location("Sal 1."),
                     maxCapacity = 10,
                     startTime = DateTime.Today.AddHours(17),
                     endTime = DateTime.Today.AddHours(18),
@@ -76,7 +76,7 @@ namespace FoersteSemesterproeve.Domain.Services
                 {
                     title = "Crossfit",
                     //coach = new User (2, "Birgitte", "Busketrold", "", "", "", "", true, false, new DateOnly(),0, true),
-                    location = new Location("Hos din mor"),
+                    //location = new Location("Hos din mor"),
                     maxCapacity = 12,
                     startTime = DateTime.Today.AddHours(12),
                     endTime = DateTime.Today.AddHours(14),

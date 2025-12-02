@@ -7,59 +7,55 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Margin="30">
-
-       
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="50"/>
+        </Grid.ColumnDefinitions>
 
-        
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-
+        <StackPanel Grid.Row="0" Grid.Column="1">
             <TextBlock Text="Locations" 
-                       FontSize="32" 
-                       FontWeight="Bold"/>
+               FontSize="32" 
+               FontWeight="Bold"/>
 
             <Button x:Name="AddLocationButton"
-                    Grid.Column="1"
-                    Content="Add Location"
-                    Margin="10 0 0 0"
-                    Padding="10 6"
-                    Click="AddLocationButton_Click"/>
-        </Grid>
+                Grid.Column="1"
+                Content="Add Location"
+                Margin="0 0 0 0"
+                Padding="10 6"
+                Click="AddLocationButton_Click"/>
+        </StackPanel>
 
+        <ScrollViewer Grid.Row="1" Grid.Column="1">
+            <Grid x:Name="GridLocations">
+                <!-- Første lokale: Kvindeomklædning -->
+                <!--<Border BorderBrush="#777" BorderThickness="2" CornerRadius="10" Padding="20" Margin="10">
+                    <StackPanel>
+                        <TextBlock Text="Lokale A" FontSize="24" FontWeight="SemiBold"/>
+                        <TextBlock Text="Kapacitet: 10" Margin="0 10 0 0"/>
+                        <TextBlock Text="Status: Ledigt" Foreground="Green"/>
+                        <TextBlock Text="Beskrivelse:" Margin="0 10 0 0"/>
+                        <TextBlock Text="Kvindeomklædning på 3 sal." TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Border>-->
 
-        <!-- lokaler  -->
-        <UniformGrid Grid.Row="1" Columns="2" Margin="0 20 0 0">
+                            <!-- Andet lokale: Grisestalden -->
+                            <!--<Border BorderBrush="#777" BorderThickness="2" CornerRadius="10" Padding="20" Margin="10">
+                    <StackPanel>
+                        <TextBlock Text="Lokale B" FontSize="24" FontWeight="SemiBold"/>
+                        <TextBlock Text="Kapacitet: 12" Margin="0 10 0 0"/>
+                        <TextBlock Text="Status: Optaget" Foreground="DarkRed"/>
+                        <TextBlock Text="Beskrivelse:" Margin="0 10 0 0"/>
+                        <TextBlock Text="Landmand Jensen gamle grisestald" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Border>-->
 
-            <!-- Første lokale: Kvindeomklædning -->
-            <Border BorderBrush="#777" BorderThickness="2" CornerRadius="10" Padding="20" Margin="10">
-                <StackPanel>
-                    <TextBlock Text="Lokale A" FontSize="24" FontWeight="SemiBold"/>
-                    <TextBlock Text="Kapacitet: 10" Margin="0 10 0 0"/>
-                    <TextBlock Text="Status: Ledigt" Foreground="Green"/>
-                    <TextBlock Text="Beskrivelse:" Margin="0 10 0 0"/>
-                    <TextBlock Text="Kvindeomklædning på 3 sal." TextWrapping="Wrap"/>
-                </StackPanel>
-            </Border>
-
-            <!-- Andet lokale: Grisestalden -->
-            <Border BorderBrush="#777" BorderThickness="2" CornerRadius="10" Padding="20" Margin="10">
-                <StackPanel>
-                    <TextBlock Text="Lokale B" FontSize="24" FontWeight="SemiBold"/>
-                    <TextBlock Text="Kapacitet: 12" Margin="0 10 0 0"/>
-                    <TextBlock Text="Status: Optaget" Foreground="DarkRed"/>
-                    <TextBlock Text="Beskrivelse:" Margin="0 10 0 0"/>
-                    <TextBlock Text="Landmand Jensen gamle grisestald" TextWrapping="Wrap"/>
-                </StackPanel>
-            </Border>
-
-        </UniformGrid>
-
+            </Grid>
+        </ScrollViewer>
+        
     </Grid>
 </UserControl>
