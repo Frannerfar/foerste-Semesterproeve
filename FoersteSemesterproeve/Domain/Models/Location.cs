@@ -11,7 +11,7 @@ namespace FoersteSemesterproeve.Domain.Models
         string name;
         //int id;
         //List<Activity> activities;
-        //int? maxCapacity;
+        //int? maxCapacity;f
 
         public Location(string name)
         {
