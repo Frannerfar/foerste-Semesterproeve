@@ -85,15 +85,14 @@ namespace FoersteSemesterproeve.Presentation.Pages
                 }
 
                 StackPanel membershipStack = new StackPanel();
-                Grid.SetRow(membershipStack, rows);
-                Grid.SetColumn(membershipStack, iRemainder);
                 membershipStack.Orientation = Orientation.Vertical;
                 membershipStack.Margin = new Thickness(25, 25, 25, 25);
-                GridMembershipTypes.Children.Add(membershipStack);
+                
 
                 TextBlock membershipTypeName = new TextBlock();
                 membershipTypeName.Text = membershipService.membershipTypes[i].name;
                 membershipTypeName.FontSize = 20;
+                membershipTypeName.Margin = new Thickness(0, 0, 0, 10);
                 membershipTypeName.TextAlignment = TextAlignment.Center;
                 membershipStack.Children.Add(membershipTypeName);
 
@@ -117,13 +116,15 @@ namespace FoersteSemesterproeve.Presentation.Pages
                 }
 
                 TextBlock membersOnThisMembership = new TextBlock();
-                membersOnThisMembership.Text = $"Current members on this membership: {amountOfUsers}";
+                membersOnThisMembership.Text = $"Current members: {amountOfUsers}";
                 membersOnThisMembership.TextAlignment = TextAlignment.Center;
+                membersOnThisMembership.Margin = new Thickness(0, 10, 0, 0);
                 membershipStack.Children.Add(membersOnThisMembership);
 
                 Button editButton = new Button();
                 editButton.Content = "Edit";
                 editButton.FontSize = 10;
+                editButton.Margin = new Thickness(0, 20, 0, 10);
                 editButton.Tag = membershipService.membershipTypes[i];
                 editButton.Click += EditMembershipTypeButton_Click;
                 membershipStack.Children.Add(editButton);
@@ -131,9 +132,21 @@ namespace FoersteSemesterproeve.Presentation.Pages
                 Button deleteButton = new Button();
                 deleteButton.Content = "Delete";
                 deleteButton.FontSize = 10;
+                deleteButton.Margin = new Thickness(0, 10, 0, 10);
                 deleteButton.Tag = membershipService.membershipTypes[i];
                 deleteButton.Click += DeleteMembershipTypeButton_Click;
                 membershipStack.Children.Add(deleteButton);
+
+                Border border = new Border();
+                border.Padding = new Thickness(5);
+                border.Margin = new Thickness(10);
+                border.BorderBrush = new SolidColorBrush(Colors.LightGray);
+                border.BorderThickness = new Thickness(1);
+                border.CornerRadius = new CornerRadius(20);
+                GridMembershipTypes.Children.Add(border);
+                border.Child = membershipStack;
+                Grid.SetRow(border, rows);
+                Grid.SetColumn(border, iRemainder);
             }
         }
 

@@ -104,7 +104,7 @@ namespace FoersteSemesterproeve.Presentation.Pages
             GenderComboBox.IsEnabled = true;
             MembershipComboBox.IsEnabled = true;
 
-            EditInfoButton.Visibility = Visibility.Hidden;
+            EditInfoButton.Visibility = Visibility.Collapsed;
             SaveEditInfoButton.Visibility = Visibility.Visible;
             CancelEditModeButton.Visibility = Visibility.Visible;
         }
