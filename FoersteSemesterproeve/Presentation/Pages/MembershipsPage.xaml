@@ -20,11 +20,13 @@
 
         <TextBlock FontSize="30" Grid.Row="0" Grid.Column="1" Text="MEMBERSHIPS" HorizontalAlignment="Center" />
         
-        <StackPanel Grid.Row="0" Grid.Column="1">
+        <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
             <Button x:Name="AddMembershipTypeButton" Click="AddMembershipTypeButton_Click"  
                     HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
                     FontSize="10"
-                    Width="120">Add Membership Type</Button>
+                    Width="150"
+                    Height="50">Add Membership Type</Button>
         </StackPanel>
 
         <Grid Name="GridMembershipTypes" Grid.Row="1" Grid.Column="1">
