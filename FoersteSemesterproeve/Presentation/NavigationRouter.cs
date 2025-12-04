@@ -22,7 +22,7 @@ namespace FoersteSemesterproeve.Presentation
     public class NavigationRouter
     {
         Route currentRoute;
-        ContentControl control;
+        ContentControl MainContent;
         Grid menuGrid;
         Dictionary<Route, Func<UserControl>> routes;
 
@@ -41,7 +41,7 @@ namespace FoersteSemesterproeve.Presentation
         /// <created>2025-11-25</created>
         public NavigationRouter(ContentControl contentControl, Grid menuGrid, Button userProfileButton, List<Button> adminButtons, UserService userService, ActivityService activityService, LocationService locationService, MembershipService membershipService)
         {
-            this.control = contentControl;
+            this.MainContent = contentControl;
             this.menuGrid = menuGrid;
 
             this.userService = userService;
@@ -51,26 +51,26 @@ namespace FoersteSemesterproeve.Presentation
             this.userProfileButton = userProfileButton;
             this.adminButtons = adminButtons;
 
-            routes = new Dictionary<Route, Func<UserControl>>
-            {
-                { Route.Login, () => new LoginPage(this, menuGrid, userService, userProfileButton, adminButtons) },
-                { Route.Home, () =>new HomePage(this, userService, activityService) },
-                { Route.Activities, () => new ActivitiesPage(this, activityService, userService) },
-                { Route.Members, () =>new MembersPage(this, userService) },
-                { Route.Trainers, () =>new TrainersPage(this, userService) },
-                { Route.Locations, () => new LocationsPage(this, locationService) },
-                { Route.AddLocation, () => new AddLocationPage(this, locationService) },
-                { Route.EditLocation, () => new EditLocationPage(this, locationService) },
-                { Route.Memberships, () => new MembershipsPage(this, membershipService, userService) },
-                { Route.AddMembershipType, () => new AddMembershipTypePage(this, membershipService) },
-                { Route.EditMembershipType, () => new EditMembershipTypePage(this, membershipService) },
-                { Route.Profile, () =>new ProfilePage(this, userService, membershipService) },
-                { Route.AddUser, () => new AddUserPage(this, userService) },
-                { Route.EditUser, () => new EditUserPage(this, userService) },
-                { Route.UserActivities, () => new UserActivitiesPage(this, userService) }, 
-                { Route.AddActivities, () => new AddActivitiesPage(this, activityService, userService, locationService) },
-                { Route.ViewTrainerInfo, () => new ViewTrainerInfoPage(this, userService) }
-            };
+            //routes = new Dictionary<Route, Func<UserControl>>
+            //{
+            //    { Route.Login, () => new LoginPage(this, menuGrid, userService, userProfileButton, adminButtons) },
+            //    { Route.Home, () => new HomePage(this, userService, activityService) },
+            //    { Route.Activities, () => new ActivitiesPage(this, activityService, userService) },
+            //    { Route.Members, () => new MembersPage(this, userService) },
+            //    { Route.Trainers, () => new TrainersPage(this, userService) },
+            //    { Route.Locations, () => new LocationsPage(this, locationService) },
+            //    { Route.AddLocation, () => new AddLocationPage(this, locationService) },
+            //    { Route.EditLocation, () => new EditLocationPage(this, locationService) },
+            //    { Route.Memberships, () => new MembershipsPage(this, membershipService, userService) },
+            //    { Route.AddMembershipType, () => new AddMembershipTypePage(this, membershipService) },
+            //    { Route.EditMembershipType, () => new EditMembershipTypePage(this, membershipService) },
+            //    { Route.Profile, () => new ProfilePage(this, userService, membershipService) },
+            //    { Route.AddUser, () => new AddUserPage(this, userService) },
+            //    { Route.EditUser, () => new EditUserPage(this, userService) },
+            //    { Route.UserActivities, () => new UserActivitiesPage(this, userService) }, 
+            //    { Route.AddActivities, () => new AddActivitiesPage(this, activityService, userService, locationService) },
+            //    { Route.ViewTrainerInfo, () => new ViewTrainerInfoPage(this, userService) }
+            //};
         }
 
         /// <summary>
@@ -80,18 +80,78 @@ namespace FoersteSemesterproeve.Presentation
         /// <param name="route">Using the enum Route to decide routing direction</param>
         /// <author>Martin</author>
         /// <created>2025-11-25</created>
+        //public void NavigateOld(Route route)
+        //{
+        //    if (!routes.TryGetValue(route, out Func<UserControl>? view))
+        //    {
+        //        MessageBox.Show($"No view registered for route {route}.", nameof(route));
+        //        this.Navigate(Route.Home);
+        //        //throw new ArgumentException($"No view registered for route {route}.", nameof(route));
+        //    }
+        //    else
+        //    {
+        //        MainContent.Content = view();
+        //        currentRoute = route;
+        //    }
+        //}
+
+
+
         public void Navigate(Route route)
         {
-            if (!routes.TryGetValue(route, out Func<UserControl>? view))
+            switch (route)
             {
-                MessageBox.Show($"No view registered for route {route}.", nameof(route));
-                this.Navigate(Route.Home);
-                //throw new ArgumentException($"No view registered for route {route}.", nameof(route));
-            }
-            else
-            {
-                control.Content = view();
-                currentRoute = route;
+                case Route.Login:
+                    MainContent.Content = new LoginPage(this, menuGrid, userService, userProfileButton, adminButtons);
+                    break;
+                case Route.Home:
+                    MainContent.Content = new HomePage(this, userService, activityService);
+                    break;
+                case Route.Activities:
+                    MainContent.Content = new ActivitiesPage(this, activityService, userService);
+                    break;
+                case Route.Members:
+                    MainContent.Content = new MembersPage(this, userService);
+                    break;
+                case Route.Trainers:
+                    MainContent.Content = new TrainersPage(this, userService);
+                    break;
+                case Route.Locations:
+                    MainContent.Content = new LocationsPage(this, locationService);
+                    break;
+                case Route.AddLocation:
+                    MainContent.Content = new AddLocationPage(this, locationService);
+                    break;
+                case Route.EditLocation:
+                    MainContent.Content = new EditLocationPage(this, locationService);
+                    break;
+                case Route.Memberships:
+                    MainContent.Content = new MembershipsPage(this, membershipService, userService);
+                    break;
+                case Route.AddMembershipType:
+                    MainContent.Content = new AddMembershipTypePage(this, membershipService);
+                    break;
+                case Route.EditMembershipType:
+                    MainContent.Content = new EditMembershipTypePage(this, membershipService);
+                    break;
+                case Route.Profile:
+                    MainContent.Content = new ProfilePage(this, userService, membershipService);
+                    break;
+                case Route.AddUser:
+                    MainContent.Content = new AddUserPage(this, userService);
+                    break;
+                case Route.EditUser:
+                    MainContent.Content = new EditUserPage(this, userService);
+                    break;
+                case Route.UserActivities:
+                    MainContent.Content = new UserActivitiesPage(this, userService);
+                    break;
+                case Route.AddActivities:
+                    MainContent.Content = new AddActivitiesPage(this, activityService, userService, locationService);
+                    break;
+                case Route.ViewTrainerInfo:
+                    MainContent.Content = new ViewTrainerInfoPage(this, userService);
+                    break;
             }
         }
 
