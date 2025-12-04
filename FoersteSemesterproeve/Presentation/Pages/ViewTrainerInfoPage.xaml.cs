@@ -33,7 +33,10 @@ namespace FoersteSemesterproeve.Presentation.Pages
             {
                 TrainerFullNameBlock.Text = $"{userService.targetUser.firstName} {userService.targetUser.lastName}";
                 EmailBlock.Text = userService.targetUser.email;
-                TrainerActivitiesList.Items.Add(userService.targetUser.activityList);
+                for(int i = 0; i < userService.targetUser.activityList.Count; i++)
+                {
+                    TrainerActivitiesList.Items.Add(userService.targetUser.activityList[i].title);
+                }
             }
 
         }
