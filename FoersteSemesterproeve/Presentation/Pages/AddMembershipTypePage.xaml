@@ -30,9 +30,9 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="350"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             
                 <Border Grid.Row="0" Grid.Column="1" 
@@ -87,7 +87,7 @@
                 </Border>
             <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Orientation="Horizontal" HorizontalAlignment="Center" Margin="20, 50, 20, 0">
                 <Button Content="CANCEL"
-                        Margin="0, 0, 50, 0"
+                        Margin="0, 0, 40, 0"
                         Background="Red"
                         x:Name="CancelAddMembershipTypeButton" 
                         Click="CancelAddMembershipTypeButton_Click"
