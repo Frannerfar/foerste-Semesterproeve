@@ -35,7 +35,7 @@
 
 
         <!-- lokaler  -->
-        <UniformGrid Grid.Row="1" Columns="2" Margin="0 20 0 0">d
+        <UniformGrid Grid.Row="1" Columns="2" Margin="0 20 0 0">
 
             <!-- Første lokale: Kvindeomklædning -->
             <Border BorderBrush="#777" BorderThickness="2" CornerRadius="10" Padding="20" Margin="10">
