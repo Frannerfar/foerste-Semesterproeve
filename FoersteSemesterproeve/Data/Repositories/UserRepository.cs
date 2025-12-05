@@ -10,6 +10,7 @@ using FoersteSemesterproeve.Data.DTO;
 using FoersteSemesterproeve.Domain.Models;
 using FoersteSemesterproeve.Domain.Services;
 using FoersteSemesterproeve.Domain.Interfaces;
+using System.Windows;
 
 namespace FoersteSemesterproeve.Data.Repositories
 {
@@ -83,27 +84,16 @@ namespace FoersteSemesterproeve.Data.Repositories
         /// <returns></returns>
         public int GetNewId(List<User> users)
         {
-            int count = users.Count;
-            int? id = users[count - 1].id;
-            if (id.HasValue)
+            int highestId = 0;
+            for (int i = 0; i < users.Count; i++) 
             {
-                int tempId = id.Value + 1;
-                while (true)
+                if (users[i].id > highestId)
                 {
-                    if (users.Any(u => u.id == tempId))
-                    {
-                        tempId++;
-                    }
-                    else
-                    {
-                        return tempId;
-                    }
+                    highestId = users[i].id;
                 }
             }
-            else
-            {
-                return (users.Count + 1);
-            }
+            highestId++;
+            return highestId;
         }
 
         /// <summary>
@@ -115,28 +105,38 @@ namespace FoersteSemesterproeve.Data.Repositories
         /// <returns></returns>
         private List<UserDto> ConvertToDto(List<User> users)
         {
-            List<UserDto> userDtos = users.Select(u => new UserDto 
+            List<UserDto> userDtos = new List<UserDto>();
+
+            for (int i = 0; i < users.Count; i++)
             {
-                Id = u.id,
-                FirstName = u.firstName,
-                LastName = u.lastName,
-                Email = u.email,
-                DateOfBirth = u.dateofBirth,
-                City = u.city,
-                Address = u.address,
-                Postal = u.postal,
-                IsCoach = u.isCoach,
-                IsAdmin = u.isAdmin,
-                HasPaid = u.hasPaid,
-                Password = u.password,
-                // TODO: Mangler stadig aktiviteter og ID til aktiviteter
-                //       Tilføjes når Rasmus har færdigjort aktiviteter
-                MembershipTypeId = u.membershipType.id,
-                Gender = (int)u.gender
-            }).ToList();
+                User user = users[i];
+
+                UserDto dto = new UserDto
+                {
+                    Id = user.id,
+                    FirstName = user.firstName,
+                    LastName = user.lastName,
+                    Email = user.email,
+                    DateOfBirth = user.dateofBirth,
+                    City = user.city,
+                    Address = user.address,
+                    Postal = user.postal,
+                    IsCoach = user.isCoach,
+                    IsAdmin = user.isAdmin,
+                    HasPaid = user.hasPaid,
+                    Password = user.password,
+                    MembershipTypeId = user.membershipType.id,
+                    // TODO: Mangler stadig aktiviteter og ID til aktiviteter 
+                    //       Tilføjes når Rasmus har færdigjort aktiviteter
+                    Gender = (int)user.gender
+                };
+
+                userDtos.Add(dto);
+            }
 
             return userDtos;
         }
+
 
         /// <summary>
         /// 
@@ -148,23 +148,49 @@ namespace FoersteSemesterproeve.Data.Repositories
         /// <returns></returns>
         private List<User> ConvertFromDto(List<UserDto> dtos, List<MembershipType> membershipTypes)
         {
-            List<User> users = dtos.Select(d => new User(
-                d.Id,
-                d.FirstName,
-                d.LastName,
-                d.Email,
-                d.Address,
-                d.City,
-                d.Password,
-                d.IsCoach,
-                d.IsAdmin,
-                d.DateOfBirth,
-                d.Postal,
-                d.HasPaid,
-                membershipService.membershipTypes.First(m => m.id == d.MembershipTypeId),
-                // TODO: Mangler stadig aktiviteter og ID til aktiviteter
-                //       Tilføjes når Rasmus har færdigjort aktiviteter
-                (User.Gender)d.Gender)).ToList();
+            List<User> users = new List<User>();
+
+            for (int i = 0; i < dtos.Count; i++)
+            {
+                UserDto dto = dtos[i];
+
+                MembershipType membership = null;
+
+                for (int j = 0; j < membershipTypes.Count; j++)
+                {
+                    if (membershipTypes[j].id == dto.MembershipTypeId)
+                    {
+                        membership = membershipTypes[j];
+                        break;
+                    }
+                }
+
+                if (membership == null)
+                {
+                    MessageBox.Show($"MembershipType with ID {dto.MembershipTypeId} not found.");
+                }
+
+                User user = new User(
+                    dto.Id,
+                    dto.FirstName,
+                    dto.LastName,
+                    dto.Email,
+                    dto.Address,
+                    dto.City,
+                    dto.Password,
+                    dto.IsCoach,
+                    dto.IsAdmin,
+                    dto.DateOfBirth,
+                    dto.Postal,
+                    dto.HasPaid,
+                    membership,
+                    // TODO: Mangler stadig aktiviteter og ID til aktiviteter
+                    //       Tilføjes når Rasmus har færdigjort aktiviteter
+                    (User.Gender)dto.Gender
+                );
+
+                users.Add(user);
+            }
 
             return users;
         }

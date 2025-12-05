@@ -106,7 +106,7 @@ namespace FoersteSemesterproeve.Presentation.Pages
                     MessageBox.Show("You can't delete an admin");
                     return;
                 }
-                DialogBox dialogBox = new DialogBox($"Are you sure you want to delete {user.firstName} {user.lastName}?");
+                DialogBox dialogBox = new DialogBox($"Are you sure you want to delete '{user.firstName} {user.lastName}'?");
                 dialogBox.ShowDialog();
                 if(dialogBox.DialogResult == true)
                 {

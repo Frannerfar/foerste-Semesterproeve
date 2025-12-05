@@ -79,9 +79,17 @@ namespace FoersteSemesterproeve
             // Hvis vi "udvikler/tester"
             if (isDeveloping)
             {
+                //userService.authenticatedUser = userService.users.FirstOrDefault(u => u.email == "admin@admin.dk");
+                // I stedet for LINQ extension med lambda, giver det nok mest mening at bruge simpelt for loop i stedet.
+                for(int i = 0; i < userService.users.Count; i++)
+                {
+                    if (userService.users[i].email == "admin@admin.dk")
+                    {
+                        userService.authenticatedUser = userService.users[i];
+                    }
+                }
                 router.Navigate(Route.Home);
                 MenuGrid.Visibility = Visibility.Visible;
-                userService.authenticatedUser = userService.users.FirstOrDefault(u => u.email == "admin@admin.dk");
             }
             // Hvis vi kører med login skærm fra start.
             else

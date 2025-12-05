@@ -22,6 +22,7 @@ namespace FoersteSemesterproeve.Domain.Services
 
         public User? targetUser;
         public List<User> users;
+
         public MembershipService membershipService;
 
         private IUserRepository userRepository;
@@ -40,7 +41,7 @@ namespace FoersteSemesterproeve.Domain.Services
 
             this.userRepository = userRepository;
 
-            users = populateUsers();
+            users = PopulateUsers();
         }
 
 
@@ -51,7 +52,7 @@ namespace FoersteSemesterproeve.Domain.Services
         /// <created>26-11-2025</created>
         /// <updated>28-11-2025</updated>
         /// <returns></returns>
-        private List<User> populateUsers()
+        private List<User> PopulateUsers()
         {
             List<User> users = new List<User>();
 
