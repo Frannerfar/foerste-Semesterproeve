@@ -6,8 +6,61 @@
              xmlns:local="clr-namespace:FoersteSemesterproeve.Presentation.Pages"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <TextBlock FontSize="30">ACTIVITIES PAGE</TextBlock>
-        <Button x:Name="Join" Content="Button" Click="JoinButtonClick"/>
+    <Grid Margin="20">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Titel -->
+        <TextBlock Text="All Activities"
+                   FontSize="32"
+                   FontWeight="Bold"
+                   Margin="0 0 0 20"/>
+        <!-- Add Activity Button -->
+        <Button Grid.Column="1"
+                Content="Add Activity"
+                Width="140"
+                Height="35"
+                VerticalAlignment="Center"
+                Margin="10 0 0 0"
+                Click="AddActivityClick"/>
+
+        <!-- LISTVIEW DER VISES DEN AKTIVE AKTIVITETSLISTE -->
+        <ListView x:Name="ActivitiesList"
+                  Grid.Row="1"
+                  BorderBrush="Gray"
+                  BorderThickness="1"
+                  Margin="0 0 0 20">
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+
+                    <!-- Hver aktivitet vises som et kort -->
+                    <Border BorderBrush="#DDD" 
+                            BorderThickness="1" 
+                            Padding="10" 
+                            Margin="0 0 0 10">
+                        <StackPanel>
+
+                            <TextBlock Text="{Binding title}"/>
+                            <TextBlock Text="{Binding coach.firstName}"/>
+                            <TextBlock Text="{Binding startTime}"/>
+                            <TextBlock Text="{Binding endTime}"/>
+
+                        </StackPanel>
+                    </Border>
+
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+
     </Grid>
 </UserControl>

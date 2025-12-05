@@ -36,7 +36,7 @@ namespace FoersteSemesterproeve.Presentation.Pages
            // if (string.IsNullOrEmpty())
             {
                 //Dialogbox "Title cannot be empty"
-                return;
+                //return;
             }
         }
     }

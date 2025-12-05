@@ -33,10 +33,17 @@ namespace FoersteSemesterproeve.Presentation.Pages
             this.router = navigationRouter;
             this.activityService = activityService;
             this.userService = userService;
-
+            LoadActivities();
             
         }
 
+
+        private void LoadActivities()
+        {
+            //ActivitiesList.ItemsSource = null;
+            //ActivitiesList.ItemsSource = activityService.activities;
+            ActivitiesList.ItemsSource = activityService.GetAllActivities(); 
+        }
         private void JoinButtonClick(object sender, RoutedEventArgs e)
         {
             if (userService.authenticatedUser != null)
@@ -47,6 +54,9 @@ namespace FoersteSemesterproeve.Presentation.Pages
 
         }
 
-       
+        private void AddActivityClick(object sender, RoutedEventArgs e)
+        {
+            router.Navigate(NavigationRouter.Route.AddActivities);
+        }
     }
 }
