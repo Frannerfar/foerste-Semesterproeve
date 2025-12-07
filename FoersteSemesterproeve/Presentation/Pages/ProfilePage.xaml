@@ -75,11 +75,6 @@
                                     <Label Content="Date of Birth" x:Name="DOBLabel" />
                                     <DatePicker x:Name="DatePicker" Cursor="Hand" Height="26" FontSize="14" VerticalContentAlignment="Center" Padding="5 0 5 0" IsEnabled="False"/>
                                 </StackPanel>
-
-                                <StackPanel Orientation="Vertical" Margin="0 15" HorizontalAlignment="Left" Width="200">
-                                    <Label Content="Gender" x:Name="GenderLabel" />
-                                    <ComboBox x:Name="GenderComboBox" Cursor="Hand" Height="26" FontSize="14" VerticalContentAlignment="Center" Padding="5 0 5 0" IsEnabled="False"/>
-                                </StackPanel>
                             </StackPanel>
                         </Border>
 
@@ -93,7 +88,7 @@
                                 </StackPanel>
 
                                 <StackPanel Orientation="Vertical" Margin="0 15">
-                                    <Label Content="Address" x:Name="AddressLabel" />
+                                    <Label Content="Street name" x:Name="AddressLabel" />
                                     <TextBox x:Name="AddressBox" Height="26" FontSize="14" VerticalContentAlignment="Center" Padding="5 0 5 0" IsEnabled="False"/>
                                 </StackPanel>
 

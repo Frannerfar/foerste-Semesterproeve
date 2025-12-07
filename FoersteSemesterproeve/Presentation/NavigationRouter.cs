@@ -150,7 +150,7 @@ namespace FoersteSemesterproeve.Presentation
                     MainContent.Content = new AddActivitiesPage(this, activityService, userService, locationService);
                     break;
                 case Route.ViewTrainerInfo:
-                    MainContent.Content = new ViewTrainerInfoPage(this, userService);
+                    MainContent.Content = new ViewTrainerInfoPage(this, userService, activityService);
                     break;
             }
         }

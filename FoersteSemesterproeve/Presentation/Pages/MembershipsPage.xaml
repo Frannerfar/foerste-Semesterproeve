@@ -9,6 +9,7 @@
     <Grid Name="MembershipPage">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
+            <RowDefinition Height="100"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
@@ -20,16 +21,16 @@
 
         <TextBlock FontSize="30" Grid.Row="0" Grid.Column="1" Text="MEMBERSHIPS" HorizontalAlignment="Center" />
         
-        <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
+        <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">
             <Button x:Name="AddMembershipTypeButton" Click="AddMembershipTypeButton_Click"  
-                    HorizontalAlignment="Left"
+                    HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     FontSize="10"
                     Width="150"
                     Height="50">Add Membership Type</Button>
         </StackPanel>
 
-        <Grid Name="GridMembershipTypes" Grid.Row="1" Grid.Column="1">
+        <Grid Name="GridMembershipTypes" Grid.Row="2" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
