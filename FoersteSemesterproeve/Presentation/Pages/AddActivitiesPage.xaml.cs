@@ -28,6 +28,10 @@ namespace FoersteSemesterproeve.Presentation.Pages
         ActivityService activityService;
         UserService userService;
         LocationService locationService;
+
+        List<User> coaches;
+        
+
         public AddActivitiesPage(NavigationRouter navigationRouter, ActivityService activityService, UserService userService, LocationService locationService)
         {
             InitializeComponent();
@@ -36,9 +40,48 @@ namespace FoersteSemesterproeve.Presentation.Pages
             this.userService = userService;
             this.locationService = locationService;
 
-            CoachPicker.ItemsSource = userService.users.Where(u => u.isCoach).ToList();
-            LocationPicker.ItemsSource = locationService.locations;
+            this.coaches = new List<User>();
+            
+            for(int i = 0; i < userService.users.Count; i++)
+            {
+                if (userService.users[i].isCoach == true)
+                {
+                    coaches.Add(userService.users[i]);
+                    CoachPicker.Items.Add($"{userService.users[i].firstName} {userService.users[i].lastName}");
+                }
+            }
 
+            for (int i = 0; i < locationService.locations.Count; i++)
+            {
+                string maxCapacityText;
+                if(locationService.locations[i].maxCapacity != null)
+                {
+                    maxCapacityText = $"max. {locationService.locations[i].maxCapacity} people";
+                }
+                else
+                {
+                    maxCapacityText = $"Unlimited people";
+                }
+                LocationPicker.Items.Add($"{locationService.locations[i].name} ({maxCapacityText})");
+            }
+            LocationPicker.SelectedIndex = 0;
+
+
+
+
+
+
+
+
+
+
+
+
+            StartDatePicker.SelectedDate = DateTime.Now;
+            EndDatePicker.SelectedDate = DateTime.Now.AddDays(1);
+
+            StartTimeBox.Text = "12:00";
+            EndTimeBox.Text = "13:00";
         }
 
         
@@ -53,23 +96,28 @@ namespace FoersteSemesterproeve.Presentation.Pages
                     return;
                 }
 
-                if (CoachPicker.SelectedItem is not User coach)
+                User? coach = null;
+                if(CoachPicker.SelectedItem != null)
                 {
-                    MessageBox.Show("You must select a coach.");
-                    return;
+                    coach = coaches[CoachPicker.SelectedIndex];
                 }
 
-                if (LocationPicker.SelectedItem is not Location location)
-                {
-                    MessageBox.Show("You must select a location.");
-                    return;
-                }
+                
+                Location location = locationService.locations[LocationPicker.SelectedIndex];
+
 
                 if (!int.TryParse(CapacityBox.Text, out int maxCap))
                 {
                     MessageBox.Show("Max capacity must be a number.");
                     return;
                 }
+                if(maxCap > location.maxCapacity)
+                {
+                    MessageBox.Show("Max capacity is higher than room  capacity");
+                    return;
+                }
+
+
 
                 // ----- DATE & TIME -----
                 var start = ParseDateTime(StartDatePicker, StartTimeBox.Text);
@@ -81,20 +129,9 @@ namespace FoersteSemesterproeve.Presentation.Pages
                     return;
                 }
 
-                // ----- CREATE ACTIVITY -----
-                Activity activity = new Activity
-                {
-                    title = TitleBox.Text,
-                    //coach = coach,
-                    location = location,
-                    maxCapacity = maxCap,
-                    startTime = start,
-                    endTime = end
-                };
+                activityService.AddActivity(TitleBox.Text, coach, location, maxCap, start, end);
 
-                activityService.AddActivity(activity);
-
-                MessageBox.Show("Activity created successfully!");
+                router.Navigate(NavigationRouter.Route.Activities);
             }
             catch (Exception ex)
             {
@@ -105,17 +142,16 @@ namespace FoersteSemesterproeve.Presentation.Pages
 
         private DateTime ParseDateTime(DatePicker picker, string timeText)
         {
-            var date = picker.SelectedDate ?? DateTime.Today;
+            DateTime date = picker.SelectedDate ?? DateTime.Today;
 
-            var time = TimeSpan.Parse(timeText); // "10:30" → TimeSpan
+            TimeSpan time = TimeSpan.Parse(timeText); // "10:30" → TimeSpan
 
             return date.Date + time;
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-
-            MessageBox.Show("Cancelled.");
+            router.Navigate(NavigationRouter.Route.Activities);
         }
     }
 }

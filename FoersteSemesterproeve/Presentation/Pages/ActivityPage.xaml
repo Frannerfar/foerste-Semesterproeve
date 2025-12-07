@@ -1,0 +1,214 @@
+﻿<UserControl x:Class="FoersteSemesterproeve.Presentation.Pages.ActivityPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FoersteSemesterproeve.Presentation.Pages"
+             mc:Ignorable="d" 
+             d:DesignHeight="1200" d:DesignWidth="800">
+    <!--<Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="50" Width="auto"/>
+            <ColumnDefinition MaxWidth="800" Width="*"/>
+            <ColumnDefinition MinWidth="50" Width="auto"/>
+            
+            
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Button Width="100" Padding="10, 5, 10, 5" Background="DeepSkyBlue" Click="BackButton_Click" Cursor="Hand">Back</Button>
+        </StackPanel>
+
+        <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock x:Name="ActivityNameTitle"></TextBlock>
+        </StackPanel>
+        
+        
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <Label x:Name="ActivityNameFlag" Visibility="Collapsed">dwdawd</Label>
+            <Label x:Name="ActivityNameLabel">Activity Name</Label>
+            <TextBox x:Name="ActivityNameBox"></TextBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <Label x:Name="ActivityTrainerFlag" Visibility="Collapsed">dwdawd</Label>
+            <Label x:Name="ActivityTrainerLabel">Trainer</Label>
+            <ComboBox x:Name="ActivityTrainerCombo"></ComboBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Grid.Column="1">
+            <Label x:Name="ActivityLocationFlag" Visibility="Collapsed">dwdawd</Label>
+            <Label x:Name="ActivityLocationLabel">Location</Label>
+            <ComboBox x:Name="ActivityLocationCombo"></ComboBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="4" Grid.Column="1">
+            <Label x:Name="ActivityCapcityFlag" Visibility="Collapsed">dwdawd</Label>
+            <Label x:Name="ActivityCapacityLabel">Capacity</Label>
+            <TextBox x:Name="ActivityCapacityBox"></TextBox>
+        </StackPanel>
+
+
+        <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Vertical">
+            <TextBlock>Users attending this activity:</TextBlock>
+            <StackPanel x:Name="ActivityUsersPanel" Orientation="Vertical">
+            
+            
+            
+            </StackPanel>
+            
+        </StackPanel>-->
+        
+        
+        <!--<StackPanel Grid.Row="4" Grid.Column="1">
+            <Label x:Name="ActivityLocationFlag" Visibility="Collapsed">dwdawd</Label>
+            <Label x:Name="ActivityLocationLabel">Activity Name</Label>
+            <ComboBox x:Name="ActivityLocationCombo"></ComboBox>
+        </StackPanel>-->
+    <!--</Grid>-->
+
+
+
+
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+
+
+        <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"          >
+            <TextBlock FontSize="28" x:Name="TitleActivity" FontWeight="Bold">See</TextBlock>
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1" Grid.Column="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <StackPanel MaxWidth="700" Orientation="Vertical" VerticalAlignment="Top">
+
+
+                <Border BorderBrush="LightGray" BorderThickness="1" Padding="20, 40" Margin="0 20, 0 20">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+
+
+                        <StackPanel Grid.Row="0" Grid.Column="0" Margin="20 0">
+                            <TextBlock Text="Title" Height="24" FontSize="14"/>
+                            <TextBox x:Name="TitleBox" IsEnabled="False" Height="28" FontSize="16"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="1" Grid.Column="0" Margin="20 30">
+                            <TextBlock Text="Max Capacity" Height="24" FontSize="14"/>
+                            <TextBox x:Name="CapacityBox" IsEnabled="False" Height="28" FontSize="16"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="0" Grid.Column="1" Margin="20 0">
+                            <TextBlock Text="Coach" Height="24" FontSize="14"/>
+                            <ComboBox x:Name="CoachPicker" IsEnabled="False" Height="28" FontSize="16"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="1" Grid.Column="1" Margin="20 30">
+                            <TextBlock Text="Location" Height="24" FontSize="14"/>
+                            <ComboBox x:Name="LocationPicker" IsEnabled="False" Height="28" FontSize="16"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+
+
+                <Border BorderBrush="LightGray" BorderThickness="1" Padding="20, 40" Margin="0 20, 0, 40">
+                    <StackPanel>
+                        <Grid Margin="0 20">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
+                            <StackPanel Grid.Row="0" Grid.Column="0" Margin="20 0">
+                                <TextBlock Text="Start Date" Height="24" FontSize="14"/>
+                                <DatePicker x:Name="StartDatePicker" IsEnabled="False" Height="28" FontSize="16"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="0" Grid.Column="1" Margin="20 0">
+                                <TextBlock Text="Start Time" Height="24" FontSize="14"/>
+                                <TextBox x:Name="StartTimeBox" IsEnabled="False" Height="28" FontSize="16" Margin="0 1 0 0"/>
+                            </StackPanel>
+                        </Grid>
+
+                        <Grid Margin="0 30">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
+                            <StackPanel Grid.Row="0" Grid.Column="0" Margin="20 0">
+                                <TextBlock Text="End Date" Height="24" FontSize="14"/>
+                                <DatePicker x:Name="EndDatePicker" IsEnabled="False" Height="28" FontSize="16"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="0" Grid.Column="1" Margin="20 0">
+                                <TextBlock Text="End Time" Height="24" FontSize="14"/>
+                                <TextBox IsEnabled="False" x:Name="EndTimeBox" Height="28" FontSize="16" Margin="0 1 0 0"/>
+
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+
+                <ScrollViewer VerticalScrollBarVisibility="auto" HorizontalScrollBarVisibility="Disabled">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock>Users attending this activity:</TextBlock>
+                                <TextBlock x:Name="AmountOfAttendees"></TextBlock>
+                            </StackPanel>
+                            <StackPanel x:Name="AttendingActionPanel" HorizontalAlignment="Center">
+
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel x:Name="ActivityUsersPanel" Orientation="Vertical" Margin="0, 20, 0, 20">
+
+                        </StackPanel>
+                    </StackPanel>
+                </ScrollViewer>
+
+
+
+            </StackPanel>
+        </ScrollViewer>
+
+
+        <!--<StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Margin="0 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Width="150" Padding="0, 5, 0, 5" Margin="0 0 40 0" Click="SaveButton_Click" Cursor="Hand" Background="Lime">Create</Button>
+
+            <Button Width="150" Padding="0, 5, 0, 5" Cursor="Hand" Background="Red" Click="CancelButton_Click">Cancel</Button>
+        </StackPanel>-->
+    </Grid>
+</UserControl>

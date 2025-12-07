@@ -74,16 +74,16 @@ namespace FoersteSemesterproeve.Presentation.Pages
                     }
                 }
 
-                User.Gender[] genders = Enum.GetValues<User.Gender>();
+                //User.Gender[] genders = Enum.GetValues<User.Gender>();
 
-                for (int i = 0; i < genders.Length; i++)
-                {
-                    GenderComboBox.Items.Add(genders[i].ToString());
-                    if (userService?.targetUser?.gender != null && genders[i] == userService?.targetUser?.gender)
-                    {
-                        GenderComboBox.SelectedIndex = i;
-                    }
-                }
+                //for (int i = 0; i < genders.Length; i++)
+                //{
+                //    GenderComboBox.Items.Add(genders[i].ToString());
+                //    if (userService?.targetUser?.gender != null && genders[i] == userService?.targetUser?.gender)
+                //    {
+                //        GenderComboBox.SelectedIndex = i;
+                //    }
+                //}
             }
         }
 
@@ -120,8 +120,6 @@ namespace FoersteSemesterproeve.Presentation.Pages
                 }
 
                 userService.targetUser.membershipType = userService.membershipService.membershipTypes[MembershipComboBox.SelectedIndex];
-
-                userService.targetUser.gender = (User.Gender)GenderComboBox.SelectedIndex;
 
                 userService.targetUser.CheckBothMarks();
                 router.Navigate(NavigationRouter.Route.Members);

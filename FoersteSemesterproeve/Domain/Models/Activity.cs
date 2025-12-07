@@ -9,7 +9,7 @@ namespace FoersteSemesterproeve.Domain.Models
     public class Activity
     {
         public string title { get; set; }
-        public User coach { get; set; }
+        public User? coach { get; set; }
         public Location location { get; set; }
         public int? maxCapacity {  get; set; }
         public DateTime startTime { get; set; }
@@ -17,14 +17,15 @@ namespace FoersteSemesterproeve.Domain.Models
         public List<User> participants { get; set; }
         
 
-        public Activity ()
+        public Activity (string title, User? coach, Location location, int? maxCapacity, DateTime startTime, DateTime endTime)
         {
-            title = "hula bula";
-            participants = new List<User> ();
-            maxCapacity = 10;
-            startTime = DateTime.Now;
-            endTime = DateTime.Now.AddHours(1);
-
+            this.title = title;
+            this.coach = coach;
+            this.maxCapacity = maxCapacity;
+            this.startTime = startTime;
+            this.endTime = endTime;
+            this.location = location;
+            this.participants = new List<User> ();
         }
     }
 }

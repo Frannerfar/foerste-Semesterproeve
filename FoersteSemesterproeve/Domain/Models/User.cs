@@ -39,8 +39,6 @@ namespace FoersteSemesterproeve.Domain.Models
         
         public MembershipType membershipType { get; set; }
 
-        public Gender gender;
-
         /// <summary>
         /// 
         /// </summary>
@@ -61,7 +59,7 @@ namespace FoersteSemesterproeve.Domain.Models
         /// <param name="hasPaid"></param>
         /// <param name="membershipType"></param>
         /// <param name="gender"></param>
-        public User(int id, string firstName, string lastName, string email, string address, string city, string password, bool isCoach, bool isAdmin, DateOnly dateofBirth, int? postal, bool hasPaid, MembershipType membershipType, Gender gender) 
+        public User(int id, string firstName, string lastName, string email, string address, string city, string password, bool isCoach, bool isAdmin, DateOnly dateofBirth, int? postal, bool hasPaid, MembershipType membershipType) 
         {
             this.id = id;
             this.firstName = firstName;
@@ -79,19 +77,6 @@ namespace FoersteSemesterproeve.Domain.Models
             this.isAdminText = SetMark(isAdmin);
             this.activityList = new List<Activity>();
             this.membershipType = membershipType;
-            this.gender = gender;
-
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <author>Martin</author>
-        /// <created>28-11-2025</created>
-        public enum Gender
-        {
-            Male,
-            Female
         }
 
         /// <summary>

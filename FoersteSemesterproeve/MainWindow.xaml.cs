@@ -51,7 +51,6 @@ namespace FoersteSemesterproeve
 
             membershipService = new MembershipService();
             locationService = new LocationService();
-            activityService = new ActivityService();
 
             // Alt med Users instantieres her
             // UserRepository instantieres i interface
@@ -62,6 +61,7 @@ namespace FoersteSemesterproeve
             // UserPository: fordi vi i UserService skal have mulighed for a "load" og "save" users fra/til fil.
             userService = new UserService(membershipService, userRepository);
             
+            activityService = new ActivityService(locationService, userService);
 
             // Instantiering af vores hjemmebygget router (NavigationRouter)
             // En central del af vores applikation, da den håndterer routing mellem forskellige pages (i vores tilfælde UserControls,

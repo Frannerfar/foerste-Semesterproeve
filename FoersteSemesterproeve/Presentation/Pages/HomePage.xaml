@@ -9,7 +9,7 @@
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <!--<RowDefinition Height="*"/>-->
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -17,7 +17,7 @@
         </Grid.ColumnDefinitions>
 
 
-        <Grid Grid.Row="0" Grid.Column="0">
+        <!--<Grid Grid.Row="0" Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
@@ -47,11 +47,12 @@
 
 
             </Grid>
-        </Grid>
+        </Grid>-->
      
         <Grid Grid.Row="1" Grid.Column="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="80" />
+                <RowDefinition Height="100" />
+                <RowDefinition Height="100" />
                 <RowDefinition Height="*" />
 
             </Grid.RowDefinitions>
@@ -59,14 +60,17 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
+            <StackPanel Grid.Row="0" Grid.Column="0">
+                <TextBlock x:Name="AuthenticatedUserName" Margin="20 20" HorizontalAlignment="Center"  FontSize="30">Hello</TextBlock>
+            </StackPanel>
 
-            <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" >
-                <Border BorderBrush="Black" BorderThickness="1" Padding="50 10 50 10" CornerRadius="30">
-                    <Label FontSize="20">Upcoming Activities</Label>
+            <StackPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                <Border BorderThickness="1" BorderBrush="LightGray" Padding="50 10 50 10" CornerRadius="5">
+                    <Label FontSize="18">Your upcoming Activities</Label>
                 </Border>
             </StackPanel>
 
-            <ScrollViewer Grid.Row="1"  Grid.Column="0">
+            <ScrollViewer Grid.Row="2"  Grid.Column="0">
                 
                 <StackPanel x:Name="UpcomingActivitiesStack">
                 

@@ -38,14 +38,39 @@ namespace FoersteSemesterproeve.Presentation.Pages
                 
                 for(int i = 0; i < activityService.activities.Count; i++)
                 {
+
                     if (activityService.activities[i].coach == userService.targetUser)
                     {
-                        TrainerActivitiesList.Items.Add(activityService.activities[i].title);
+                        //TrainerActivitiesScrollViewer.Items.Add
+                        StackPanel activityStackPanel = new StackPanel();
+                        activityStackPanel.Margin = new Thickness(5, 10, 5, 10);
+                        ActivitiesStackPanel.Children.Add(activityStackPanel);
+
+                        Button activityButton = new Button();
+                        activityButton.Content = activityService.activities[i].title;
+                        activityButton.Padding = new Thickness(15, 10, 15, 10);
+                        activityButton.Background = new SolidColorBrush(Colors.Yellow);
+                        activityButton.Tag = activityService.activities[i];
+                        activityButton.Click += ActivityButton_Click;
+                        activityStackPanel.Children.Add(activityButton);
                     }
                 }
                 
             }
 
+        }
+
+        private void ActivityButton_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            Activity activity = (Activity)button.Tag;
+
+            if(activity != null )
+            {
+                activityService.targetActivity = activity;
+
+                router.Navigate(NavigationRouter.Route.Activity);
+            }
         }
 
         private void BackToTrainersPageButton_Click(object sender, RoutedEventArgs e)

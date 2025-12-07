@@ -5,6 +5,9 @@
     <Compile Update="Presentation\Pages\ActivitiesPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Presentation\Pages\ActivityPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Presentation\Pages\AddActivitiesPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -12,6 +15,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Presentation\Pages\AddUserPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Presentation\Pages\EditActivityPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Presentation\Pages\EditLocationPage.xaml.cs">

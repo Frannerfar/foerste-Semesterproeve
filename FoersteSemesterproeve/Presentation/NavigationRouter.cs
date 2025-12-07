@@ -149,6 +149,12 @@ namespace FoersteSemesterproeve.Presentation
                 case Route.AddActivities:
                     MainContent.Content = new AddActivitiesPage(this, activityService, userService, locationService);
                     break;
+                case Route.EditActivity:
+                    MainContent.Content = new EditActivityPage(this, activityService, userService, locationService);
+                    break;
+                case Route.Activity:
+                    MainContent.Content = new ActivityPage(this, activityService, userService, locationService);
+                    break;
                 case Route.ViewTrainerInfo:
                     MainContent.Content = new ViewTrainerInfoPage(this, userService, activityService);
                     break;
@@ -179,6 +185,8 @@ namespace FoersteSemesterproeve.Presentation
             EditUser,
             UserActivities,
             AddActivities,
+            EditActivity,
+            Activity,
             ViewTrainerInfo
         }
 

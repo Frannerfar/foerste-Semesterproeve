@@ -48,9 +48,6 @@ namespace FoersteSemesterproeve.Data.DTO
 
 
 
-        public int Gender { get; set; }
-
-
         /// <summary>
         /// 
         /// </summary>

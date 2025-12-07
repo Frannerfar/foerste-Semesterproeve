@@ -128,7 +128,6 @@ namespace FoersteSemesterproeve.Data.Repositories
                     MembershipTypeId = user.membershipType.id,
                     // TODO: Mangler stadig aktiviteter og ID til aktiviteter 
                     //       Tilføjes når Rasmus har færdigjort aktiviteter
-                    Gender = (int)user.gender
                 };
 
                 userDtos.Add(dto);
@@ -183,10 +182,9 @@ namespace FoersteSemesterproeve.Data.Repositories
                     dto.DateOfBirth,
                     dto.Postal,
                     dto.HasPaid,
-                    membership,
+                    membership
                     // TODO: Mangler stadig aktiviteter og ID til aktiviteter
                     //       Tilføjes når Rasmus har færdigjort aktiviteter
-                    (User.Gender)dto.Gender
                 );
 
                 users.Add(user);

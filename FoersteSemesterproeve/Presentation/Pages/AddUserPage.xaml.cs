@@ -55,14 +55,14 @@ namespace FoersteSemesterproeve.Presentation.Pages
                 MembershipComboBox.Items.Add(membershipType.name);
             }
 
-            User.Gender[] genders = Enum.GetValues<User.Gender>();
+            //User.Gender[] genders = Enum.GetValues<User.Gender>();
 
-            for (int i = 0; i < genders.Length; i++)
-            {
-                GenderComboBox.Items.Add(genders[i].ToString());
-            }
+            //for (int i = 0; i < genders.Length; i++)
+            //{
+            //    GenderComboBox.Items.Add(genders[i].ToString());
+            //}
 
-            GenderComboBox.SelectedIndex = 0;
+            //GenderComboBox.SelectedIndex = 0;
             MembershipComboBox.SelectedIndex = 0;
         }
 
@@ -78,7 +78,6 @@ namespace FoersteSemesterproeve.Presentation.Pages
         {
             bool flag = false;
             int? postal = null;
-            User.Gender selectedGender = (User.Gender)GenderComboBox.SelectedIndex;
 
             if (!ValidateRequiredTextBox(FirstNameBox, FirstNameFlag))
             {
@@ -134,8 +133,7 @@ namespace FoersteSemesterproeve.Presentation.Pages
                     GetCheckBoxValue(AdminCheckbox),
                     GetCheckBoxValue(TrainerCheckbox),
                     GetCheckBoxValue(HasPaidCheckbox),
-                    userService.membershipService.membershipTypes[MembershipComboBox.SelectedIndex],
-                    selectedGender);
+                    userService.membershipService.membershipTypes[MembershipComboBox.SelectedIndex]);
 
                 router.Navigate(NavigationRouter.Route.Members);
             }
