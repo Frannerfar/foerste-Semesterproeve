@@ -11,6 +11,9 @@ namespace FoersteSemesterproeve.Domain.Services
     public class ActivityService
     {
         public List<Activity> activities;
+        public Activity? targetActivity {  get; set; }
+
+        public List<User> participants { get; set; } = new List<User>();
 
         public ActivityService() 
         {
@@ -54,9 +57,15 @@ namespace FoersteSemesterproeve.Domain.Services
             user.activityList.Remove(activity);
             return true;
         }
+
+
         public List<Activity> GetAllActivities() 
         { 
             return activities;
+        }
+        public int GetParticipantCount(Activity activity)
+        {
+            return participants.Count(u => u.activityList.Contains(activity));
         }
 
         private List<Activity> GenerateDummyActivities()

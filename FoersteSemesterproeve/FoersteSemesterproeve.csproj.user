@@ -11,6 +11,9 @@
     <Compile Update="Presentation\Pages\AddUserPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Presentation\Pages\EditActivitiesPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Presentation\Pages\EditUserPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

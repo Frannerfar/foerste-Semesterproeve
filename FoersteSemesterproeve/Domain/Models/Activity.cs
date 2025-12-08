@@ -15,6 +15,7 @@ namespace FoersteSemesterproeve.Domain.Models
         public DateTime startTime { get; set; }
         public DateTime endTime { get; set; }
         public List<User> participants { get; set; }
+        public int participantCount { get; set; }
         
 
         public Activity ()

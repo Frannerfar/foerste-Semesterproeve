@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ActivityModel = FoersteSemesterproeve.Domain.Models.Activity;
 
 namespace FoersteSemesterproeve.Presentation.Pages
 {
@@ -26,19 +27,20 @@ namespace FoersteSemesterproeve.Presentation.Pages
         NavigationRouter navigationRouter;
         UserService userService;
         ActivityService activityService;
-         
+
         public HomePage(NavigationRouter navigationRouter, UserService userService, ActivityService activityService)
         {
-            
+
             InitializeComponent();
             this.navigationRouter = navigationRouter;
             this.userService = userService;
             this.activityService = activityService;
-            for (int i = 0; i < this.userService.users.Count; i++)
-            {
-            
-                Debug.WriteLine($"{this.userService.users[i].firstName}");
-            }
+            LoadActivities();
         }
+        private void LoadActivities() 
+        {
+            ActivitiesList.ItemsSource = activityService.activities;
+        }
+        
     }
 }

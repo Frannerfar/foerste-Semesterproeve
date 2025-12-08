@@ -65,7 +65,8 @@ namespace FoersteSemesterproeve.Presentation
                 { Route.EditUser, () => new EditUserPage(this, userService) },
                 { Route.AddActivities, () => new AddActivitiesPage(this, activityService, userService, locationService) },
                 { Route.EditMembershipType, () => new EditMembershipTypePage(this, membershipService) },
-                { Route.AddMembershipType, () => new AddMembershipTypePage(this, membershipService) }
+                { Route.AddMembershipType, () => new AddMembershipTypePage(this, membershipService) },
+                { Route.EditActivities, () => new EditActivitiesPage (this,  activityService, userService, locationService) } 
                 
             };
         }
@@ -92,6 +93,7 @@ namespace FoersteSemesterproeve.Presentation
                 currentRoute = route;
             }
         }
+       
 
         public enum Route
         {
@@ -107,7 +109,9 @@ namespace FoersteSemesterproeve.Presentation
             EditUser,
             AddActivities,
             EditMembershipType,
-            AddMembershipType
+            AddMembershipType,
+            EditActivities
+
         }
 
     }
