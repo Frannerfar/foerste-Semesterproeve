@@ -22,12 +22,12 @@ namespace FoersteSemesterproeve.Presentation.Pages
     /// <summary>
     /// Interaction logic for MembershipsPage.xaml
     /// </summary>
-    public partial class MembershipsPage : UserControl
+    public partial class MembershipTypesPage : UserControl
     {
         NavigationRouter router;
         MembershipService membershipService;
         UserService userService;
-        public MembershipsPage(NavigationRouter router, MembershipService membershipServiceInput, UserService userService)
+        public MembershipTypesPage(NavigationRouter router, MembershipService membershipServiceInput, UserService userService)
         {
             InitializeComponent();
 

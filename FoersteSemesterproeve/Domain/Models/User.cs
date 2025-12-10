@@ -28,7 +28,6 @@ namespace FoersteSemesterproeve.Domain.Models
         public DateOnly dateofBirth;
         public bool isCoach;
         public bool isAdmin;
-        //public bool hasPaid;
 
         public string password;
         

@@ -20,12 +20,12 @@ namespace FoersteSemesterproeve.Presentation.Pages
     /// <summary>
     /// Interaction logic for ViewTrainerInfoPage.xaml
     /// </summary>
-    public partial class ViewTrainerInfoPage : UserControl
+    public partial class TrainerPage : UserControl
     {
         NavigationRouter router;
         UserService userService;
         ActivityService activityService;
-        public ViewTrainerInfoPage(NavigationRouter router, UserService userService, ActivityService activityService)
+        public TrainerPage(NavigationRouter router, UserService userService, ActivityService activityService)
         {
             InitializeComponent();
             this.router = router;

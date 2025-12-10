@@ -8,11 +8,9 @@ namespace FoersteSemesterproeve.Domain.Models
 {
     public class Location
     {
-        //public int id;
         public string name;
         public string description;
         public int? maxCapacity;
-        //public List<Activity> activities;
 
         public Location(string name, string description, int? maxCapacity)
         {

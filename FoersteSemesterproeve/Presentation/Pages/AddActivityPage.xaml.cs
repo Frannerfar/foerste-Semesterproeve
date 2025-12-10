@@ -22,7 +22,7 @@ namespace FoersteSemesterproeve.Presentation.Pages
     /// <summary>
     /// Interaction logic for AddActivitiesPage.xaml
     /// </summary>
-    public partial class AddActivitiesPage : UserControl
+    public partial class AddActivityPage : UserControl
     {
         NavigationRouter router;
         ActivityService activityService;
@@ -32,7 +32,7 @@ namespace FoersteSemesterproeve.Presentation.Pages
         List<User> coaches;
         
 
-        public AddActivitiesPage(NavigationRouter navigationRouter, ActivityService activityService, UserService userService, LocationService locationService)
+        public AddActivityPage(NavigationRouter navigationRouter, ActivityService activityService, UserService userService, LocationService locationService)
         {
             InitializeComponent();
             this.router = navigationRouter;

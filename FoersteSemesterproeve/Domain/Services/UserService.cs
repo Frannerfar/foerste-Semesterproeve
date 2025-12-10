@@ -189,8 +189,6 @@ namespace FoersteSemesterproeve.Domain.Services
         }
 
 
-
-
         /// <summary>
         /// 
         /// </summary>
@@ -211,8 +209,6 @@ namespace FoersteSemesterproeve.Domain.Services
             highestId++;
             return highestId;
         }
-
-
 
 
         /// <summary>
