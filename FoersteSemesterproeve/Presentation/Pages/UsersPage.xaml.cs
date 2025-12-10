@@ -24,12 +24,12 @@ namespace FoersteSemesterproeve.Presentation.Pages
     /// <author>Martin</author>
     /// <created>26-11-2025</created>
     /// <updated>27-11-2025</updated>
-    public partial class MembersPage : UserControl
+    public partial class UsersPage : UserControl
     {
         UserService userService;
         NavigationRouter router;
 
-        public MembersPage(NavigationRouter router, UserService userService)
+        public UsersPage(NavigationRouter router, UserService userService)
         {
             InitializeComponent();
             this.userService = userService;

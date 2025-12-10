@@ -8,7 +8,7 @@
     <Compile Update="Presentation\Pages\ActivityPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Presentation\Pages\AddActivitiesPage.xaml.cs">
+    <Compile Update="Presentation\Pages\AddActivityPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Presentation\Pages\AddLocationPage.xaml.cs">
@@ -35,7 +35,7 @@
     <Compile Update="Presentation\Pages\LoginPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Presentation\Pages\MembersPage.xaml.cs">
+    <Compile Update="Presentation\Pages\UsersPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Presentation\Pages\MembershipsPage.xaml.cs">

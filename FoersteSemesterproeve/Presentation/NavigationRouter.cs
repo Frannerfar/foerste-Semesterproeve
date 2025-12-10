@@ -100,7 +100,7 @@ namespace FoersteSemesterproeve.Presentation
                     SetMenuButtonActive(this.currentActiveMenuButton, this.ActivitiesButton);
                     break;
                 case Route.Members:
-                    MainContent.Content = new MembersPage(this, userService);
+                    MainContent.Content = new UsersPage(this, userService);
                     SetMenuButtonActive(this.currentActiveMenuButton, this.MembersButton);
                     break;
                 case Route.Trainers:
