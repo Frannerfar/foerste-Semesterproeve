@@ -1,11 +1,12 @@
-﻿using System;
+﻿using FoersteSemesterproeve.Domain.Models;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using FoersteSemesterproeve.Data.Repositories;
-using FoersteSemesterproeve.Domain.Interfaces;
-using FoersteSemesterproeve.Domain.Models;
+using System.Windows;
 
 namespace FoersteSemesterproeve.Domain.Services
 {
@@ -25,7 +26,8 @@ namespace FoersteSemesterproeve.Domain.Services
 
         public MembershipService membershipService;
 
-        private IUserRepository userRepository;
+        string filepath = Path.Combine(Environment.CurrentDirectory, "Data", "Files", "users.txt");
+
 
         /// <summary>
         /// 
@@ -35,42 +37,13 @@ namespace FoersteSemesterproeve.Domain.Services
         /// <updated>29-11-2025</updated>
         /// <param name="membershipService"></param>
         /// <param name="userRepository"></param>
-        public UserService(MembershipService membershipService, IUserRepository userRepository) 
+        public UserService(MembershipService membershipService) 
         {
             this.membershipService = membershipService;
 
-            this.userRepository = userRepository;
-
-            users = PopulateUsers();
+            users = LoadUsers();
         }
 
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <author>Martin</author>
-        /// <created>26-11-2025</created>
-        /// <updated>28-11-2025</updated>
-        /// <returns></returns>
-        private List<User> PopulateUsers()
-        {
-            //List<User> users = new List<User>();
-
-            //users.Add(new User(1, "Admin", "Adminsen", "admin@admin.dk", "", "", "admin", false, true, new DateOnly(2000, 1, 1), 0, membershipService.membershipTypes[0]));
-            //users.Add(new User(2, "Member", "Membersen", "member@membersen.dk", "Rolighedsvej 12", "Aalborg", "1234", false, false, new DateOnly(1990, 7, 21), 9000, membershipService.membershipTypes[1]));
-            //users.Add(new User(3, "Hans", "Eriksen", "hans@eriksenisthebest.dk", "Søndergade 16", "Silkeborg", "password", true, false, new DateOnly(1960, 6, 10), 8600, membershipService.membershipTypes[1]));
-            //users.Add(new User(4, "Ole", "Henriksen", "kontakt@olehenriksen.dk", "Hollywoodgade 90210", "Califorstrup", "OleErSej", false, false, new DateOnly(1958, 9, 20), 90210, membershipService.membershipTypes[0]));
-            //users.Add(new User(5, "Mette", "Poulsen", "mette.poulsen@gmail.com","Nørregade 44", "Aarhus", "mette123", false, false, new DateOnly(1985, 3, 14), 8000, membershipService.membershipTypes[2]));
-            //users.Add(new User(6, "Kasper", "Nielsen", "kasper.nielsen@hotmail.com", "Parkvej 72", "Herning", "kasperPass", true, false, new DateOnly(1992, 11, 2), 7400, membershipService.membershipTypes[1]));
-            //users.Add(new User(7, "Louise", "Andersen", "louise.andersen@live.dk", "Vestergade 8", "Viborg", "loui2025", false, true, new DateOnly(1976, 1, 28), 8800, membershipService.membershipTypes[1]));
-            //users.Add(new User(8, "Bertel", "Haarder", "saaspoergforsatan@gmail.com","Enghavevej 33", "Odense", "GoHaarder!", true, false, new DateOnly(1988, 2, 5), 5000, membershipService.membershipTypes[0]));
-            //users.Add(new User(9, "Thomas", "Kristensen", "thomas.kristensen@live.dk","Bakkevej 8", "Randers", "thomas75", false, true, new DateOnly(1975, 12, 17), 8900, membershipService.membershipTypes[0]));
-            //users.Add(new User(10, "Sofie", "Mortensen", "sofie.mortensen@hotmail.com", "Stationsvej 5", "Skanderborg", "sofiePW", true, true, new DateOnly(1996, 4, 9), 8660, membershipService.membershipTypes[0]));
-
-            List<User> users = userRepository.LoadUsers();
-
-            return users;
-        }
 
         /// <summary>
         /// 
@@ -100,8 +73,147 @@ namespace FoersteSemesterproeve.Domain.Services
         public void DeleteUserByObject(User user)
         {
             users.Remove(user);
-            // TODO: Fjern alle referencer
+            for(int i = 0; user.activityList.Count > 0; i++)
+            {
+                user.activityList[i].participants.Remove(user);
+            }
+            user.activityList.Clear();
         }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <author>Martin</author>
+        /// <created>29-11-2025</created>
+        /// <returns></returns>
+        public List<User> LoadUsers()
+        {
+            string userText = File.ReadAllText(this.filepath);
+            Debug.WriteLine("File read!");
+            Debug.WriteLine($"File path: {this.filepath}");
+            Debug.WriteLine(userText);
+
+            List<User> users = new List<User>();
+
+            string[] usersInTextFormat = userText.Split(";");
+
+            for (int i = 0; i < usersInTextFormat.Length; i++)
+            {
+                try
+                {
+                    string[] userInformationParts = usersInTextFormat[i].Split(",");
+
+                    string stringID = userInformationParts[0];
+                    string stringFirstName = userInformationParts[1];
+                    string stringLastName = userInformationParts[2];
+                    string stringEmail = userInformationParts[3];
+                    string stringStreet = userInformationParts[4];
+                    string stringCity = userInformationParts[5];
+                    string stringPassword = userInformationParts[6];
+                    string stringIsCoach = userInformationParts[7];
+                    string stringIsAdmin = userInformationParts[8];
+                    string stringDOB = userInformationParts[9];
+                    string stringPostal = userInformationParts[10];
+                    string stringMembershipID = userInformationParts[11];
+
+                    Debug.WriteLine($"ITERATION: {i}");
+
+                    // Til at tjekke om noget er fejlet
+                    bool flag = false;
+
+                    // Konverterer stringID om til en faktisk integer ID.
+                    int id;
+                    bool isUserID = int.TryParse(stringID, out id);
+                    if (!isUserID) { MessageBox.Show($"UserID {stringID} could not be converted to a integer"); flag = true; }
+
+                    // Konverterer stringIsCoach til faktisk bool.
+                    bool isCoach;
+                    bool isUserCoachBool = bool.TryParse(stringIsCoach, out isCoach);
+                    if (!isUserCoachBool) { MessageBox.Show($"isCoach bool: {stringIsCoach} could not be converted to a bool"); flag = true; }
+
+                    // Konverterer stringIsAdmin til faktisk bool.
+                    bool isAdmin;
+                    bool isUserAdminBool = bool.TryParse(stringIsAdmin, out isAdmin);
+                    if (!isUserAdminBool) { MessageBox.Show($"isAdmin bool: {stringIsAdmin} could not be converted to a bool"); flag = true; }
+
+                    DateOnly dob;
+                    //bool isUserDOB = DateOnly.TryParse(stringDOB, out dob);
+                    bool isUserDOB = DateOnly.TryParseExact(stringDOB, "d-M-yyyy", out dob);
+
+                    if (!isUserDOB) { MessageBox.Show($"Date of Birth DateOnly: {stringDOB} could not be converted to a DateOnly"); flag = true; }
+
+                    int postal;
+                    int? postalNullable = null;
+                    if (int.TryParse(stringPostal, out postal))
+                    {
+                        postalNullable = postal;
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Postal integer: {stringPostal} could not be converted to a integer");
+                        flag = true;
+                    }
+
+                    int membershipTypeId;
+                    bool isMembershipTypeID = int.TryParse(stringMembershipID, out membershipTypeId);
+                    if (!isMembershipTypeID) { MessageBox.Show($"MembershipTypeID {stringMembershipID} could not be converted to a integer, from userID: {id}"); flag = true; }
+
+                    // Hvis 
+                    if (!flag)
+                    {
+                        MembershipType? membershipType = null;
+                        for (int j = 0; j < membershipService.membershipTypes.Count; j++)
+                        {
+                            if (membershipService.membershipTypes[j].id == membershipTypeId)
+                            {
+                                membershipType = membershipService.membershipTypes[j];
+                            }
+                        }
+                        if (membershipType != null)
+                        {
+                            User user = new User(id, stringFirstName, stringLastName, stringEmail, stringStreet, stringCity, stringPassword, isCoach, isAdmin, dob, postal, membershipType);
+                            users.Add(user);
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show($"ERROR in iteration #{i} \n\n RAW DATA:\n {usersInTextFormat[i]} \n\n EXCEPTION: \n {e.Message}");
+                    continue;
+                }
+                //DialogBox dialogBox = new DialogBox($"stringID: {stringID} - stringFirstName: {stringFirstName} - stringLastName: {stringLastName} - stringEmail: {stringEmail} - stringStreet: {stringStreet} - stringCity: {stringCity} - stringPassword: {stringPassword} - stringIsCoach: {stringIsCoach} - stringIsAdmin: {stringIsAdmin} - stringDOB: {stringDOB} - stringPostal: {stringPostal} - stringMembershipID: {stringMembershipID}");
+                //dialogBox.ShowDialog();
+            }
+            return users;
+        }
+
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <author>Martin</author>
+        /// <created>29-11-2025</created>
+        /// <param name="users"></param>
+        /// <returns></returns>
+        public int GetNewId(List<User> users)
+        {
+            int highestId = 0;
+            for (int i = 0; i < users.Count; i++)
+            {
+                if (users[i].id > highestId)
+                {
+                    highestId = users[i].id;
+                }
+            }
+            highestId++;
+            return highestId;
+        }
+
+
+
 
         /// <summary>
         /// 
@@ -123,9 +235,8 @@ namespace FoersteSemesterproeve.Domain.Services
         /// <param name="gender"></param>
         public void AddUser(string firstName, string lastName, string email, string city, string address, DateOnly date, int? postal, bool isAdmin, bool isCoach, bool hasPaid, MembershipType membershipType)
         {
-            int newId = userRepository.GetNewId(this.users);
+            int newId = this.GetNewId(this.users);
             this.users.Add(new User(newId, firstName, lastName, email, address, city, "1234", isCoach, isAdmin, date, postal, membershipType));
-            userRepository.SaveUsers(users);
         }
     }
 }

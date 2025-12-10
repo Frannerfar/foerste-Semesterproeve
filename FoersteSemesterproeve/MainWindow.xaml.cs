@@ -1,5 +1,4 @@
-﻿using FoersteSemesterproeve.Domain.Interfaces;
-using FoersteSemesterproeve.Domain.Services;
+﻿using FoersteSemesterproeve.Domain.Services;
 using FoersteSemesterproeve.Presentation;
 using FoersteSemesterproeve.Views;
 using System.Text;
@@ -12,7 +11,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using FoersteSemesterproeve.Data.Repositories;
 using static FoersteSemesterproeve.Presentation.NavigationRouter;
 
 namespace FoersteSemesterproeve
@@ -52,14 +50,11 @@ namespace FoersteSemesterproeve
             membershipService = new MembershipService();
             locationService = new LocationService();
 
-            // Alt med Users instantieres her
-            // UserRepository instantieres i interface
-            IUserRepository userRepository = new UserRepository(membershipService);
             // Instantiering hvor både membershipService og UserRepository gives som argumenter
             // MembershipService: da vi i UserService er nødt til at kende til MembershipTypes oprettet, 
             //                    for at give folk muligheden for at vælge korrekt MembershipType.
             // UserPository: fordi vi i UserService skal have mulighed for a "load" og "save" users fra/til fil.
-            userService = new UserService(membershipService, userRepository);
+            userService = new UserService(membershipService);
             
             activityService = new ActivityService(locationService, userService);
 
