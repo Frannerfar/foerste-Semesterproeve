@@ -45,7 +45,7 @@ namespace FoersteSemesterproeve.Presentation.Pages
 
             DateTime now = DateTime.Now;
 
-
+            // Her ville det give mening at bruge LINQ OrderBy eller lave sin egen sortering. Men det er uden for scope.
             if(userService.authenticatedUser != null)
             {
                 for(int i = 0;  i < userService.authenticatedUser.activityList.Count; i++)
@@ -59,116 +59,149 @@ namespace FoersteSemesterproeve.Presentation.Pages
             }
 
 
+            int rows = 0;
+            int columns = 0;
+            int iRemainder = 0;
+            int itemsPerRow = 2;
             if (upcomingActivities.Count > 0) {
-                for (int i = 0; i < upcomingActivities.Count; i++)
+            for (int i = 0; i < upcomingActivities.Count; i++)
+            {
+                iRemainder = i % itemsPerRow;
+                iRemainder = i % itemsPerRow;
+                if (iRemainder == 0)
                 {
-                    Border border = new Border();
-                    border.BorderThickness = new Thickness(1);
-                    border.BorderBrush = new SolidColorBrush(Colors.Black);
-                    border.MaxWidth = 300;
-                    border.Padding = new Thickness(10);
-
-                    StackPanel stackPanel = new StackPanel();
-                    stackPanel.Margin = new Thickness(10);
-                    border.Child = stackPanel;
-
-
-
-                    // HOLD NAVN SEKTION
-                    TextBlock nameTextBlock = new TextBlock();
-                    nameTextBlock.Text = $"{upcomingActivities[i].title}";
-                    nameTextBlock.FontSize = 16;
-                    nameTextBlock.FontWeight = FontWeights.Bold;
-                    nameTextBlock.Margin = new Thickness(0, 0, 0, 10);
-                    stackPanel.Children.Add(nameTextBlock);
-
-
-
-                    // TRAINER SEKTION
-                    //string coachString;
-                    //if (upcomingActivities[i].coach != null)
-                    //{
-                    //    coachString = $"{upcomingActivities[i].coach.firstName} {upcomingActivities[i].coach.lastName}";
-                    //}
-                    //else
-                    //{
-                    //    coachString = "None";
-                    //}
-                    //TextBlock trainerTextBlock = new TextBlock();
-                    //trainerTextBlock.Text = $"Trainer: {coachString}";
-                    //stackPanel.Children.Add(trainerTextBlock);
-
-
-                    // CAPACITY SEKTION
-                    string capacityString;
-                    if (upcomingActivities[i].maxCapacity != null)
+                    UpcomingActivitiesGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
+                    if (rows == 0)
                     {
-                        capacityString = $"Participants: {upcomingActivities[i].participants.Count} / {upcomingActivities[i].maxCapacity}";
+                        UpcomingActivitiesGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+                        columns++;
                     }
-                    else
-                    {
-                        capacityString = $"Participants: {upcomingActivities[i].participants.Count} / Unlimited";
-                    }
-                    TextBlock capacityTextBlock = new TextBlock();
-                    capacityTextBlock.Text = capacityString;
-                    capacityTextBlock.Margin = new Thickness(0, 10, 0, 10);
-                    stackPanel.Children.Add(capacityTextBlock);
+                    rows++;
 
-
-
-
-                    // START SEKTION
-                    TextBlock activityStartTimeTextBlock = new TextBlock();
-                    activityStartTimeTextBlock.Text = $"Date: {upcomingActivities[i].startTime}";
-                    stackPanel.Children.Add(activityStartTimeTextBlock);
-
-
-                    // END SEKTION
-                    TextBlock activityEndTimeTextBlock = new TextBlock();
-                    activityEndTimeTextBlock.Text = $"End: {upcomingActivities[i].endTime}";
-                    stackPanel.Children.Add(activityEndTimeTextBlock);
-
-
-
-                    //// VARIGHED SEKTION
-                    //TimeSpan difference = upcomingActivities[i].endTime - upcomingActivities[i].startTime;
-                    //int hours = difference.Hours;
-                    //int minutes = difference.Minutes;
-                    //TextBlock activityDurationTextBlock = new TextBlock();
-                    //activityDurationTextBlock.Margin = new Thickness(0, 10, 0, 10);
-                    //activityDurationTextBlock.Text = $"Duration: {hours:D1}:{minutes:D2} hours";
-                    //stackPanel.Children.Add(activityDurationTextBlock);
-
-
-
-
-                    // SEE MORE BUTTON
-                    Button seeMoreButton = new Button();
-                    seeMoreButton.Margin = new Thickness(0, 20, 0, 20);
-                    seeMoreButton.Padding = new Thickness(0, 5, 0, 5);
-                    seeMoreButton.Background = new SolidColorBrush(Colors.Yellow);
-                    seeMoreButton.Content = "See More";
-                    seeMoreButton.Tag = upcomingActivities[i];
-                    seeMoreButton.Click += ActivityButton_Click;
-                    seeMoreButton.Cursor = Cursors.Hand;
-
-                    stackPanel.Children.Add(seeMoreButton);
-
-                    UpcomingActivitiesStack.Children.Add(border);
                 }
+                if (iRemainder != 0 && columns < itemsPerRow)
+                {
+                    UpcomingActivitiesGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+                    columns++;
+                }
+
+
+                Border border = new Border();
+                border.BorderThickness = new Thickness(1);
+                border.BorderBrush = new SolidColorBrush(Colors.Black);
+                Grid.SetRow(border, rows - 1);
+                Grid.SetColumn(border, iRemainder);
+                border.MaxWidth = 300;
+                border.Margin = new Thickness(0, 0, 0, 20);
+                border.Padding = new Thickness(10);
+
+                StackPanel stackPanel = new StackPanel();
+                stackPanel.Margin = new Thickness(0);
+                border.Child = stackPanel;
+
+
+
+                // HOLD NAVN SEKTION
+                TextBlock nameTextBlock = new TextBlock();
+                nameTextBlock.Text = $"{upcomingActivities[i].title}";
+                nameTextBlock.FontSize = 18;
+                nameTextBlock.FontWeight = FontWeights.Bold;
+                nameTextBlock.Margin = new Thickness(0, 0, 0, 10);
+                stackPanel.Children.Add(nameTextBlock);
+
+
+
+                // TRAINER SEKTION
+                //string coachString;
+                //if (upcomingActivities[i].coach != null)
+                //{
+                //    coachString = $"{upcomingActivities[i].coach.firstName} {upcomingActivities[i].coach.lastName}";
+                //}
+                //else
+                //{
+                //    coachString = "None";
+                //}
+                //TextBlock trainerTextBlock = new TextBlock();
+                //trainerTextBlock.Text = $"Trainer: {coachString}";
+                //stackPanel.Children.Add(trainerTextBlock);
+
+
+                // CAPACITY SEKTION
+                string capacityString;
+                if (upcomingActivities[i].maxCapacity != null)
+                {
+                    capacityString = $"Participants: {upcomingActivities[i].participants.Count} / {upcomingActivities[i].maxCapacity}";
+                }
+                else
+                {
+                    capacityString = $"Participants: {upcomingActivities[i].participants.Count} / Unlimited";
+                }
+                TextBlock capacityTextBlock = new TextBlock();
+                capacityTextBlock.Text = capacityString;
+                capacityTextBlock.FontSize = 14;
+                capacityTextBlock.Margin = new Thickness(0, 10, 0, 10);
+                stackPanel.Children.Add(capacityTextBlock);
+
+
+
+
+                // START SEKTION
+                TextBlock activityStartTimeTextBlock = new TextBlock();
+                activityStartTimeTextBlock.Text = $"Date: {upcomingActivities[i].startTime:dd-MM-yyyy HH:mm}";
+                activityStartTimeTextBlock.FontSize = 14;
+                stackPanel.Children.Add(activityStartTimeTextBlock);
+
+
+                // END SEKTION
+                TextBlock activityEndTimeTextBlock = new TextBlock();
+                activityEndTimeTextBlock.Text = $"End: {upcomingActivities[i].endTime:dd-MM-yyyy HH:mm}";
+                activityEndTimeTextBlock.FontSize = 14;
+                stackPanel.Children.Add(activityEndTimeTextBlock);
+
+
+
+                //// VARIGHED SEKTION
+                //TimeSpan difference = upcomingActivities[i].endTime - upcomingActivities[i].startTime;
+                //int hours = difference.Hours;
+                //int minutes = difference.Minutes;
+                //TextBlock activityDurationTextBlock = new TextBlock();
+                //activityDurationTextBlock.Margin = new Thickness(0, 10, 0, 10);
+                //activityDurationTextBlock.Text = $"Duration: {hours:D1}:{minutes:D2} hours";
+                //stackPanel.Children.Add(activityDurationTextBlock);
+
+
+
+
+                // SEE MORE BUTTON
+                Button seeMoreButton = new Button();
+                seeMoreButton.Margin = new Thickness(0, 20, 0, 20);
+                seeMoreButton.Padding = new Thickness(0, 5, 0, 5);
+                seeMoreButton.Background = new SolidColorBrush(Colors.Yellow);
+                seeMoreButton.Content = "See More";
+                seeMoreButton.Tag = upcomingActivities[i];
+                seeMoreButton.Click += ActivityButton_Click;
+                seeMoreButton.Cursor = Cursors.Hand;
+
+                stackPanel.Children.Add(seeMoreButton);
+
+                UpcomingActivitiesGrid.Children.Add(border);
+            }
             }
             else
             {
 
                 StackPanel stackPanel = new StackPanel();
-                stackPanel.Margin = new Thickness(10);
+                stackPanel.HorizontalAlignment = HorizontalAlignment.Center;
+                stackPanel.Margin = new Thickness(0);
 
                 TextBlock noUpcomingActivitiesBlock = new TextBlock();
-                noUpcomingActivitiesBlock.Text = "----- No upcoming activities -----";
+                noUpcomingActivitiesBlock.Margin = new Thickness(0, 20, 0, 20);
+                noUpcomingActivitiesBlock.FontSize = 16;
+                noUpcomingActivitiesBlock.Text = "No upcoming activities";
                 noUpcomingActivitiesBlock.HorizontalAlignment = HorizontalAlignment.Center;
                 stackPanel.Children.Add(noUpcomingActivitiesBlock);
 
-                UpcomingActivitiesStack.Children.Add(stackPanel);
+                UpcomingActivitiesGrid.Children.Add(stackPanel);
             }
         }
 

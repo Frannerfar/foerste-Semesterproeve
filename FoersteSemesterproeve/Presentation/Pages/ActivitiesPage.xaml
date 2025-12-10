@@ -31,7 +31,7 @@
             
             <TextBlock Text="All Activities" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" FontSize="32" FontWeight="Bold" Margin="0 0 0 0"/>
 
-            <Button HorizontalAlignment="Right" Cursor="Hand" FontSize="18" Height="30" Padding="20 0" Content="Add Activity" Background="#FF6A9DCA" Width="auto" VerticalAlignment="Center" Margin="10 0 0 0" Click="AddActivity_Click"/>
+            <Button x:Name="AddActivityButton" HorizontalAlignment="Right" Cursor="Hand" FontSize="18" Height="30" Padding="20 0" Content="Add Activity" Visibility="Collapsed" Background="#FF6A9DCA" Width="auto" VerticalAlignment="Center" Margin="10 0 0 0" Click="AddActivity_Click"/>
 
         </Grid>
 

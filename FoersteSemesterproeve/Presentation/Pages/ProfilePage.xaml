@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FoersteSemesterproeve.Presentation.Pages"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="950" d:DesignWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50" />
@@ -119,7 +119,7 @@
                                 <TextBlock FontWeight="Bold" FontSize="14" >Activities</TextBlock>
                                 <StackPanel Margin="10, 15, 10, 15" Orientation="Vertical">
                                     <Label Content="See list of joined activities" x:Name="ActivitiesListLabel" />
-                                    <Button x:Name="ActivitiesButton" Padding="5" FontSize="14" Background="#FF3DA4F3" BorderBrush="Black" Cursor="Hand" Click="ActivitiesButton_Click">Joined Activities --></Button>
+                                    <Button x:Name="ActivitiesButton" Padding="5" FontSize="14" Background="#FF3DA4F3" BorderBrush="Black" Cursor="Hand" Click="ActivitiesButton_Click">Activities Joined</Button>
                                 </StackPanel>
                             </StackPanel>
                         </Border>

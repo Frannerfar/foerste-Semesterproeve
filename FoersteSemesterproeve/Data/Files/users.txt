@@ -1,0 +1,16 @@
+1,Admin,Adminsen,admin@admin.dk,admingade 420,adminnerup,admin,false,true,1-1-2000,8888,1;
+2,Member,Membersen,member@membersen.dk,Membervej 12,Aalborg,1234,false,false,21-7-1990,9000,2;
+3,Elijah,Wood,elijah@lotr.com,Far Away From Mordor Road 69,Hobbiton,OneRingBearer,false,false,28-1-1981,4001,2;
+4,Ian,McKellen,ian@lotr.com,Grey Magneto Road,Valinor,YouShallNotPass,true,true,25-5-1939,4002,3;
+5,Viggo,Mortensen,viggo@lotr.com,Master Chief Street,Hell Week City,SonOfArathorn,true,false,20-10-1958,4003,1;
+6,Sean,Astin,sean@lotr.com,Hobbit Lane 4,Hobbiton,BestGardener123,false,false,25-2-1971,4004,2;
+7,Dominic,Monaghan,dominic@lotr.com,Flight To Nowhere Road,Lost Island,MerryAndBright,false,false,8-12-1976,4005,1;
+8,Billy,Boyd,billy@lotr.com,The Last Goodbye Inn,Buckland,SecondBreakfast,false,false,28-8-1968,4006,1;
+9,Orlando,Bloom,orlando@lotr.com,Elven Path,Tortuga,WhoIsFrodo,true,false,13-1-1977,4007,3;
+10,John,Rhys-Davies,john@lotr.com,Jones Road 3,Indiana,GimliAxeMaster,true,false,5-5-1944,4008,3;
+11,Sean,Bean,seanbean@lotr.com,Winterfell Road,Gondor,OneDoesNotSimply,false,false,17-4-1959,4009,2;
+12,Andy,Serkis,andy@lotr.com,Mountain Cave 1,Misty Mountains,MyPrecious,true,false,20-4-1964,4010,2;
+13,Cate,Blanchett,cate@lotr.com,Forest Road 1,Rivendell,TheRealGaladriel,true,true,14-5-1969,4011,4;
+14,Liv,Tyler,liv@lotr.com,Garden Street 3,Rivendell,AerosmithRocks,false,false,1-7-1977,4012,2;
+15,Hugo,Weaving,hugo@lotr.com,Matrix Road 11011100,Rivendell,NeoFighter,true,true,4-4-1960,4013,4;
+16,Christopher,Lee,chris@lotr.com,Tower 1,Isengard,CountDooku,true,true,27-5-1922,4014,4

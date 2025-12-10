@@ -28,8 +28,8 @@
                             </StackPanel>
 
                             <StackPanel Orientation="Vertical" Margin="10" Width="250">
-                                <Label Content="Username" BorderThickness="0" FontSize="14"/>
-                                <TextBox x:Name="UsernameBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="250" Height="30" FontSize="16" BorderBrush="Black" BorderThickness="1"/>
+                                <Label Content="Email" BorderThickness="0" FontSize="14"/>
+                                <TextBox x:Name="EmailBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="250" Height="30" FontSize="16" BorderBrush="Black" BorderThickness="1"/>
                             </StackPanel>
 
                             <StackPanel Orientation="Vertical" Margin="10" Width="250">

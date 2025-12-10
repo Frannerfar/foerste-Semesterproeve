@@ -70,11 +70,11 @@
                 </Border>
             </StackPanel>
 
-            <ScrollViewer Grid.Row="2"  Grid.Column="0">
+            <ScrollViewer Grid.Row="2"  Grid.Column="0" VerticalScrollBarVisibility="Auto">
                 
-                <StackPanel x:Name="UpcomingActivitiesStack">
+                <Grid x:Name="UpcomingActivitiesGrid" MaxWidth="800">
                 
-                </StackPanel>
+                </Grid>
                 
             </ScrollViewer>
         </Grid>

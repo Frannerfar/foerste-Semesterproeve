@@ -13,11 +13,12 @@ namespace FoersteSemesterproeve.Domain.Models
         public int monthlyPayDKK;
         public int yearlyPayDKK;
 
-        public MembershipType(string nameInput, int monthlyPayDKKInput, int yearlyPayDKKInput)
+        public MembershipType(int id, string nameInput, int monthlyPayDKKInput, int yearlyPayDKKInput)
         {
-            name = nameInput;
-            monthlyPayDKK = monthlyPayDKKInput;
-            yearlyPayDKK = yearlyPayDKKInput;
+            this.id = id;
+            this.name = nameInput;
+            this.monthlyPayDKK = monthlyPayDKKInput;
+            this.yearlyPayDKK = yearlyPayDKKInput;
         }
     }
 }

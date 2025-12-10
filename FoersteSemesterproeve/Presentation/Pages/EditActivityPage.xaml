@@ -46,12 +46,19 @@
                         </StackPanel>
 
                         <StackPanel Grid.Row="1" Grid.Column="0" Margin="20 30">
-                            <TextBlock Text="Max Capacity" Height="24" FontSize="14"/>
+                            <TextBlock Text="Max Capacity (leave empty for limitless)" Height="24" FontSize="14"/>
                             <TextBox x:Name="CapacityBox" Height="28" FontSize="16"/>
                         </StackPanel>
 
                         <StackPanel Grid.Row="0" Grid.Column="1" Margin="20 0">
-                            <TextBlock Text="Coach" Height="24" FontSize="14"/>
+                            <Grid>
+                                <StackPanel>
+                                    <TextBlock Text="Trainer" Height="24" FontSize="14" HorizontalAlignment="Left"/>
+                                </StackPanel>
+                                <StackPanel HorizontalAlignment="Right">
+                                    <Button Click="ClearTrainerSelectionButton_Click" HorizontalAlignment="Right" Padding="10, 1" Cursor="Hand" Background="PaleVioletRed">Clear trainer selection</Button>
+                                </StackPanel>
+                            </Grid>
                             <ComboBox x:Name="CoachPicker" Height="28" FontSize="16"/>
                         </StackPanel>
 
@@ -106,6 +113,12 @@
                         </Grid>
                     </StackPanel>
                 </Border>
+
+                <StackPanel>
+
+                    <Button Width="200" Padding="10, 10, 10, 10" Cursor="Hand" Background="Red" Click="DeleteButton_Click">DELETE ACTIVITY</Button>
+                    
+                </StackPanel>
 
 
                 <!--<ScrollViewer VerticalScrollBarVisibility="auto" HorizontalScrollBarVisibility="Disabled">

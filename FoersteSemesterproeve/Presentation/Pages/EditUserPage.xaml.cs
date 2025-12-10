@@ -63,7 +63,7 @@ namespace FoersteSemesterproeve.Presentation.Pages
 
                 if(userService.targetUser.isCoach) { TrainerCheckbox.IsChecked = true; }
 
-                if(userService.targetUser.hasPaid) { HasPaidCheckbox.IsChecked = true; }
+                //if(userService.targetUser.hasPaid) { HasPaidCheckbox.IsChecked = true; }
 
                 for(int i = 0; i < userService.membershipService.membershipTypes.Count; i++)
                 {
@@ -113,10 +113,6 @@ namespace FoersteSemesterproeve.Presentation.Pages
                 if(TrainerCheckbox.IsChecked != null)
                 {
                     userService.targetUser.isCoach = (bool)TrainerCheckbox.IsChecked;
-                }
-                if(HasPaidCheckbox.IsChecked != null)
-                {
-                    userService.targetUser.hasPaid = (bool)HasPaidCheckbox.IsChecked;
                 }
 
                 userService.targetUser.membershipType = userService.membershipService.membershipTypes[MembershipComboBox.SelectedIndex];
@@ -174,6 +170,7 @@ namespace FoersteSemesterproeve.Presentation.Pages
         /// <param name="e"></param>
         private void ActivitiesButton_Click(object sender, RoutedEventArgs e)
         {
+            userService.targetUser = userService.authenticatedUser;
             router.Navigate(NavigationRouter.Route.UserActivities);
         }
     }

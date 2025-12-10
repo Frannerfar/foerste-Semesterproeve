@@ -105,19 +105,31 @@ namespace FoersteSemesterproeve.Presentation.Pages
                 
                 Location location = locationService.locations[LocationPicker.SelectedIndex];
 
-
-                if (!int.TryParse(CapacityBox.Text, out int maxCap))
+                bool isUnlimited = false;
+                int tempMaxCap = 0;
+                if(string.IsNullOrEmpty(CapacityBox.Text))
                 {
-                    MessageBox.Show("Max capacity must be a number.");
-                    return;
+                    if(location.maxCapacity != null)
+                    {
+                        MessageBox.Show("This location doesn't support unlimited people attending");
+                        return;
+                    }
+                    isUnlimited = true;
                 }
-                if(maxCap > location.maxCapacity)
+
+                if(!isUnlimited)
                 {
-                    MessageBox.Show("Max capacity is higher than room  capacity");
-                    return;
+                    if (!int.TryParse(CapacityBox.Text, out tempMaxCap))
+                    {
+                        MessageBox.Show("Max capacity must be a number.");
+                        return;
+                    }
+                    if(tempMaxCap > location.maxCapacity)
+                    {
+                        MessageBox.Show("Max capacity is higher than room  capacity");
+                        return;
+                    }
                 }
-
-
 
                 // ----- DATE & TIME -----
                 var start = ParseDateTime(StartDatePicker, StartTimeBox.Text);
@@ -129,7 +141,12 @@ namespace FoersteSemesterproeve.Presentation.Pages
                     return;
                 }
 
-                activityService.AddActivity(TitleBox.Text, coach, location, maxCap, start, end);
+                int? actualMaxCap = null;
+                if(!isUnlimited)
+                {
+                    actualMaxCap = tempMaxCap;
+                }
+                activityService.AddActivity(TitleBox.Text, coach, location, actualMaxCap, start, end);
 
                 router.Navigate(NavigationRouter.Route.Activities);
             }

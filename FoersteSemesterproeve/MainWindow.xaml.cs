@@ -66,15 +66,16 @@ namespace FoersteSemesterproeve
             // Instantiering af vores hjemmebygget router (NavigationRouter)
             // En central del af vores applikation, da den håndterer routing mellem forskellige pages (i vores tilfælde UserControls,
             // da UserControls er reuseable components der er lettere at bruge).
-            router = new NavigationRouter(MainContent, MenuGrid, UserProfileButton, adminButtons, userService, activityService, locationService, membershipService);
+
+            router = new NavigationRouter(MainContent, MenuGrid, UserProfileButton, adminButtons, userService, activityService, locationService, membershipService, HomeButton, ActivitiesButton, TrainersButton, LocationsButton, MembersButton, MembershipsButton);
 
 
 
-            menuStaticItem = new SolidColorBrush(menuStaticItemColor);
-            menuActiveItem = new SolidColorBrush(menuActiveItemColor);
+            //menuStaticItem = new SolidColorBrush(menuStaticItemColor);
+            //menuActiveItem = new SolidColorBrush(menuActiveItemColor);
 
-            currentActiveMenuButton = HomeButton;
-            SetMenuButtonActive(currentActiveMenuButton, HomeButton);
+            //currentActiveMenuButton = HomeButton;
+            //SetMenuButtonActive(currentActiveMenuButton, HomeButton);
 
             // Hvis vi "udvikler/tester"
             if (isDeveloping)
@@ -128,7 +129,7 @@ namespace FoersteSemesterproeve
         private void Home_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
-            SetMenuButtonActive(currentActiveMenuButton, button);
+            //SetMenuButtonActive(currentActiveMenuButton, button);
             router.Navigate(Route.Home);
         }
 
@@ -142,7 +143,7 @@ namespace FoersteSemesterproeve
         private void Activities_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
-            SetMenuButtonActive(currentActiveMenuButton, button);
+            //SetMenuButtonActive(currentActiveMenuButton, button);
             router.Navigate(Route.Activities);
         }
 
@@ -156,7 +157,7 @@ namespace FoersteSemesterproeve
         private void Trainers_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
-            SetMenuButtonActive(currentActiveMenuButton, button);
+            //SetMenuButtonActive(currentActiveMenuButton, button);
             router.Navigate(Route.Trainers);
         }
 
@@ -170,7 +171,7 @@ namespace FoersteSemesterproeve
         private void Locations_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
-            SetMenuButtonActive(currentActiveMenuButton, button);
+            //SetMenuButtonActive(currentActiveMenuButton, button);
             router.Navigate(Route.Locations);
         }
 
@@ -184,7 +185,7 @@ namespace FoersteSemesterproeve
         private void Members_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
-            SetMenuButtonActive(currentActiveMenuButton, button);
+            //SetMenuButtonActive(currentActiveMenuButton, button);
             router.Navigate(Route.Members);
         }
 
@@ -198,7 +199,7 @@ namespace FoersteSemesterproeve
         private void Memberships_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
-            SetMenuButtonActive(currentActiveMenuButton, button);
+            //SetMenuButtonActive(currentActiveMenuButton, button);
             router.Navigate(Route.Memberships);
         }
 

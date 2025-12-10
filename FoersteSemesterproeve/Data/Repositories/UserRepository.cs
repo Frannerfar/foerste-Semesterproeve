@@ -1,4 +1,9 @@
-﻿using System;
+﻿using FoersteSemesterproeve.Data.DTO;
+using FoersteSemesterproeve.Domain.Interfaces;
+using FoersteSemesterproeve.Domain.Models;
+using FoersteSemesterproeve.Domain.Services;
+using FoersteSemesterproeve.Views;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -6,10 +11,6 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using FoersteSemesterproeve.Data.DTO;
-using FoersteSemesterproeve.Domain.Models;
-using FoersteSemesterproeve.Domain.Services;
-using FoersteSemesterproeve.Domain.Interfaces;
 using System.Windows;
 
 namespace FoersteSemesterproeve.Data.Repositories
@@ -21,7 +22,7 @@ namespace FoersteSemesterproeve.Data.Repositories
     /// <created>29-11-2025</created>
     public class UserRepository : IUserRepository
     {
-        string filepath = Path.Combine(Environment.CurrentDirectory, "Data", "Files", "users.json");
+        string filepath = Path.Combine(Environment.CurrentDirectory, "Data", "Files", "users.txt");
         MembershipService membershipService;
 
         /// <summary>
@@ -43,18 +44,101 @@ namespace FoersteSemesterproeve.Data.Repositories
         /// <returns></returns>
         public List<User> LoadUsers()
         {
-            string userJson = File.ReadAllText(filepath);
+            string userText = File.ReadAllText(this.filepath);
+            Debug.WriteLine("File read!");
+            Debug.WriteLine($"File path: {this.filepath}");
+            Debug.WriteLine(userText);
 
-            if(!string.IsNullOrEmpty(userJson))
+            List<User> users = new List<User>();
+
+            string[] usersInTextFormat = userText.Split(";");
+
+            for(int i = 0;  i < usersInTextFormat.Length; i++)
             {
-                List<UserDto> userDtos = JsonSerializer.Deserialize<List<UserDto>>(userJson);
-                if(userDtos != null)
+                try
                 {
-                    List<User> users = ConvertFromDto(userDtos, membershipService.membershipTypes);
-                    return users;
+                    string[] userInformationParts = usersInTextFormat[i].Split(",");
+
+                    string stringID = userInformationParts[0];
+                    string stringFirstName = userInformationParts[1];
+                    string stringLastName = userInformationParts[2];
+                    string stringEmail = userInformationParts[3];
+                    string stringStreet = userInformationParts[4];
+                    string stringCity = userInformationParts[5];
+                    string stringPassword = userInformationParts[6];
+                    string stringIsCoach = userInformationParts[7];
+                    string stringIsAdmin = userInformationParts[8];
+                    string stringDOB = userInformationParts[9];
+                    string stringPostal = userInformationParts[10];
+                    string stringMembershipID = userInformationParts[11];
+
+                    Debug.WriteLine($"ITERATION: {i}");
+
+                    // Til at tjekke om noget er fejlet
+                    bool flag = false;
+
+                    // Konverterer stringID om til en faktisk integer ID.
+                    int id;
+                    bool isUserID = int.TryParse(stringID, out id);
+                    if(!isUserID) { MessageBox.Show($"UserID {stringID} could not be converted to a integer"); flag = true; }
+
+                    // Konverterer stringIsCoach til faktisk bool.
+                    bool isCoach;
+                    bool isUserCoachBool = bool.TryParse(stringIsCoach, out isCoach);
+                    if(!isUserCoachBool) { MessageBox.Show($"isCoach bool: {stringIsCoach} could not be converted to a bool"); flag = true; }
+
+                    // Konverterer stringIsAdmin til faktisk bool.
+                    bool isAdmin;
+                    bool isUserAdminBool = bool.TryParse(stringIsAdmin, out isAdmin);
+                    if (!isUserAdminBool) { MessageBox.Show($"isAdmin bool: {stringIsAdmin} could not be converted to a bool"); flag = true; }
+
+                    DateOnly dob;
+                    bool isUserDOB = DateOnly.TryParse(stringDOB, out dob);
+                    if (!isUserDOB) { MessageBox.Show($"Date of Birth DateOnly: {stringDOB} could not be converted to a DateOnly"); flag = true; }
+
+                    int postal;
+                    int? postalNullable = null;
+                    if (int.TryParse(stringPostal, out postal))
+                    {
+                        postalNullable = postal;
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Postal integer: {stringPostal} could not be converted to a integer");
+                        flag = true;
+                    }
+
+                    int membershipTypeId;
+                    bool isMembershipTypeID = int.TryParse(stringMembershipID, out membershipTypeId);
+                    if (!isMembershipTypeID) { MessageBox.Show($"MembershipTypeID {stringMembershipID} could not be converted to a integer, from userID: {id}"); flag = true; }
+
+                    // Hvis 
+                    if (!flag)
+                    {
+                        MembershipType? membershipType = null;
+                        for(int j = 0; j < membershipService.membershipTypes.Count; j++)
+                        {
+                            if(membershipService.membershipTypes[j].id == membershipTypeId)
+                            {
+                                membershipType = membershipService.membershipTypes[j];
+                            }
+                        }
+                        if (membershipType != null) 
+                        { 
+                            User user = new User(id, stringFirstName, stringLastName, stringEmail, stringStreet, stringCity, stringPassword,isCoach, isAdmin, dob, postal, membershipType);
+                            users.Add(user);
+                        }
+                    }
                 }
+                catch (Exception e)
+                {
+                    MessageBox.Show($"ERROR in iteration #{i} \n\n RAW DATA:\n {usersInTextFormat[i]} \n\n EXCEPTION: \n {e.Message}");
+                    continue;
+                }
+                //DialogBox dialogBox = new DialogBox($"stringID: {stringID} - stringFirstName: {stringFirstName} - stringLastName: {stringLastName} - stringEmail: {stringEmail} - stringStreet: {stringStreet} - stringCity: {stringCity} - stringPassword: {stringPassword} - stringIsCoach: {stringIsCoach} - stringIsAdmin: {stringIsAdmin} - stringDOB: {stringDOB} - stringPostal: {stringPostal} - stringMembershipID: {stringMembershipID}");
+                //dialogBox.ShowDialog();
             }
-            return new List<User>();
+            return users;
         }
 
         /// <summary>
@@ -123,7 +207,7 @@ namespace FoersteSemesterproeve.Data.Repositories
                     Postal = user.postal,
                     IsCoach = user.isCoach,
                     IsAdmin = user.isAdmin,
-                    HasPaid = user.hasPaid,
+                    //HasPaid = user.hasPaid,
                     Password = user.password,
                     MembershipTypeId = user.membershipType.id,
                     // TODO: Mangler stadig aktiviteter og ID til aktiviteter 
@@ -181,7 +265,7 @@ namespace FoersteSemesterproeve.Data.Repositories
                     dto.IsAdmin,
                     dto.DateOfBirth,
                     dto.Postal,
-                    dto.HasPaid,
+                    //dto.HasPaid,
                     membership
                     // TODO: Mangler stadig aktiviteter og ID til aktiviteter
                     //       Tilføjes når Rasmus har færdigjort aktiviteter

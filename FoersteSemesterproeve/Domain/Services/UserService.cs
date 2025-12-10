@@ -54,18 +54,20 @@ namespace FoersteSemesterproeve.Domain.Services
         /// <returns></returns>
         private List<User> PopulateUsers()
         {
-            List<User> users = new List<User>();
+            //List<User> users = new List<User>();
 
-            users.Add(new User(1, "Admin", "Adminsen", "admin@admin.dk", "", "", "admin", false, true, new DateOnly(2000, 1, 1), 0, false, membershipService.membershipTypes[0]));
-            users.Add(new User(2, "Member", "Membersen", "member@membersen.dk", "Rolighedsvej 12", "Aalborg", "1234", false, false, new DateOnly(1990, 7, 21), 9000, true, membershipService.membershipTypes[1]));
-            users.Add(new User(3, "Hans", "Eriksen", "hans@eriksenisthebest.dk", "Søndergade 16", "Silkeborg", "password", true, false, new DateOnly(1960, 6, 10), 8600, true, membershipService.membershipTypes[1]));
-            users.Add(new User(4, "Ole", "Henriksen", "kontakt@olehenriksen.dk", "Hollywoodgade 90210", "Califorstrup", "OleErSej", false, false, new DateOnly(1958, 9, 20), 90210, true, membershipService.membershipTypes[0]));
-            users.Add(new User(5, "Mette", "Poulsen", "mette.poulsen@gmail.com","Nørregade 44", "Aarhus", "mette123", false, false, new DateOnly(1985, 3, 14), 8000, false, membershipService.membershipTypes[2]));
-            users.Add(new User(6, "Kasper", "Nielsen", "kasper.nielsen@hotmail.com", "Parkvej 72", "Herning", "kasperPass", true, false, new DateOnly(1992, 11, 2), 7400, true, membershipService.membershipTypes[1]));
-            users.Add(new User(7, "Louise", "Andersen", "louise.andersen@live.dk", "Vestergade 8", "Viborg", "loui2025", false, true, new DateOnly(1976, 1, 28), 8800, true, membershipService.membershipTypes[1]));
-            users.Add(new User(8, "Bertel", "Haarder", "saaspoergforsatan@gmail.com","Enghavevej 33", "Odense", "GoHaarder!", true, false, new DateOnly(1988, 2, 5), 5000, false, membershipService.membershipTypes[0]));
-            users.Add(new User(9, "Thomas", "Kristensen", "thomas.kristensen@live.dk","Bakkevej 8", "Randers", "thomas75", false, true, new DateOnly(1975, 12, 17), 8900, true, membershipService.membershipTypes[0]));
-            users.Add(new User(10, "Sofie", "Mortensen", "sofie.mortensen@hotmail.com", "Stationsvej 5", "Skanderborg", "sofiePW", true, true, new DateOnly(1996, 4, 9), 8660, true, membershipService.membershipTypes[0]));
+            //users.Add(new User(1, "Admin", "Adminsen", "admin@admin.dk", "", "", "admin", false, true, new DateOnly(2000, 1, 1), 0, membershipService.membershipTypes[0]));
+            //users.Add(new User(2, "Member", "Membersen", "member@membersen.dk", "Rolighedsvej 12", "Aalborg", "1234", false, false, new DateOnly(1990, 7, 21), 9000, membershipService.membershipTypes[1]));
+            //users.Add(new User(3, "Hans", "Eriksen", "hans@eriksenisthebest.dk", "Søndergade 16", "Silkeborg", "password", true, false, new DateOnly(1960, 6, 10), 8600, membershipService.membershipTypes[1]));
+            //users.Add(new User(4, "Ole", "Henriksen", "kontakt@olehenriksen.dk", "Hollywoodgade 90210", "Califorstrup", "OleErSej", false, false, new DateOnly(1958, 9, 20), 90210, membershipService.membershipTypes[0]));
+            //users.Add(new User(5, "Mette", "Poulsen", "mette.poulsen@gmail.com","Nørregade 44", "Aarhus", "mette123", false, false, new DateOnly(1985, 3, 14), 8000, membershipService.membershipTypes[2]));
+            //users.Add(new User(6, "Kasper", "Nielsen", "kasper.nielsen@hotmail.com", "Parkvej 72", "Herning", "kasperPass", true, false, new DateOnly(1992, 11, 2), 7400, membershipService.membershipTypes[1]));
+            //users.Add(new User(7, "Louise", "Andersen", "louise.andersen@live.dk", "Vestergade 8", "Viborg", "loui2025", false, true, new DateOnly(1976, 1, 28), 8800, membershipService.membershipTypes[1]));
+            //users.Add(new User(8, "Bertel", "Haarder", "saaspoergforsatan@gmail.com","Enghavevej 33", "Odense", "GoHaarder!", true, false, new DateOnly(1988, 2, 5), 5000, membershipService.membershipTypes[0]));
+            //users.Add(new User(9, "Thomas", "Kristensen", "thomas.kristensen@live.dk","Bakkevej 8", "Randers", "thomas75", false, true, new DateOnly(1975, 12, 17), 8900, membershipService.membershipTypes[0]));
+            //users.Add(new User(10, "Sofie", "Mortensen", "sofie.mortensen@hotmail.com", "Stationsvej 5", "Skanderborg", "sofiePW", true, true, new DateOnly(1996, 4, 9), 8660, membershipService.membershipTypes[0]));
+
+            List<User> users = userRepository.LoadUsers();
 
             return users;
         }
@@ -122,7 +124,7 @@ namespace FoersteSemesterproeve.Domain.Services
         public void AddUser(string firstName, string lastName, string email, string city, string address, DateOnly date, int? postal, bool isAdmin, bool isCoach, bool hasPaid, MembershipType membershipType)
         {
             int newId = userRepository.GetNewId(this.users);
-            this.users.Add(new User(newId, firstName, lastName, email, address, city, "1234", isCoach, isAdmin, date, postal, hasPaid, membershipType));
+            this.users.Add(new User(newId, firstName, lastName, email, address, city, "1234", isCoach, isAdmin, date, postal, membershipType));
             userRepository.SaveUsers(users);
         }
     }

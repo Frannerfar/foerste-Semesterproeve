@@ -34,6 +34,12 @@ namespace FoersteSemesterproeve.Presentation.Pages
             this.router = navigationRouter;
             this.activityService = activityService;
             this.userService = userService;
+
+            if(userService.authenticatedUser != null && userService.authenticatedUser.isAdmin)
+            {
+                AddActivityButton.Visibility = Visibility.Visible;
+            }
+
             LoadActivities();
             
         }
@@ -91,7 +97,7 @@ namespace FoersteSemesterproeve.Presentation.Pages
                 StackPanel activityStackPanel = new StackPanel();
                 activityBorder.Child = activityStackPanel;
 
-                if(userService.authenticatedUser != null && userService.authenticatedUser.isAdmin)
+                if (userService.authenticatedUser != null && userService.authenticatedUser.isAdmin)
                 {
                     // BUTTONS
                     StackPanel buttonsPanel = new StackPanel();
@@ -100,16 +106,16 @@ namespace FoersteSemesterproeve.Presentation.Pages
                     buttonsPanel.Margin = new Thickness(0, 10, 10, 10);
                     activityStackPanel.Children.Add(buttonsPanel);
 
-                    Button editButton = new Button();
-                    editButton.Content = "Edit";
-                    editButton.Margin = new Thickness(0, 0, 10, 0);
-                    editButton.Padding = new Thickness(10, 5, 10, 5);
-                    //editButton.Width = 200;
-                    editButton.Background = new SolidColorBrush(Colors.LimeGreen);
-                    editButton.Click += EditButton_Click;
-                    editButton.Cursor = Cursors.Hand;
-                    editButton.Tag = activityService.activities[i];
-                    buttonsPanel.Children.Add(editButton);
+                    //Button editButton = new Button();
+                    //editButton.Content = "Edit";
+                    //editButton.Margin = new Thickness(0, 0, 10, 0);
+                    //editButton.Padding = new Thickness(10, 5, 10, 5);
+                    ////editButton.Width = 200;
+                    //editButton.Background = new SolidColorBrush(Colors.LimeGreen);
+                    //editButton.Click += EditButton_Click;
+                    //editButton.Cursor = Cursors.Hand;
+                    //editButton.Tag = activityService.activities[i];
+                    //buttonsPanel.Children.Add(editButton);
 
                     Button deleteButton = new Button();
                     deleteButton.Content = "Delete";
@@ -158,16 +164,16 @@ namespace FoersteSemesterproeve.Presentation.Pages
 
 
 
-                // DURATION
-                StackPanel durationPanel = new StackPanel();
-                durationPanel.Margin = new Thickness(20, 10, 20, 10);
+                //// DURATION
+                //StackPanel durationPanel = new StackPanel();
+                //durationPanel.Margin = new Thickness(20, 10, 20, 10);
 
-                activityStackPanel.Children.Add(durationPanel);
+                //activityStackPanel.Children.Add(durationPanel);
 
-                TextBlock durationText = new TextBlock();
-                durationText.Text = $"Duration: {activityService.activities[i].endTime - activityService.activities[i].startTime}";
-                durationText.FontSize = 16;
-                durationPanel.Children.Add(durationText);
+                //TextBlock durationText = new TextBlock();
+                //durationText.Text = $"Duration: {activityService.activities[i].endTime - activityService.activities[i].startTime}";
+                //durationText.FontSize = 16;
+                //durationPanel.Children.Add(durationText);
 
 
 
@@ -179,12 +185,12 @@ namespace FoersteSemesterproeve.Presentation.Pages
                 activityStackPanel.Children.Add(timesPanel);
 
                 TextBlock dateStartText = new TextBlock();
-                dateStartText.Text = $"Start: {activityService.activities[i].startTime}";
+                dateStartText.Text = $"Start: {activityService.activities[i].startTime:dd-MM-yyyy HH:mm}";
                 dateStartText.FontSize = 16;
                 timesPanel.Children.Add(dateStartText);
 
                 TextBlock dateEndText = new TextBlock();
-                dateEndText.Text = $"End: {activityService.activities[i].endTime}";
+                dateEndText.Text = $"End: {activityService.activities[i].endTime:dd-MM-yyyy HH:mm}";
                 dateEndText.FontSize = 16;
                 timesPanel.Children.Add(dateEndText);
 

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using static FoersteSemesterproeve.Presentation.NavigationRouter;
 
 namespace FoersteSemesterproeve.Presentation
@@ -32,6 +33,22 @@ namespace FoersteSemesterproeve.Presentation
         private MembershipService membershipService;
         private Button userProfileButton;
         private List<Button> adminButtons;
+        private Button HomeButton;
+        private Button ActivitiesButton;
+        private Button TrainersButton;
+        private Button LocationsButton;
+        private Button MembersButton;
+        private Button MembershipsButton;
+
+        SolidColorBrush menuStaticItem;
+        SolidColorBrush menuActiveItem;
+
+        Color menuStaticItemColor = Color.FromRgb(119, 136, 153);
+        Color menuActiveItemColor = Color.FromRgb(177, 211, 245);
+
+        Button currentActiveMenuButton;
+
+
 
         /// <summary>
         ///     Constructor der modtager referencer til 
@@ -39,7 +56,8 @@ namespace FoersteSemesterproeve.Presentation
         /// </summary>
         /// <author>Martin</author>
         /// <created>2025-11-25</created>
-        public NavigationRouter(ContentControl contentControl, Grid menuGrid, Button userProfileButton, List<Button> adminButtons, UserService userService, ActivityService activityService, LocationService locationService, MembershipService membershipService)
+        /// 
+        public NavigationRouter(ContentControl contentControl, Grid menuGrid, Button userProfileButton, List<Button> adminButtons, UserService userService, ActivityService activityService, LocationService locationService, MembershipService membershipService, Button HomeButton, Button ActivitiesButton, Button TrainersButton, Button LocationsButton, Button MembersButton, Button MembershipsButton)
         {
             this.MainContent = contentControl;
             this.menuGrid = menuGrid;
@@ -51,50 +69,19 @@ namespace FoersteSemesterproeve.Presentation
             this.userProfileButton = userProfileButton;
             this.adminButtons = adminButtons;
 
-            //routes = new Dictionary<Route, Func<UserControl>>
-            //{
-            //    { Route.Login, () => new LoginPage(this, menuGrid, userService, userProfileButton, adminButtons) },
-            //    { Route.Home, () => new HomePage(this, userService, activityService) },
-            //    { Route.Activities, () => new ActivitiesPage(this, activityService, userService) },
-            //    { Route.Members, () => new MembersPage(this, userService) },
-            //    { Route.Trainers, () => new TrainersPage(this, userService) },
-            //    { Route.Locations, () => new LocationsPage(this, locationService) },
-            //    { Route.AddLocation, () => new AddLocationPage(this, locationService) },
-            //    { Route.EditLocation, () => new EditLocationPage(this, locationService) },
-            //    { Route.Memberships, () => new MembershipsPage(this, membershipService, userService) },
-            //    { Route.AddMembershipType, () => new AddMembershipTypePage(this, membershipService) },
-            //    { Route.EditMembershipType, () => new EditMembershipTypePage(this, membershipService) },
-            //    { Route.Profile, () => new ProfilePage(this, userService, membershipService) },
-            //    { Route.AddUser, () => new AddUserPage(this, userService) },
-            //    { Route.EditUser, () => new EditUserPage(this, userService) },
-            //    { Route.UserActivities, () => new UserActivitiesPage(this, userService) }, 
-            //    { Route.AddActivities, () => new AddActivitiesPage(this, activityService, userService, locationService) },
-            //    { Route.ViewTrainerInfo, () => new ViewTrainerInfoPage(this, userService) }
-            //};
+            this.HomeButton = HomeButton;
+            this.ActivitiesButton = ActivitiesButton;
+            this.TrainersButton = TrainersButton;
+            this.LocationsButton = LocationsButton;
+            this.MembersButton = MembersButton;
+            this.MembershipsButton = MembershipsButton;
+
+            menuStaticItem = new SolidColorBrush(menuStaticItemColor);
+            menuActiveItem = new SolidColorBrush(menuActiveItemColor);
+
+            currentActiveMenuButton = HomeButton;
+            SetMenuButtonActive(currentActiveMenuButton, HomeButton);
         }
-
-        /// <summary>
-        ///     Constructor der modtager referencer til 
-        ///     ContentControl (Element vi sætter UserControls under) og Grid (Menu).
-        /// </summary>
-        /// <param name="route">Using the enum Route to decide routing direction</param>
-        /// <author>Martin</author>
-        /// <created>2025-11-25</created>
-        //public void NavigateOld(Route route)
-        //{
-        //    if (!routes.TryGetValue(route, out Func<UserControl>? view))
-        //    {
-        //        MessageBox.Show($"No view registered for route {route}.", nameof(route));
-        //        this.Navigate(Route.Home);
-        //        //throw new ArgumentException($"No view registered for route {route}.", nameof(route));
-        //    }
-        //    else
-        //    {
-        //        MainContent.Content = view();
-        //        currentRoute = route;
-        //    }
-        //}
-
 
 
         public void Navigate(Route route)
@@ -106,60 +93,106 @@ namespace FoersteSemesterproeve.Presentation
                     break;
                 case Route.Home:
                     MainContent.Content = new HomePage(this, userService, activityService);
+                    SetMenuButtonActive(this.currentActiveMenuButton, this.HomeButton);
                     break;
                 case Route.Activities:
                     MainContent.Content = new ActivitiesPage(this, activityService, userService);
+                    SetMenuButtonActive(this.currentActiveMenuButton, this.ActivitiesButton);
                     break;
                 case Route.Members:
                     MainContent.Content = new MembersPage(this, userService);
+                    SetMenuButtonActive(this.currentActiveMenuButton, this.MembersButton);
                     break;
                 case Route.Trainers:
                     MainContent.Content = new TrainersPage(this, userService);
+                    SetMenuButtonActive(this.currentActiveMenuButton, this.TrainersButton);
                     break;
                 case Route.Locations:
                     MainContent.Content = new LocationsPage(this, locationService);
+                    SetMenuButtonActive(this.currentActiveMenuButton, this.LocationsButton);
                     break;
                 case Route.AddLocation:
                     MainContent.Content = new AddLocationPage(this, locationService);
+                    SetMenuButtonActive(this.currentActiveMenuButton, this.LocationsButton);
                     break;
                 case Route.EditLocation:
                     MainContent.Content = new EditLocationPage(this, locationService);
+                    SetMenuButtonActive(this.currentActiveMenuButton, this.LocationsButton);
                     break;
                 case Route.Memberships:
                     MainContent.Content = new MembershipsPage(this, membershipService, userService);
+                    SetMenuButtonActive(this.currentActiveMenuButton, this.MembershipsButton);
                     break;
                 case Route.AddMembershipType:
                     MainContent.Content = new AddMembershipTypePage(this, membershipService);
+                    SetMenuButtonActive(this.currentActiveMenuButton, this.MembershipsButton);
                     break;
                 case Route.EditMembershipType:
                     MainContent.Content = new EditMembershipTypePage(this, membershipService);
+                    SetMenuButtonActive(this.currentActiveMenuButton, this.MembershipsButton);
                     break;
                 case Route.Profile:
                     MainContent.Content = new ProfilePage(this, userService, membershipService);
+                    ResetButtonActive(this.currentActiveMenuButton);
                     break;
                 case Route.AddUser:
                     MainContent.Content = new AddUserPage(this, userService);
+                    SetMenuButtonActive(this.currentActiveMenuButton, this.MembersButton);
                     break;
                 case Route.EditUser:
                     MainContent.Content = new EditUserPage(this, userService);
+                    SetMenuButtonActive(this.currentActiveMenuButton, this.MembersButton);
                     break;
                 case Route.UserActivities:
-                    MainContent.Content = new UserActivitiesPage(this, userService);
+                    MainContent.Content = new UserActivitiesPage(this, userService, activityService);
+                    SetMenuButtonActive(this.currentActiveMenuButton, this.MembersButton);
                     break;
                 case Route.AddActivities:
                     MainContent.Content = new AddActivitiesPage(this, activityService, userService, locationService);
+                    SetMenuButtonActive(this.currentActiveMenuButton, this.ActivitiesButton);
                     break;
                 case Route.EditActivity:
                     MainContent.Content = new EditActivityPage(this, activityService, userService, locationService);
+                    SetMenuButtonActive(this.currentActiveMenuButton, this.ActivitiesButton);
                     break;
                 case Route.Activity:
                     MainContent.Content = new ActivityPage(this, activityService, userService, locationService);
+                    SetMenuButtonActive(this.currentActiveMenuButton, this.ActivitiesButton);
                     break;
                 case Route.ViewTrainerInfo:
                     MainContent.Content = new ViewTrainerInfoPage(this, userService, activityService);
+                    SetMenuButtonActive(this.currentActiveMenuButton, this.TrainersButton);
                     break;
             }
         }
+
+        /// <summary>
+        /// Sørger for at visuelt sætte indikation på, hvilken route man befinder sig på.
+        /// Dette gøres ved at sætte den nuværende aktive button tilbage til vores standard menu farve. 
+        /// Derefter sættes den nye Button der er blevet klikket på, til få den nye aktive farve, samt til at være den nye aktive Button.
+        /// </summary>
+        /// <author>Martin</author>
+        /// <param name="originalButton"></param>
+        /// <param name="newButton"></param>
+        private void SetMenuButtonActive(Button originalButton, Button newButton)
+        {
+            if (originalButton != null)
+            {
+                originalButton.Background = menuStaticItem;
+            }
+
+            newButton.Background = menuActiveItem;
+            currentActiveMenuButton = newButton;
+        }
+
+        private void ResetButtonActive(Button originalButton)
+        {
+            originalButton.Background = menuStaticItem;
+        }
+
+
+
+
 
         /// <summary>
         ///     Enum til navngivning af unikke værdier.

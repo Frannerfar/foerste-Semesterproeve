@@ -1,5 +1,6 @@
 ﻿using FoersteSemesterproeve.Domain.Models;
 using FoersteSemesterproeve.Domain.Services;
+using FoersteSemesterproeve.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -97,7 +98,7 @@ namespace FoersteSemesterproeve.Presentation.Pages
 
 
                 // Capacity
-                CapacityBox.Text = activityService.targetActivity.maxCapacity.ToString();
+                CapacityBox.Text = $"{activityService.targetActivity.maxCapacity}";
 
 
                 StartDatePicker.SelectedDate = activityService.targetActivity.startTime;
@@ -106,42 +107,6 @@ namespace FoersteSemesterproeve.Presentation.Pages
                 StartTimeBox.Text = $"{activityService.targetActivity.startTime.Hour:D2}:{activityService.targetActivity.startTime.Minute:D2}";
                 EndTimeBox.Text = $"{activityService.targetActivity.endTime.Hour:D2}:{activityService.targetActivity.endTime.Minute:D2}";
 
-
-                //for (int i = 0; i < activityService.targetActivity.participants.Count; i++)
-                //{
-                //    Border userBorder = new Border();
-                //    ActivityUsersPanel.Children.Add(userBorder);
-
-                //    StackPanel userPanel = new StackPanel();
-                //    userBorder.Child = userPanel;
-
-                //    if (userService.authenticatedUser != null)
-                //    {
-
-                //        // HVIS BRUGEREN ER ADMIN, SÅ VIS  BRUGERE PÅ AKTIVIETEN SOM BUTTON MED NAVIGATION TIL DERES SIDE
-                //        if (userService.authenticatedUser.isAdmin == true)
-                //        {
-                //            Button userNameButton = new Button();
-                //            userNameButton.Tag = activityService.targetActivity.participants[i];
-                //            userNameButton.Click += UserButton_Click;
-                //            userNameButton.Padding = new Thickness(10, 5, 10, 5);
-                //            userNameButton.Width = 200;
-                //            userNameButton.Background = new SolidColorBrush(Colors.Yellow);
-                //            userNameButton.Content = $"{activityService.targetActivity.participants[i].firstName} {activityService.targetActivity.participants[i].lastName}";
-                //            userPanel.Children.Add(userNameButton);
-                //        }
-                //        // HVIS BRUGEREN IKKE ER ADMIN, SÅ VIS BRUGERE SOM TEKSTBLOK
-                //        //else
-                //        //{
-                //        //    TextBlock userNameButton = new TextBlock();
-                //        //    userNameButton.Padding = new Thickness(10, 5, 10, 5);
-                //        //    userNameButton.Width = 200;
-                //        //    userNameButton.Background = new SolidColorBrush(Colors.Yellow);
-                //        //    userNameButton.Text = $"{activityService.targetActivity.participants[i].firstName} {activityService.targetActivity.participants[i].lastName}";
-                //        //    userPanel.Children.Add(userNameButton);
-                //        //}
-                //    }
-                //}
             }
 
         }
@@ -165,20 +130,58 @@ namespace FoersteSemesterproeve.Presentation.Pages
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            router.Navigate(NavigationRouter.Route.Activities);
+            router.Navigate(NavigationRouter.Route.Activity);
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            bool isMaxCapNumber = int.TryParse(CapacityBox.Text, out int maxCap);
-            int? maxCapcacity;
-            if (isMaxCapNumber)
+            Location location = locationService.locations[LocationPicker.SelectedIndex];
+            User? coach = null;
+            
+            if(CoachPicker.SelectedItem != null)
             {
-                maxCapcacity = maxCap;
+                coach = coaches[CoachPicker.SelectedIndex];
             }
-            else
+
+
+            bool isUnlimited = false;
+            int tempMaxCap = 0;
+            if (string.IsNullOrEmpty(CapacityBox.Text))
             {
-                maxCapcacity = null;
+                if (location.maxCapacity != null)
+                {
+                    MessageBox.Show("This location doesn't support unlimited people attending");
+                    return;
+                }
+                isUnlimited = true;
+            }
+
+            bool isMaxCapNumber = int.TryParse(CapacityBox.Text, out tempMaxCap);
+            int? maxCapcacity = null;
+
+            if(!isUnlimited)
+            {
+                if (isMaxCapNumber)
+                {
+                    maxCapcacity = tempMaxCap;
+                    if(activityService.targetActivity != null && tempMaxCap < activityService.targetActivity.participants.Count)
+                    {
+                        MessageBox.Show("You can't limit below the current participant count");
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Max capacity must be a number.");
+                    return;
+                    //maxCapcacity = null;
+                }
+                if (tempMaxCap > location.maxCapacity)
+                {
+                    MessageBox.Show("Max capacity is higher than room  capacity");
+                    return;
+                }
+
             }
 
             bool isStartDate = DateTime.TryParse(StartDatePicker.Text, out DateTime actualStartDateTime);
@@ -220,13 +223,32 @@ namespace FoersteSemesterproeve.Presentation.Pages
             {
                 activityService.targetActivity.title = TitleBox.Text;
                 activityService.targetActivity.maxCapacity = maxCapcacity;
-                activityService.targetActivity.coach = coaches[CoachPicker.SelectedIndex];
-                activityService.targetActivity.location = locationService.locations[LocationPicker.SelectedIndex];
+                activityService.targetActivity.coach = coach;
+                activityService.targetActivity.location = location;
 
                 activityService.targetActivity.startTime = startDateTime;
                 activityService.targetActivity.endTime = endDateTime;
 
-                router.Navigate(NavigationRouter.Route.Activities);
+                router.Navigate(NavigationRouter.Route.Activity);
+            }
+        }
+
+        private void ClearTrainerSelectionButton_Click(object sender, RoutedEventArgs e)
+        {
+            CoachPicker.SelectedItem = null;
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(activityService.targetActivity != null)
+            {
+                DialogBox dialogBox = new DialogBox($"Are you sure that you want to delete '{activityService.targetActivity.title}' ?");
+                dialogBox.ShowDialog();
+                if(dialogBox.DialogResult == true)
+                {
+                    activityService.DeleteActivity(activityService.targetActivity);
+                    router.Navigate(NavigationRouter.Route.Activities);
+                }
             }
         }
     }

@@ -46,12 +46,12 @@
                         </StackPanel>
 
                         <StackPanel Grid.Row="1" Grid.Column="0" Margin="20 30">
-                            <TextBlock Text="Max Capacity" Height="24" FontSize="14"/>
+                            <TextBlock Text="Max Capacity (leave empty for limitless)" Height="24" FontSize="14"/>
                             <TextBox x:Name="CapacityBox" Height="28" FontSize="16"/>
                         </StackPanel>
 
                         <StackPanel Grid.Row="0" Grid.Column="1" Margin="20 0">
-                            <TextBlock Text="Coach" Height="24" FontSize="14"/>
+                            <TextBlock Text="Trainer" Height="24" FontSize="14"/>
                             <ComboBox x:Name="CoachPicker" Height="28" FontSize="16"/>
                         </StackPanel>
 

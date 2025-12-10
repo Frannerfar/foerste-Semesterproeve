@@ -100,7 +100,41 @@
         <ScrollViewer Grid.Row="1" Grid.Column="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
             <StackPanel MaxWidth="700" Orientation="Vertical" VerticalAlignment="Top">
 
+                <Border BorderBrush="LightGray" BorderThickness="1" Padding="20, 20" Margin="0 20, 0 20">
+                    <StackPanel>
+                        <StackPanel x:Name="AttendingAdminActionPanel" Visibility="Collapsed" Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Button Cursor="Hand" HorizontalAlignment="Right" Background="LimeGreen" Padding="10, 5" Margin="0, 0, 20, 0"  Click="EditButton_Click">
+                                Edit
+                            </Button
+                                >
+                            <Button Cursor="Hand" HorizontalAlignment="Right" Background="DodgerBlue" Padding="10, 5" Click="AddUsersToActivityButton_Click">
+                                Add Users to Activity
+                            </Button>
+                        </StackPanel>
+                        <StackPanel x:Name="AttendingActionPanel" Margin="0, 10" HorizontalAlignment="Center"></StackPanel>
+                        
+                        <StackPanel Orientation="Horizontal" Margin="0, 10">
+                            <TextBlock FontSize="16">Users attending this activity:</TextBlock>
+                            <TextBlock Margin="10, 0, 0, 0" FontSize="16"  x:Name="AmountOfAttendees"></TextBlock>
+                        </StackPanel>
+                        
+                        <ScrollViewer VerticalScrollBarVisibility="auto" MinHeight="70" MaxHeight="300" HorizontalScrollBarVisibility="Disabled">
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel>
+                                    <!--<StackPanel x:Name="AttendingActionPanel" HorizontalAlignment="Center">
 
+                                    </StackPanel>-->
+                                </StackPanel>
+                                <StackPanel x:Name="ActivityUsersPanel" Orientation="Vertical" Margin="0, 20, 0, 20">
+
+                                </StackPanel>
+                            </StackPanel>
+                        </ScrollViewer>
+
+                    </StackPanel>
+                </Border>
+                
+                
                 <Border BorderBrush="LightGray" BorderThickness="1" Padding="20, 40" Margin="0 20, 0 20">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -125,7 +159,7 @@
                         </StackPanel>
 
                         <StackPanel Grid.Row="0" Grid.Column="1" Margin="20 0">
-                            <TextBlock Text="Coach" Height="24" FontSize="14"/>
+                            <TextBlock Text="Trainer" Height="24" FontSize="14"/>
                             <ComboBox x:Name="CoachPicker" IsEnabled="False" Height="28" FontSize="16"/>
                         </StackPanel>
 
@@ -180,26 +214,6 @@
                         </Grid>
                     </StackPanel>
                 </Border>
-
-
-                <ScrollViewer VerticalScrollBarVisibility="auto" HorizontalScrollBarVisibility="Disabled">
-                    <StackPanel Orientation="Vertical">
-                        <StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock>Users attending this activity:</TextBlock>
-                                <TextBlock x:Name="AmountOfAttendees"></TextBlock>
-                            </StackPanel>
-                            <StackPanel x:Name="AttendingActionPanel" HorizontalAlignment="Center">
-
-                            </StackPanel>
-                        </StackPanel>
-                        <StackPanel x:Name="ActivityUsersPanel" Orientation="Vertical" Margin="0, 20, 0, 20">
-
-                        </StackPanel>
-                    </StackPanel>
-                </ScrollViewer>
-
-
 
             </StackPanel>
         </ScrollViewer>

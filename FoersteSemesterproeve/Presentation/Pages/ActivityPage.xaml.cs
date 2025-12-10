@@ -1,5 +1,6 @@
-﻿using FoersteSemesterproeve.Domain.Services;
-using FoersteSemesterproeve.Domain.Models;
+﻿using FoersteSemesterproeve.Domain.Models;
+using FoersteSemesterproeve.Domain.Services;
+using FoersteSemesterproeve.Presentation.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,11 +39,18 @@ namespace FoersteSemesterproeve.Presentation.Pages
             this.userService = userService;
             this.locationService = locationService;
 
+            if (userService.authenticatedUser != null && userService.authenticatedUser.isAdmin) 
+            {
+                AttendingAdminActionPanel.Visibility = Visibility.Visible;
+            }
             this.coaches = new List<User>();
 
 
             if (activityService.targetActivity != null)
             {
+
+
+
 
                 // PAGE TITLE
                 TitleActivity.Text = $"{activityService.targetActivity.title }";
@@ -107,47 +115,9 @@ namespace FoersteSemesterproeve.Presentation.Pages
                 StartTimeBox.Text = $"{activityService.targetActivity.startTime.Hour:D2}:{activityService.targetActivity.startTime.Minute:D2}";
                 EndTimeBox.Text = $"{activityService.targetActivity.endTime.Hour:D2}:{activityService.targetActivity.endTime.Minute:D2}";
 
-                
-
                 RedrawAttendingButtons();
 
                 RedrawAttenders();
-
-                //for (int i = 0;i < activityService.targetActivity.participants.Count;i++)
-                //{
-                //    Border userBorder = new Border();
-                //    ActivityUsersPanel.Children.Add(userBorder);
-
-                //    StackPanel userPanel = new StackPanel();
-                //    userBorder.Child = userPanel;
-
-                //    if (userService.authenticatedUser != null) 
-                //    { 
-
-                //        // HVIS BRUGEREN ER ADMIN, SÅ VIS  BRUGERE PÅ AKTIVIETEN SOM BUTTON MED NAVIGATION TIL DERES SIDE
-                //        if(userService.authenticatedUser.isAdmin == true)
-                //        {
-                //            Button userNameButton = new Button();
-                //            userNameButton.Tag = activityService.targetActivity.participants[i];
-                //            userNameButton.Click += UserButton_Click;
-                //            userNameButton.Padding = new Thickness(10, 5, 10, 5);
-                //            userNameButton.Width = 200;
-                //            userNameButton.Background = new SolidColorBrush(Colors.Yellow);
-                //            userNameButton.Content = $"{activityService.targetActivity.participants[i].firstName} {activityService.targetActivity.participants[i].lastName}";
-                //            userPanel.Children.Add(userNameButton);
-                //        }
-                //        // HVIS BRUGEREN IKKE ER ADMIN, SÅ VIS BRUGERE SOM TEKSTBLOK
-                //        //else
-                //        //{
-                //        //    TextBlock userNameButton = new TextBlock();
-                //        //    userNameButton.Padding = new Thickness(10, 5, 10, 5);
-                //        //    userNameButton.Width = 200;
-                //        //    userNameButton.Background = new SolidColorBrush(Colors.Yellow);
-                //        //    userNameButton.Text = $"{activityService.targetActivity.participants[i].firstName} {activityService.targetActivity.participants[i].lastName}";
-                //        //    userPanel.Children.Add(userNameButton);
-                //        //}
-                //    }
-                //}
             }
 
         }
@@ -155,22 +125,32 @@ namespace FoersteSemesterproeve.Presentation.Pages
 
         private void RedrawAttenders()
         {
-
             ActivityUsersPanel.Children.Clear();
             if(activityService.targetActivity != null)
             {
-                AmountOfAttendees.Text = activityService.targetActivity.participants.Count.ToString();
+                string maxCapacityText;
+                if (activityService.targetActivity.maxCapacity != null)
+                {
+                    maxCapacityText = $"{activityService.targetActivity.maxCapacity}";
+                }
+                else
+                {
+                    maxCapacityText = $"Unlimited";
+                }
+
+                AmountOfAttendees.Text = $"{activityService.targetActivity.participants.Count} / {maxCapacityText}";
                 for (int i = 0; i < activityService.targetActivity.participants.Count; i++)
                 {
                     Border userBorder = new Border();
                     ActivityUsersPanel.Children.Add(userBorder);
 
                     StackPanel userPanel = new StackPanel();
+                    userPanel.Orientation = Orientation.Horizontal;
+                    userPanel.HorizontalAlignment = HorizontalAlignment.Center;
                     userBorder.Child = userPanel;
 
                     if (userService.authenticatedUser != null)
                     {
-
                         // HVIS BRUGEREN ER ADMIN, SÅ VIS  BRUGERE PÅ AKTIVIETEN SOM BUTTON MED NAVIGATION TIL DERES SIDE
                         if (userService.authenticatedUser.isAdmin == true)
                         {
@@ -179,20 +159,22 @@ namespace FoersteSemesterproeve.Presentation.Pages
                             userNameButton.Click += UserButton_Click;
                             userNameButton.Padding = new Thickness(10, 5, 10, 5);
                             userNameButton.Width = 200;
-                            userNameButton.Background = new SolidColorBrush(Colors.Yellow);
+                            userNameButton.Background = new SolidColorBrush(Colors.LightYellow);
+                            userNameButton.Cursor = Cursors.Hand;
                             userNameButton.Content = $"{activityService.targetActivity.participants[i].firstName} {activityService.targetActivity.participants[i].lastName}";
                             userPanel.Children.Add(userNameButton);
+
+                            Button userRemoveButton = new Button();
+                            userRemoveButton.Tag = activityService.targetActivity.participants[i];
+                            userRemoveButton.Click += RemoveUserFromActivityButton_Click;
+                            userRemoveButton.Padding = new Thickness(10, 5, 10, 5);
+                            userRemoveButton.Margin = new Thickness(20, 0, 0, 0);
+                            //userRemoveButton.Width = 200;
+                            userRemoveButton.Background = new SolidColorBrush(Colors.Red);
+                            userRemoveButton.Content = "X";
+                            userRemoveButton.Cursor = Cursors.Hand;
+                            userPanel.Children.Add(userRemoveButton);
                         }
-                        // HVIS BRUGEREN IKKE ER ADMIN, SÅ VIS BRUGERE SOM TEKSTBLOK
-                        //else
-                        //{
-                        //    TextBlock userNameButton = new TextBlock();
-                        //    userNameButton.Padding = new Thickness(10, 5, 10, 5);
-                        //    userNameButton.Width = 200;
-                        //    userNameButton.Background = new SolidColorBrush(Colors.Yellow);
-                        //    userNameButton.Text = $"{activityService.targetActivity.participants[i].firstName} {activityService.targetActivity.participants[i].lastName}";
-                        //    userPanel.Children.Add(userNameButton);
-                        //}
                     }
                 }
             }
@@ -286,6 +268,20 @@ namespace FoersteSemesterproeve.Presentation.Pages
         }
 
 
+        private void RemoveUserFromActivityButton_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            User user = (User)button.Tag;
+
+            if(activityService.targetActivity != null)
+            {
+                activityService.LeaveActitvity(activityService.targetActivity, user);
+                RedrawAttendingButtons();
+                RedrawAttenders();
+            }
+        }
+
+
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             router.Navigate(NavigationRouter.Route.Activities);
@@ -351,6 +347,22 @@ namespace FoersteSemesterproeve.Presentation.Pages
 
                 router.Navigate(NavigationRouter.Route.Activities);
             }
+        }
+
+        private void AddUsersToActivityButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (activityService.targetActivity != null) 
+            { 
+                AddUserToActivity addNewUserWindow = new AddUserToActivity(activityService, userService, activityService.targetActivity);
+                addNewUserWindow.ShowDialog();
+                RedrawAttendingButtons();
+                RedrawAttenders();
+            }
+        }
+
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+            router.Navigate(NavigationRouter.Route.EditActivity);
         }
     }
 }

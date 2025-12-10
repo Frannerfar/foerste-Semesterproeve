@@ -41,16 +41,17 @@ namespace FoersteSemesterproeve.Domain.Services
         public bool JoinActivity(Activity activity, User user) 
         {
 
-            if (activity.participants.Count >= activity.maxCapacity) 
+            if(activity.participants.Count >= activity.maxCapacity) 
             {
                 MessageBox.Show("No spaces left");
                 return false;
             }
-            if (activity.participants.Contains(user))
+            if(activity.participants.Contains(user))
             {
                 MessageBox.Show("You have already joined");
                 return false;
             }
+            //if(user.membershipType)
             activity.participants.Add(user);
             user.activityList.Add(activity);
             return true;
@@ -76,12 +77,12 @@ namespace FoersteSemesterproeve.Domain.Services
 
         private void GenerateDummyActivities()
         {
-            AddActivity("Test", userService.users[7], locationService.locations[0], 2, DateTime.Now.AddHours(1).AddMinutes(45), DateTime.Now.AddHours(2).AddMinutes(15));
-            AddActivity("Test1", userService.users[7], locationService.locations[0], 7, DateTime.Now.AddHours(9).AddMinutes(20), DateTime.Now.AddHours(2).AddMinutes(45));
-            AddActivity("Test2", userService.users[7], locationService.locations[0], 9, DateTime.Now.AddHours(3).AddMinutes(40), DateTime.Now.AddHours(2).AddMinutes(0));
-            AddActivity("Test3", userService.users[7], locationService.locations[0], 3, DateTime.Now.AddHours(6).AddMinutes(0), DateTime.Now.AddHours(2).AddMinutes(15));
-            AddActivity("Test4", userService.users[7], locationService.locations[0], 5, DateTime.Now.AddHours(20).AddMinutes(3), DateTime.Now.AddHours(1).AddMinutes(30));
-            AddActivity("Test4", userService.users[7], locationService.locations[0], 0, DateTime.Now.AddHours(20).AddMinutes(3), DateTime.Now.AddHours(1).AddMinutes(30));
+            //AddActivity("Test", userService.users[0], locationService.locations[0], 2, DateTime.Now.AddHours(1).AddMinutes(45), DateTime.Now.AddHours(2).AddMinutes(15));
+            AddActivity("Mordor Marathon", null, locationService.locations[0], 7, DateTime.Now.AddHours(9).AddMinutes(20), DateTime.Now.AddHours(2).AddMinutes(45));
+            AddActivity("Second Breakfast Yoga", null, locationService.locations[0], 9, DateTime.Now.AddHours(3).AddMinutes(40), DateTime.Now.AddHours(2).AddMinutes(0));
+            AddActivity("Spinning med Viggo", null, locationService.locations[0], 3, DateTime.Now.AddHours(6).AddMinutes(0), DateTime.Now.AddHours(2).AddMinutes(15));
+            AddActivity("Refleks Træning med Hugo", null, locationService.locations[0], 5, DateTime.Now.AddHours(20).AddMinutes(3), DateTime.Now.AddHours(1).AddMinutes(30));
+            AddActivity("Winter is Coming Powerlift", null, locationService.locations[0], null, DateTime.Now.AddHours(20).AddMinutes(3), DateTime.Now.AddHours(1).AddMinutes(30));
         }
 
     }

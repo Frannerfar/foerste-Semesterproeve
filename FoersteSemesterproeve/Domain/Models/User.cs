@@ -28,7 +28,7 @@ namespace FoersteSemesterproeve.Domain.Models
         public DateOnly dateofBirth;
         public bool isCoach;
         public bool isAdmin;
-        public bool hasPaid;
+        //public bool hasPaid;
 
         public string password;
         
@@ -59,7 +59,7 @@ namespace FoersteSemesterproeve.Domain.Models
         /// <param name="hasPaid"></param>
         /// <param name="membershipType"></param>
         /// <param name="gender"></param>
-        public User(int id, string firstName, string lastName, string email, string address, string city, string password, bool isCoach, bool isAdmin, DateOnly dateofBirth, int? postal, bool hasPaid, MembershipType membershipType) 
+        public User(int id, string firstName, string lastName, string email, string address, string city, string password, bool isCoach, bool isAdmin, DateOnly dateofBirth, int? postal, MembershipType membershipType) 
         {
             this.id = id;
             this.firstName = firstName;
@@ -72,7 +72,6 @@ namespace FoersteSemesterproeve.Domain.Models
             this.isAdmin = isAdmin;
             this.dateofBirth = dateofBirth;
             this.postal = postal;
-            this.hasPaid = hasPaid;
             this.isCoachText = SetMark(isCoach);
             this.isAdminText = SetMark(isAdmin);
             this.activityList = new List<Activity>();

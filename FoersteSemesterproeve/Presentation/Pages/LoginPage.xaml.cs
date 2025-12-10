@@ -67,7 +67,7 @@ namespace FoersteSemesterproeve.Presentation.Pages
 
             for (int i = 0; i < userService.users.Count; i++)
             {
-                if(userService.users[i].email == UsernameBox.Text && userService.users[i].password == PasswordBox.Password)
+                if(userService.users[i].email == EmailBox.Text && userService.users[i].password == PasswordBox.Password)
                 {
                     possibleUser = userService.users[i];
                 }
