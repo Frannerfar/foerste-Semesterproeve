@@ -170,7 +170,6 @@ namespace FoersteSemesterproeve.Presentation.Pages
         /// <param name="e"></param>
         private void ActivitiesButton_Click(object sender, RoutedEventArgs e)
         {
-            userService.targetUser = userService.authenticatedUser;
             router.Navigate(NavigationRouter.Route.UserActivities);
         }
     }
