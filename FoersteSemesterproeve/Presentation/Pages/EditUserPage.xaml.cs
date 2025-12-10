@@ -63,8 +63,6 @@ namespace FoersteSemesterproeve.Presentation.Pages
 
                 if(userService.targetUser.isCoach) { TrainerCheckbox.IsChecked = true; }
 
-                //if(userService.targetUser.hasPaid) { HasPaidCheckbox.IsChecked = true; }
-
                 for(int i = 0; i < userService.membershipService.membershipTypes.Count; i++)
                 {
                     MembershipComboBox.Items.Add(userService.membershipService.membershipTypes[i].name);

@@ -15,11 +15,11 @@ namespace FoersteSemesterproeve.Domain.Services
 
         public LocationService() 
         {
-            locations = populateLocations();
+            locations = PopulateLocations();
         }
 
 
-        private List<Location> populateLocations()
+        private List<Location> PopulateLocations()
         {
             List<Location> locations = new List<Location>();
 

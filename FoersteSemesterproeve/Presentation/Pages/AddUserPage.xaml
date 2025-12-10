@@ -132,10 +132,6 @@
                                     <ComboBox x:Name="MembershipComboBox" Cursor="Hand" Height="26" FontSize="14" VerticalContentAlignment="Center" Padding="5 0 5 0" />
                                 </StackPanel>
 
-                                <StackPanel Margin="10, 15, 10, 0"  Orientation="Vertical">
-                                    <Label Content="Has Paid" x:Name="PaidLabel" />
-                                    <CheckBox x:Name="HasPaidCheckbox" Cursor="Hand" />
-                                </StackPanel>
 
                             </StackPanel>
                         </StackPanel>

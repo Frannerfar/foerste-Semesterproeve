@@ -76,12 +76,6 @@ namespace FoersteSemesterproeve.Domain.Services
             return true;
         }
 
-
-        public List<Activity> GetAllActivities() 
-        { 
-            return activities;
-        }
-
         private void GenerateDummyActivities()
         {
                 //AddActivity("Test", userService.users[0], locationService.locations[0], 2, DateTime.Now.AddHours(1).AddMinutes(45), DateTime.Now.AddHours(2).AddMinutes(15));

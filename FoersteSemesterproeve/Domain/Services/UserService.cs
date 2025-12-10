@@ -229,7 +229,7 @@ namespace FoersteSemesterproeve.Domain.Services
         /// <param name="hasPaid"></param>
         /// <param name="membershipType"></param>
         /// <param name="gender"></param>
-        public void AddUser(string firstName, string lastName, string email, string city, string address, DateOnly date, int? postal, bool isAdmin, bool isCoach, bool hasPaid, MembershipType membershipType)
+        public void AddUser(string firstName, string lastName, string email, string city, string address, DateOnly date, int? postal, bool isAdmin, bool isCoach, MembershipType membershipType)
         {
             int newId = this.GetNewId(this.users);
             this.users.Add(new User(newId, firstName, lastName, email, address, city, "1234", isCoach, isAdmin, date, postal, membershipType));

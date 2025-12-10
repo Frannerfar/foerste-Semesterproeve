@@ -14,12 +14,12 @@ namespace FoersteSemesterproeve.Domain.Services
 
         public MembershipService()
         {
-            membershipTypes = populateMembershipTypes();
+            membershipTypes = PopulateMembershipTypes();
         }
 
 
 
-        private List<MembershipType> populateMembershipTypes()
+        private List<MembershipType> PopulateMembershipTypes()
         {
             List<MembershipType> membershipTypes = new List<MembershipType>();
 

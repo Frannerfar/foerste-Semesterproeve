@@ -47,7 +47,6 @@ namespace FoersteSemesterproeve.Presentation.Pages
 
             AdminCheckbox.IsChecked = false;
             TrainerCheckbox.IsChecked = false;
-            HasPaidCheckbox.IsChecked = false;
             DatePicker.SelectedDate = DateTime.Now;
 
             foreach (MembershipType membershipType in userService.membershipService.membershipTypes)
@@ -132,7 +131,6 @@ namespace FoersteSemesterproeve.Presentation.Pages
                     postal,
                     GetCheckBoxValue(AdminCheckbox),
                     GetCheckBoxValue(TrainerCheckbox),
-                    GetCheckBoxValue(HasPaidCheckbox),
                     userService.membershipService.membershipTypes[MembershipComboBox.SelectedIndex]);
 
                 router.Navigate(NavigationRouter.Route.Members);
