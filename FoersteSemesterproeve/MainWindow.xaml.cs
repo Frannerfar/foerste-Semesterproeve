@@ -44,7 +44,7 @@ namespace FoersteSemesterproeve
         {
             InitializeComponent();
             List<Button> adminButtons = new List<Button>();
-            adminButtons.Add(TrainersButton);
+            //adminButtons.Add(TrainersButton);
             adminButtons.Add(LocationsButton);
             adminButtons.Add(MembershipsButton);
             adminButtons.Add(MembersButton);
