@@ -6,6 +6,7 @@ using FoersteSemesterproeve.Views;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -93,7 +94,9 @@ namespace FoersteSemesterproeve.Data.Repositories
                     if (!isUserAdminBool) { MessageBox.Show($"isAdmin bool: {stringIsAdmin} could not be converted to a bool"); flag = true; }
 
                     DateOnly dob;
-                    bool isUserDOB = DateOnly.TryParse(stringDOB, out dob);
+                    //bool isUserDOB = DateOnly.TryParse(stringDOB, out dob);
+                    bool isUserDOB = DateOnly.TryParseExact(stringDOB, "d-M-yyyy", out dob);
+
                     if (!isUserDOB) { MessageBox.Show($"Date of Birth DateOnly: {stringDOB} could not be converted to a DateOnly"); flag = true; }
 
                     int postal;
