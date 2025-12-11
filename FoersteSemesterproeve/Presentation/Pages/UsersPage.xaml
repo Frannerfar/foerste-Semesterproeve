@@ -20,31 +20,30 @@
             <Button Click="AddUser_Click" Width="auto" Padding="20 0" Height="30" FontSize="18" Background="#FF6A9DCA" Cursor="Hand" HorizontalAlignment="Right">Add User</Button>
         </StackPanel>
 
-        <!--<StackPanel Grid.Row="1" Grid.Column="0" MaxWidth="1000" Margin="10">-->
         <DataGrid Grid.Row="1" Grid.Column="0" MaxWidth="1000" Margin="10" x:Name="MemberDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" HeadersVisibility="Column">
-                <DataGrid.Resources>
-                    <Style TargetType="DataGridColumnHeader">
-                        <Setter Property="Cursor" Value="Hand"/>
-                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                    </Style>
-                    <Style x:Key="CenterTextStyle" TargetType="TextBlock">
-                        <Setter Property="TextAlignment" Value="Center"/>
-                        <Setter Property="VerticalAlignment" Value="Center"/>
-                        <Setter Property="HorizontalAlignment" Value="Center"/>
-                    </Style>
-                    <Style TargetType="DataGridCell">
-                        <Setter Property="Background" Value="White"/>
-                        <Setter Property="Foreground" Value="Black"/>
-                        <Setter Property="BorderThickness" Value="0"/>
-                        <Style.Triggers>
-                            <Trigger Property="IsSelected" Value="True">
-                                <Setter Property="Background" Value="Transparent"/>
-                                <Setter Property="Foreground" Value="Black"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
+            <DataGrid.Resources>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                </Style>
+                <Style x:Key="CenterTextStyle" TargetType="TextBlock">
+                    <Setter Property="TextAlignment" Value="Center"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                </Style>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="Background" Value="White"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Foreground" Value="Black"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
             </DataGrid.Resources>
-                <DataGrid.Columns>
+            <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding id}" MinWidth="50" ElementStyle="{StaticResource CenterTextStyle}"  />
                 <DataGridTextColumn Header="First Name" Binding="{Binding firstName}" ElementStyle="{StaticResource CenterTextStyle}" MinWidth="100" MaxWidth="150" Width="*"/>
                 <DataGridTextColumn Header="Last Name" Binding="{Binding lastName}" ElementStyle="{StaticResource CenterTextStyle}" MinWidth="100" MaxWidth="150" Width="*"/>
@@ -52,12 +51,11 @@
                 <DataGridTextColumn Header="Membership" Binding="{Binding membershipType.name}" ElementStyle="{StaticResource CenterTextStyle}" MinWidth="100"/>
                 <DataGridTextColumn Header="Trainer" Binding="{Binding isCoachText}" ElementStyle="{StaticResource CenterTextStyle}" MinWidth="50"/>
                 <DataGridTextColumn Header="Admin" Binding="{Binding isAdminText}" ElementStyle="{StaticResource CenterTextStyle}" MinWidth="50"/>
-
-                    <DataGridTemplateColumn Header="Actions" Width="*">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Button Content="Edit"
+                <DataGridTemplateColumn Header="Actions" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Edit"
                                         Margin="5"
                                         Padding="10 5"
                                         Tag="{Binding}"
@@ -65,20 +63,19 @@
                                         Cursor="Hand"
                                         Click="EditUser_Click"/>
 
-                                    <Button Content="Delete"
+                                <Button Content="Delete"
                                         Margin="5"
                                         Padding="10 5"
                                         Background="Red"
                                         Cursor="Hand"
                                         Tag="{Binding}"
                                         Click="DeleteUser_Click"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                </DataGrid.Columns>
-            </DataGrid>
-        <!--</StackPanel>-->
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
 
         <StackPanel Grid.Row="2" Grid.Column="0">
             
