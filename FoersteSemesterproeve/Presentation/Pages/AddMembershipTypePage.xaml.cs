@@ -34,7 +34,7 @@ namespace FoersteSemesterproeve.Presentation.Pages
 
         private void CancelAddMembershipTypeButton_Click(object sender, RoutedEventArgs e)
         {
-            router.Navigate(NavigationRouter.Route.Memberships);
+            router.Navigate(NavigationRouter.Route.MembershipTypes);
         }
 
         private void SaveNewMembershipTypeButton_Click(object sender, RoutedEventArgs e)
@@ -61,7 +61,7 @@ namespace FoersteSemesterproeve.Presentation.Pages
 
             membershipService.AddMembershipType(TitleInput.Text, monthlyInputInteger, yearlyInputInteger);
 
-            router.Navigate(NavigationRouter.Route.Memberships);
+            router.Navigate(NavigationRouter.Route.MembershipTypes);
         }
     }
 }

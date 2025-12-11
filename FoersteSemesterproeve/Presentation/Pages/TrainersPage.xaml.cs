@@ -56,7 +56,7 @@ namespace FoersteSemesterproeve.Presentation.Pages
 
             userService.targetUser = user;
 
-            router.Navigate(NavigationRouter.Route.ViewTrainerInfo);
+            router.Navigate(NavigationRouter.Route.Trainer);
         }
     }
 }

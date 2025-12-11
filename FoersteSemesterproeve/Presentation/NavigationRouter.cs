@@ -99,7 +99,7 @@ namespace FoersteSemesterproeve.Presentation
                     MainContent.Content = new ActivitiesPage(this, activityService, userService);
                     SetMenuButtonActive(this.currentActiveMenuButton, this.ActivitiesButton);
                     break;
-                case Route.Members:
+                case Route.Users:
                     MainContent.Content = new UsersPage(this, userService);
                     SetMenuButtonActive(this.currentActiveMenuButton, this.MembersButton);
                     break;
@@ -119,7 +119,7 @@ namespace FoersteSemesterproeve.Presentation
                     MainContent.Content = new EditLocationPage(this, locationService);
                     SetMenuButtonActive(this.currentActiveMenuButton, this.LocationsButton);
                     break;
-                case Route.Memberships:
+                case Route.MembershipTypes:
                     MainContent.Content = new MembershipTypesPage(this, membershipService, userService);
                     SetMenuButtonActive(this.currentActiveMenuButton, this.MembershipsButton);
                     break;
@@ -147,7 +147,7 @@ namespace FoersteSemesterproeve.Presentation
                     MainContent.Content = new UserActivitiesPage(this, userService, activityService);
                     SetMenuButtonActive(this.currentActiveMenuButton, this.MembersButton);
                     break;
-                case Route.AddActivities:
+                case Route.AddActivity:
                     MainContent.Content = new AddActivityPage(this, activityService, userService, locationService);
                     SetMenuButtonActive(this.currentActiveMenuButton, this.ActivitiesButton);
                     break;
@@ -159,7 +159,7 @@ namespace FoersteSemesterproeve.Presentation
                     MainContent.Content = new ActivityPage(this, activityService, userService, locationService);
                     SetMenuButtonActive(this.currentActiveMenuButton, this.ActivitiesButton);
                     break;
-                case Route.ViewTrainerInfo:
+                case Route.Trainer:
                     MainContent.Content = new TrainerPage(this, userService, activityService);
                     SetMenuButtonActive(this.currentActiveMenuButton, this.TrainersButton);
                     break;
@@ -205,22 +205,22 @@ namespace FoersteSemesterproeve.Presentation
             Login,
             Home,
             Activities,
-            Members,
+            Users,
             Trainers,
             Locations,
             AddLocation,
             EditLocation,
-            Memberships,
+            MembershipTypes,
             AddMembershipType,
             EditMembershipType,
             Profile,
             AddUser,
             EditUser,
             UserActivities,
-            AddActivities,
+            AddActivity,
             EditActivity,
             Activity,
-            ViewTrainerInfo
+            Trainer
         }
 
     }

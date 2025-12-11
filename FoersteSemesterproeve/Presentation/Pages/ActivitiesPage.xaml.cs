@@ -324,7 +324,7 @@ namespace FoersteSemesterproeve.Presentation.Pages
 
         private void AddActivity_Click(object sender, RoutedEventArgs e)
         {
-            router.Navigate(NavigationRouter.Route.AddActivities);
+            router.Navigate(NavigationRouter.Route.AddActivity);
         }
     }
 }

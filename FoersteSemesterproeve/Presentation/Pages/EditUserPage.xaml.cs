@@ -116,7 +116,7 @@ namespace FoersteSemesterproeve.Presentation.Pages
                 userService.targetUser.membershipType = userService.membershipService.membershipTypes[MembershipComboBox.SelectedIndex];
 
                 userService.targetUser.CheckBothMarks();
-                router.Navigate(NavigationRouter.Route.Members);
+                router.Navigate(NavigationRouter.Route.Users);
             }
         }
 
@@ -129,7 +129,7 @@ namespace FoersteSemesterproeve.Presentation.Pages
         /// <param name="e"></param>
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            router.Navigate(NavigationRouter.Route.Members);
+            router.Navigate(NavigationRouter.Route.Users);
         }
 
         /// <summary>
@@ -153,7 +153,7 @@ namespace FoersteSemesterproeve.Presentation.Pages
                 if (dialogBox.DialogResult == true)
                 {
                     userService.users.Remove(userService.targetUser);
-                    router.Navigate(NavigationRouter.Route.Members);
+                    router.Navigate(NavigationRouter.Route.Users);
                 }
             } 
         }

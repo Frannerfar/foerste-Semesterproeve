@@ -181,7 +181,7 @@ namespace FoersteSemesterproeve
         {
             Button button = (Button)sender;
             //SetMenuButtonActive(currentActiveMenuButton, button);
-            router.Navigate(Route.Members);
+            router.Navigate(Route.Users);
         }
 
         /// <summary>
@@ -195,7 +195,7 @@ namespace FoersteSemesterproeve
         {
             Button button = (Button)sender;
             //SetMenuButtonActive(currentActiveMenuButton, button);
-            router.Navigate(Route.Memberships);
+            router.Navigate(Route.MembershipTypes);
         }
 
         /// <summary>

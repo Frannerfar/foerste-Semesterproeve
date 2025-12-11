@@ -139,7 +139,7 @@ namespace FoersteSemesterproeve.Domain.Services
 
                     DateOnly dob;
                     //bool isUserDOB = DateOnly.TryParse(stringDOB, out dob);
-                    bool isUserDOB = DateOnly.TryParseExact(stringDOB, "d-M-yyyy", out dob);
+                    bool isUserDOB = DateOnly.TryParseExact(stringDOB, "d-m-yyyy", out dob);
 
                     if (!isUserDOB) { MessageBox.Show($"Date of Birth DateOnly: {stringDOB} could not be converted to a DateOnly"); flag = true; }
 
