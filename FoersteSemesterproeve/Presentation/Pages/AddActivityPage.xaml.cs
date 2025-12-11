@@ -67,16 +67,6 @@ namespace FoersteSemesterproeve.Presentation.Pages
             LocationPicker.SelectedIndex = 0;
 
 
-
-
-
-
-
-
-
-
-
-
             StartDatePicker.SelectedDate = DateTime.Now;
             EndDatePicker.SelectedDate = DateTime.Now.AddDays(1);
 
