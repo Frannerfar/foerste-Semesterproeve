@@ -47,14 +47,8 @@ namespace FoersteSemesterproeve.Presentation.Pages
 
         private void LoadActivities()
         {
-            //ActivitiesGrid.Children.Clear();
-            //ActivitiesGrid.RowDefinitions.Clear();
-            //ActivitiesGrid.ColumnDefinitions.Clear();
-
             Grid ActivitiesGrid = new Grid();
             ActivitiesScrollViewer.Content = ActivitiesGrid;
-            //ActivitiesGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
-
 
             int rows = 0;
             int columns = 0;
@@ -82,15 +76,12 @@ namespace FoersteSemesterproeve.Presentation.Pages
 
                 Border activityBorder = new Border();
                 activityBorder.BorderBrush = new SolidColorBrush(Colors.LightGray);
-                //activityBorder.Background = new SolidColorBrush(Color.FromRgb(245, 245, 245));
                 activityBorder.BorderThickness = new Thickness(1);
                 activityBorder.CornerRadius = new CornerRadius(10);
                 activityBorder.MaxWidth = 400;
                 activityBorder.Margin = new Thickness(10, 10, 10, 10);
                 Grid.SetRow(activityBorder, rows - 1);
                 Grid.SetColumn(activityBorder, iRemainder);
-                //Grid.SetColumn(activityBorder, 0);
-                //Grid.SetRow(activityBorder, i);
                 ActivitiesGrid.Children.Add(activityBorder);
 
 
@@ -99,29 +90,16 @@ namespace FoersteSemesterproeve.Presentation.Pages
 
                 if (userService.authenticatedUser != null && userService.authenticatedUser.isAdmin)
                 {
-                    // BUTTONS
                     StackPanel buttonsPanel = new StackPanel();
                     buttonsPanel.HorizontalAlignment = HorizontalAlignment.Right;
                     buttonsPanel.Orientation = Orientation.Horizontal;
                     buttonsPanel.Margin = new Thickness(0, 10, 10, 10);
                     activityStackPanel.Children.Add(buttonsPanel);
 
-                    //Button editButton = new Button();
-                    //editButton.Content = "Edit";
-                    //editButton.Margin = new Thickness(0, 0, 10, 0);
-                    //editButton.Padding = new Thickness(10, 5, 10, 5);
-                    ////editButton.Width = 200;
-                    //editButton.Background = new SolidColorBrush(Colors.LimeGreen);
-                    //editButton.Click += EditButton_Click;
-                    //editButton.Cursor = Cursors.Hand;
-                    //editButton.Tag = activityService.activities[i];
-                    //buttonsPanel.Children.Add(editButton);
-
                     Button deleteButton = new Button();
                     deleteButton.Content = "Delete";
                     deleteButton.Margin = new Thickness(0, 0, 10, 0);
                     deleteButton.Padding = new Thickness(10, 5, 10, 5);
-                    //deleteButton.Width = 200;
                     deleteButton.Background = new SolidColorBrush(Colors.Red);
                     deleteButton.Click += DeleteButton_Click;
                     deleteButton.Cursor = Cursors.Hand;
@@ -130,10 +108,6 @@ namespace FoersteSemesterproeve.Presentation.Pages
 
                 }
 
-
-
-
-
                 // ACTIVITY TITLE
                 TextBlock activityTitle = new TextBlock();
                 activityTitle.Text = $"{activityService.activities[i].title}";
@@ -141,9 +115,6 @@ namespace FoersteSemesterproeve.Presentation.Pages
                 activityTitle.FontWeight = FontWeights.Bold;
                 activityTitle.Margin = new Thickness(20, 10, 20, 10);
                 activityStackPanel.Children.Add(activityTitle);
-
-
-
 
                 // PARTICIPANTS
                 string maxCap;
@@ -159,25 +130,7 @@ namespace FoersteSemesterproeve.Presentation.Pages
                 participantsText.Text = $"Participants: {activityService.activities[i].participants.Count} / {maxCap}";
                 participantsText.FontSize = 16;
                 participantsText.Margin = new Thickness(20, 10, 20, 0);
-                //participantsText.FontWeight = FontWeights.Bold;
                 activityStackPanel.Children.Add(participantsText);
-
-
-
-                //// DURATION
-                //StackPanel durationPanel = new StackPanel();
-                //durationPanel.Margin = new Thickness(20, 10, 20, 10);
-
-                //activityStackPanel.Children.Add(durationPanel);
-
-                //TextBlock durationText = new TextBlock();
-                //durationText.Text = $"Duration: {activityService.activities[i].endTime - activityService.activities[i].startTime}";
-                //durationText.FontSize = 16;
-                //durationPanel.Children.Add(durationText);
-
-
-
-
 
                 // TIMES
                 StackPanel timesPanel = new StackPanel();
@@ -196,12 +149,15 @@ namespace FoersteSemesterproeve.Presentation.Pages
 
 
 
-
+                // Aktion panel til "See More" knap og "Join"/"Leave" knap.
                 StackPanel activityActionPanel = new StackPanel();
                 activityActionPanel.Margin = new Thickness(20, 10, 20, 10);
                 activityActionPanel.Orientation = Orientation.Horizontal;
+                //Sættes som child til "activityStackPanel"
                 activityStackPanel.Children.Add(activityActionPanel);
 
+
+                //
                 Button activitySeeMore = new Button();
                 activitySeeMore.Content = "See More";
                 activitySeeMore.Background = new SolidColorBrush(Colors.Yellow);

@@ -182,8 +182,6 @@ namespace FoersteSemesterproeve.Domain.Services
                     MessageBox.Show($"ERROR in iteration #{i} \n\n RAW DATA:\n {usersInTextFormat[i]} \n\n EXCEPTION: \n {e.Message}");
                     continue;
                 }
-                //DialogBox dialogBox = new DialogBox($"stringID: {stringID} - stringFirstName: {stringFirstName} - stringLastName: {stringLastName} - stringEmail: {stringEmail} - stringStreet: {stringStreet} - stringCity: {stringCity} - stringPassword: {stringPassword} - stringIsCoach: {stringIsCoach} - stringIsAdmin: {stringIsAdmin} - stringDOB: {stringDOB} - stringPostal: {stringPostal} - stringMembershipID: {stringMembershipID}");
-                //dialogBox.ShowDialog();
             }
             return users;
         }

@@ -71,17 +71,6 @@ namespace FoersteSemesterproeve.Presentation.Pages
                         MembershipComboBox.SelectedIndex = i;
                     }
                 }
-
-                //User.Gender[] genders = Enum.GetValues<User.Gender>();
-
-                //for (int i = 0; i < genders.Length; i++)
-                //{
-                //    GenderComboBox.Items.Add(genders[i].ToString());
-                //    if (userService?.targetUser?.gender != null && genders[i] == userService?.targetUser?.gender)
-                //    {
-                //        GenderComboBox.SelectedIndex = i;
-                //    }
-                //}
             }
         }
 

@@ -62,9 +62,7 @@ namespace FoersteSemesterproeve.Presentation.Pages
             }
             if (string.IsNullOrEmpty(LocationCapacityBox.Text))
             {
-                //flag = true;
                 maxCapacityNull = true;
-                //LocationCapacityFlag.Visibility = Visibility.Visible;
             }
             else
             {

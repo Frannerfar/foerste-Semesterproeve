@@ -52,6 +52,10 @@
                 </Grid>
             </StackPanel>
         </DockPanel>
+        
+        
         <ContentControl Grid.Row="1" Grid.Column="0" x:Name="MainContent" />
+        
+        
     </Grid>
 </Window>

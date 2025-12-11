@@ -120,18 +120,6 @@
                     
                 </StackPanel>
 
-
-                <!--<ScrollViewer VerticalScrollBarVisibility="auto" HorizontalScrollBarVisibility="Disabled">
-                    <StackPanel Orientation="Vertical">
-                        <TextBlock>Users attending this activity:</TextBlock>
-                        <StackPanel x:Name="ActivityUsersPanel" Orientation="Vertical">
-
-                        </StackPanel>
-                    </StackPanel>
-                </ScrollViewer>-->
-
-
-
             </StackPanel>
         </ScrollViewer>
 

@@ -53,7 +53,6 @@ namespace FoersteSemesterproeve.Presentation.Pages
                     if (userService.authenticatedUser.activityList[i].startTime > now)
                     {
                         upcomingActivities.Add(userService.authenticatedUser.activityList[i]);
-                        //MessageBox.Show($"Added new activity: {userService.authenticatedUser.activityList[i].title}");
                     }
                 }
             }
@@ -110,22 +109,6 @@ namespace FoersteSemesterproeve.Presentation.Pages
                 stackPanel.Children.Add(nameTextBlock);
 
 
-
-                // TRAINER SEKTION
-                //string coachString;
-                //if (upcomingActivities[i].coach != null)
-                //{
-                //    coachString = $"{upcomingActivities[i].coach.firstName} {upcomingActivities[i].coach.lastName}";
-                //}
-                //else
-                //{
-                //    coachString = "None";
-                //}
-                //TextBlock trainerTextBlock = new TextBlock();
-                //trainerTextBlock.Text = $"Trainer: {coachString}";
-                //stackPanel.Children.Add(trainerTextBlock);
-
-
                 // CAPACITY SEKTION
                 string capacityString;
                 if (upcomingActivities[i].maxCapacity != null)
@@ -157,18 +140,6 @@ namespace FoersteSemesterproeve.Presentation.Pages
                 activityEndTimeTextBlock.Text = $"End: {upcomingActivities[i].endTime:dd-MM-yyyy HH:mm}";
                 activityEndTimeTextBlock.FontSize = 14;
                 stackPanel.Children.Add(activityEndTimeTextBlock);
-
-
-
-                //// VARIGHED SEKTION
-                //TimeSpan difference = upcomingActivities[i].endTime - upcomingActivities[i].startTime;
-                //int hours = difference.Hours;
-                //int minutes = difference.Minutes;
-                //TextBlock activityDurationTextBlock = new TextBlock();
-                //activityDurationTextBlock.Margin = new Thickness(0, 10, 0, 10);
-                //activityDurationTextBlock.Text = $"Duration: {hours:D1}:{minutes:D2} hours";
-                //stackPanel.Children.Add(activityDurationTextBlock);
-
 
 
 

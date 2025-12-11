@@ -1,7 +1,6 @@
 ﻿using FoersteSemesterproeve.Domain.Services;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -62,7 +61,6 @@ namespace FoersteSemesterproeve.Presentation.Pages
         /// <param name="e"></param>
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            //User? possibleUser = userService.users.FirstOrDefault(u => u.email == UsernameBox.Text);
             User? possibleUser = null;
 
             for (int i = 0; i < userService.users.Count; i++)

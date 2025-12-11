@@ -190,10 +190,6 @@ namespace FoersteSemesterproeve.Presentation
             originalButton.Background = menuStaticItem;
         }
 
-
-
-
-
         /// <summary>
         ///     Enum til navngivning af unikke værdier.
         ///     Bruges til routing.
@@ -222,6 +218,5 @@ namespace FoersteSemesterproeve.Presentation
             Activity,
             Trainer
         }
-
     }
 }

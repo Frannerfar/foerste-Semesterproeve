@@ -58,7 +58,6 @@ namespace FoersteSemesterproeve.Domain.Services
                 MessageBox.Show("You have already joined");
                 return false;
             }
-            //if(user.membershipType)
             activity.participants.Add(user);
             user.activityList.Add(activity);
             return true;

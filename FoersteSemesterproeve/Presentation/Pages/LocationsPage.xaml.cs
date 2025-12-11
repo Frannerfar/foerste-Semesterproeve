@@ -70,7 +70,6 @@ namespace FoersteSemesterproeve.Presentation.Pages
                         columns++;
                     }
                     rows++;
-
                 }
                 if (iRemainder != 0 && columns < itemsPerRow)
                 {
@@ -91,13 +90,7 @@ namespace FoersteSemesterproeve.Presentation.Pages
                 GridLocations.Children.Add(border);
 
                 StackPanel stackPanel = new StackPanel();
-
                 border.Child = stackPanel;
-
-
-
-
-
 
                 TextBlock nameTextBlock = new TextBlock();
                 nameTextBlock.Text = locationService.locations[i].name;

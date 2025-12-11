@@ -6,80 +6,7 @@
              xmlns:local="clr-namespace:FoersteSemesterproeve.Presentation.Pages"
              mc:Ignorable="d" 
              d:DesignHeight="1200" d:DesignWidth="800">
-    <!--<Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition MinWidth="50" Width="auto"/>
-            <ColumnDefinition MaxWidth="800" Width="*"/>
-            <ColumnDefinition MinWidth="50" Width="auto"/>
-            
-            
-        </Grid.ColumnDefinitions>
-
-        <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <Button Width="100" Padding="10, 5, 10, 5" Background="DeepSkyBlue" Click="BackButton_Click" Cursor="Hand">Back</Button>
-        </StackPanel>
-
-        <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock x:Name="ActivityNameTitle"></TextBlock>
-        </StackPanel>
-        
-        
-        <StackPanel Grid.Row="1" Grid.Column="1">
-            <Label x:Name="ActivityNameFlag" Visibility="Collapsed">dwdawd</Label>
-            <Label x:Name="ActivityNameLabel">Activity Name</Label>
-            <TextBox x:Name="ActivityNameBox"></TextBox>
-        </StackPanel>
-
-        <StackPanel Grid.Row="2" Grid.Column="1">
-            <Label x:Name="ActivityTrainerFlag" Visibility="Collapsed">dwdawd</Label>
-            <Label x:Name="ActivityTrainerLabel">Trainer</Label>
-            <ComboBox x:Name="ActivityTrainerCombo"></ComboBox>
-        </StackPanel>
-
-        <StackPanel Grid.Row="3" Grid.Column="1">
-            <Label x:Name="ActivityLocationFlag" Visibility="Collapsed">dwdawd</Label>
-            <Label x:Name="ActivityLocationLabel">Location</Label>
-            <ComboBox x:Name="ActivityLocationCombo"></ComboBox>
-        </StackPanel>
-
-        <StackPanel Grid.Row="4" Grid.Column="1">
-            <Label x:Name="ActivityCapcityFlag" Visibility="Collapsed">dwdawd</Label>
-            <Label x:Name="ActivityCapacityLabel">Capacity</Label>
-            <TextBox x:Name="ActivityCapacityBox"></TextBox>
-        </StackPanel>
-
-
-        <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Vertical">
-            <TextBlock>Users attending this activity:</TextBlock>
-            <StackPanel x:Name="ActivityUsersPanel" Orientation="Vertical">
-            
-            
-            
-            </StackPanel>
-            
-        </StackPanel>-->
-        
-        
-        <!--<StackPanel Grid.Row="4" Grid.Column="1">
-            <Label x:Name="ActivityLocationFlag" Visibility="Collapsed">dwdawd</Label>
-            <Label x:Name="ActivityLocationLabel">Activity Name</Label>
-            <ComboBox x:Name="ActivityLocationCombo"></ComboBox>
-        </StackPanel>-->
-    <!--</Grid>-->
-
-
-
-
-
-
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
@@ -121,9 +48,7 @@
                         <ScrollViewer VerticalScrollBarVisibility="auto" MinHeight="70" MaxHeight="300" HorizontalScrollBarVisibility="Disabled">
                             <StackPanel Orientation="Vertical">
                                 <StackPanel>
-                                    <!--<StackPanel x:Name="AttendingActionPanel" HorizontalAlignment="Center">
 
-                                    </StackPanel>-->
                                 </StackPanel>
                                 <StackPanel x:Name="ActivityUsersPanel" Orientation="Vertical" Margin="0, 20, 0, 20">
 
@@ -218,11 +143,5 @@
             </StackPanel>
         </ScrollViewer>
 
-
-        <!--<StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Margin="0 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Width="150" Padding="0, 5, 0, 5" Margin="0 0 40 0" Click="SaveButton_Click" Cursor="Hand" Background="Lime">Create</Button>
-
-            <Button Width="150" Padding="0, 5, 0, 5" Cursor="Hand" Background="Red" Click="CancelButton_Click">Cancel</Button>
-        </StackPanel>-->
     </Grid>
 </UserControl>

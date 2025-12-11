@@ -27,13 +27,6 @@ namespace FoersteSemesterproeve
         ActivityService activityService;
         LocationService locationService;
 
-        SolidColorBrush menuStaticItem;
-        SolidColorBrush menuActiveItem;
-
-        Color menuStaticItemColor = Color.FromRgb(119, 136, 153);
-        Color menuActiveItemColor = Color.FromRgb(177, 211, 245);
-
-        Button currentActiveMenuButton;
 
         // Sæt til false, hvis der skal testes med login
         bool isDeveloping = true;
@@ -50,10 +43,9 @@ namespace FoersteSemesterproeve
             membershipService = new MembershipService();
             locationService = new LocationService();
 
-            // Instantiering hvor både membershipService og UserRepository gives som argumenter
+            // Instantiering hvor membershipService gives som argumenter
             // MembershipService: da vi i UserService er nødt til at kende til MembershipTypes oprettet, 
             //                    for at give folk muligheden for at vælge korrekt MembershipType.
-            // UserPository: fordi vi i UserService skal have mulighed for a "load" og "save" users fra/til fil.
             userService = new UserService(membershipService);
             
             activityService = new ActivityService(locationService, userService);
@@ -65,18 +57,9 @@ namespace FoersteSemesterproeve
             router = new NavigationRouter(MainContent, MenuGrid, UserProfileButton, adminButtons, userService, activityService, locationService, membershipService, HomeButton, ActivitiesButton, TrainersButton, LocationsButton, MembersButton, MembershipsButton);
 
 
-
-            //menuStaticItem = new SolidColorBrush(menuStaticItemColor);
-            //menuActiveItem = new SolidColorBrush(menuActiveItemColor);
-
-            //currentActiveMenuButton = HomeButton;
-            //SetMenuButtonActive(currentActiveMenuButton, HomeButton);
-
             // Hvis vi "udvikler/tester"
             if (isDeveloping)
             {
-                //userService.authenticatedUser = userService.users.FirstOrDefault(u => u.email == "admin@admin.dk");
-                // I stedet for LINQ extension med lambda, giver det nok mest mening at bruge simpelt for loop i stedet.
                 for(int i = 0; i < userService.users.Count; i++)
                 {
                     if (userService.users[i].email == "admin@admin.dk")
@@ -94,25 +77,6 @@ namespace FoersteSemesterproeve
             }
         }
 
-        /// <summary>
-        /// Sørger for at visuelt sætte indikation på, hvilken route man befinder sig på.
-        /// Dette gøres ved at sætte den nuværende aktive button tilbage til vores standard menu farve. 
-        /// Derefter sættes den nye Button der er blevet klikket på, til få den nye aktive farve, samt til at være den nye aktive Button.
-        /// </summary>
-        /// <author>Martin</author>
-        /// <param name="originalButton"></param>
-        /// <param name="newButton"></param>
-        private void SetMenuButtonActive(Button originalButton, Button newButton)
-        {
-            if (originalButton != null) 
-            {
-                originalButton.Background = menuStaticItem;
-            }
-
-            newButton.Background = menuActiveItem;
-            currentActiveMenuButton = newButton;
-        }
-
 
         /// <summary>
         /// Navigerer til routen "Home" ved hjælp af vores router.
@@ -124,7 +88,6 @@ namespace FoersteSemesterproeve
         private void Home_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
-            //SetMenuButtonActive(currentActiveMenuButton, button);
             router.Navigate(Route.Home);
         }
 
@@ -152,7 +115,6 @@ namespace FoersteSemesterproeve
         private void Trainers_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
-            //SetMenuButtonActive(currentActiveMenuButton, button);
             router.Navigate(Route.Trainers);
         }
 
@@ -166,7 +128,6 @@ namespace FoersteSemesterproeve
         private void Locations_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
-            //SetMenuButtonActive(currentActiveMenuButton, button);
             router.Navigate(Route.Locations);
         }
 
@@ -180,7 +141,6 @@ namespace FoersteSemesterproeve
         private void Members_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
-            //SetMenuButtonActive(currentActiveMenuButton, button);
             router.Navigate(Route.Users);
         }
 
@@ -223,7 +183,6 @@ namespace FoersteSemesterproeve
         private void LogOut_Click(object sender, RoutedEventArgs e)
         {
             userService.authenticatedUser = null;
-            SetMenuButtonActive(currentActiveMenuButton, HomeButton);
             MenuGrid.Visibility = Visibility.Collapsed;
             router.Navigate(Route.Login);
         }

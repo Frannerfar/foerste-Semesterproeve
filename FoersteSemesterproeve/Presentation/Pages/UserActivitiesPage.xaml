@@ -29,9 +29,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <!--<StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left">
-                <Button x:Name="BackButton" Click="BackButton_Click" Cursor="Hand" FontSize="24" Padding="10 5" BorderThickness="0" Background="Transparent">⟵ Back</Button>
-            </StackPanel>-->
+
             <StackPanel Grid.Row="0" Grid.Column="1">
                 <TextBlock HorizontalAlignment="Center" FontSize="18" x:Name="UserText">User</TextBlock>
                 <TextBlock HorizontalAlignment="Center" FontSize="14">Activities Joined</TextBlock>
@@ -48,69 +46,6 @@
             </Grid>
 
         </ScrollViewer>
-
-
-
-
-
-
-
-
-
-
-
-            <!--<DataGrid x:Name="ActivitiesDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" HeadersVisibility="Column">
-                <DataGrid.Resources>
-                    <Style TargetType="DataGridColumnHeader">
-                        <Setter Property="Cursor" Value="Hand"/>
-                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                    </Style>
-                    <Style TargetType="DataGridCell">
-                        <Setter Property="Background" Value="White"/>
-                        <Setter Property="Foreground" Value="Black"/>
-                        <Setter Property="BorderThickness" Value="0"/>
-                        <Style.Triggers>
-                            <Trigger Property="IsSelected" Value="True">
-                                <Setter Property="Background" Value="Transparent"/>
-                                <Setter Property="Foreground" Value="Black"/>
-                            </Trigger>
-                        </Style.Triggers>
-
-                    </Style>
-                </DataGrid.Resources>
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Title" Binding="{Binding title}" MinWidth="100" MaxWidth="150" Width="*"/>
-                    <DataGridTextColumn Header="Max Capacity" Binding="{Binding maxCapacity}" MinWidth="100" MaxWidth="150" Width="*"/>
-                    <DataGridTextColumn Header="Capacity" Binding="{Binding participants.Count}"  MinWidth="100" MaxWidth="150" Width="*"/>
-                    <DataGridTextColumn Header="Required Membership" MinWidth="100" MaxWidth="150" Width="*"/>
-                    <DataGridTextColumn Header="Start Time" MinWidth="100" MaxWidth="150" Width="*"/>
-                    <DataGridTextColumn Header="End Time" MinWidth="100" MaxWidth="150" Width="*"/>
-                    <DataGridTextColumn Header="Location" Binding="{Binding location.name}"  MinWidth="100" MaxWidth="150" Width="*"/>
-
-                    <DataGridTemplateColumn Header="Actions" Width="*" MaxWidth="150">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Button Content="Go to Activity"
-                                        Margin="5"
-                                        Padding="10 5"
-                                        Background="LawnGreen"
-                                        Cursor="Hand"
-                                        Click="GoActivity_Click"/>
-
-                                    <Button Content="Leave"
-                                        Margin="5"
-                                        Padding="10 5"
-                                        Background="Red"
-                                        Cursor="Hand"
-                                        Click="LeaveActivity_Click"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                </DataGrid.Columns>
-            </DataGrid>-->
-
 
         <StackPanel  Grid.Row="2" Grid.Column="1">
             

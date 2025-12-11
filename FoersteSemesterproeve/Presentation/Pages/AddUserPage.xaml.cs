@@ -53,15 +53,6 @@ namespace FoersteSemesterproeve.Presentation.Pages
             {
                 MembershipComboBox.Items.Add(membershipType.name);
             }
-
-            //User.Gender[] genders = Enum.GetValues<User.Gender>();
-
-            //for (int i = 0; i < genders.Length; i++)
-            //{
-            //    GenderComboBox.Items.Add(genders[i].ToString());
-            //}
-
-            //GenderComboBox.SelectedIndex = 0;
             MembershipComboBox.SelectedIndex = 0;
         }
 

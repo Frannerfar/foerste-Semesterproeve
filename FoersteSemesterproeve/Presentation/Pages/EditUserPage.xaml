@@ -45,16 +45,6 @@
                 </StackPanel>
             </Grid>
 
-            <!--<StackPanel Margin="20">
-                    <TextBlock>Joined Activities</TextBlock>
-                </StackPanel>
-
-                <StackPanel Margin="20">
-                    <ListBox x:Name="ActivityListBox">
-
-                    </ListBox>
-                </StackPanel>-->
-
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Grid.Row="1" Grid.Column="1">
                 <Grid >
                     <Grid.ColumnDefinitions>
