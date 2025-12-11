@@ -77,83 +77,100 @@ namespace FoersteSemesterproeve.Presentation.Pages
         
         private void AddActivity_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (string.IsNullOrWhiteSpace(TitleBox.Text))
             {
-                // ----- VALIDERING -----
-                if (string.IsNullOrWhiteSpace(TitleBox.Text))
-                {
-                    MessageBox.Show("Title is required.");
-                    return;
-                }
+                MessageBox.Show("Title is required.");
+                return;
+            }
 
-                User? coach = null;
-                if(CoachPicker.SelectedItem != null)
-                {
-                    coach = coaches[CoachPicker.SelectedIndex];
-                }
+            User? coach = null;
+            if(CoachPicker.SelectedItem != null)
+            {
+                coach = coaches[CoachPicker.SelectedIndex];
+            }
 
                 
-                Location location = locationService.locations[LocationPicker.SelectedIndex];
+            Location location = locationService.locations[LocationPicker.SelectedIndex];
 
-                bool isUnlimited = false;
-                int tempMaxCap = 0;
-                if(string.IsNullOrEmpty(CapacityBox.Text))
+            bool isUnlimited = false;
+            int tempMaxCap = 0;
+            if(string.IsNullOrEmpty(CapacityBox.Text))
+            {
+                if(location.maxCapacity != null)
                 {
-                    if(location.maxCapacity != null)
-                    {
-                        MessageBox.Show("This location doesn't support unlimited people attending");
-                        return;
-                    }
-                    isUnlimited = true;
-                }
-
-                if(!isUnlimited)
-                {
-                    if (!int.TryParse(CapacityBox.Text, out tempMaxCap))
-                    {
-                        MessageBox.Show("Max capacity must be a number.");
-                        return;
-                    }
-                    if(tempMaxCap > location.maxCapacity)
-                    {
-                        MessageBox.Show("Max capacity is higher than room  capacity");
-                        return;
-                    }
-                }
-
-                // ----- DATE & TIME -----
-                var start = ParseDateTime(StartDatePicker, StartTimeBox.Text);
-                var end = ParseDateTime(EndDatePicker, EndTimeBox.Text);
-
-                if (end <= start)
-                {
-                    MessageBox.Show("End time must be after start time.");
+                    MessageBox.Show("This location doesn't support unlimited people attending");
                     return;
                 }
-
-                int? actualMaxCap = null;
-                if(!isUnlimited)
-                {
-                    actualMaxCap = tempMaxCap;
-                }
-                activityService.AddActivity(TitleBox.Text, coach, location, actualMaxCap, start, end);
-
-                router.Navigate(NavigationRouter.Route.Activities);
+                isUnlimited = true;
             }
-            catch (Exception ex)
+
+            if(!isUnlimited)
             {
-                MessageBox.Show($"Error: {ex.Message}");
+                if (!int.TryParse(CapacityBox.Text, out tempMaxCap))
+                {
+                    MessageBox.Show("Max capacity must be a number.");
+                    return;
+                }
+                if(tempMaxCap > location.maxCapacity)
+                {
+                    MessageBox.Show("Max capacity is higher than room  capacity");
+                    return;
+                }
             }
-        }
 
 
-        private DateTime ParseDateTime(DatePicker picker, string timeText)
-        {
-            DateTime date = picker.SelectedDate ?? DateTime.Today;
+            bool isStartDate = DateTime.TryParse(StartDatePicker.Text, out DateTime actualStartDateTime);
+            bool isEndDate = DateTime.TryParse(EndDatePicker.Text, out DateTime actualEndDateTime);
 
-            TimeSpan time = TimeSpan.Parse(timeText); // "10:30" → TimeSpan
+            if (!isStartDate)
+            {
+                MessageBox.Show("Please input a valid start date!");
+                return;
+            }
 
-            return date.Date + time;
+            if (!isEndDate)
+            {
+                MessageBox.Show("Please input a valid end date!");
+                return;
+            }
+
+            DateOnly onlyStartDate = DateOnly.FromDateTime(actualStartDateTime);
+            DateOnly onlyEndDate = DateOnly.FromDateTime(actualEndDateTime);
+
+            bool isStartTime = TimeOnly.TryParse(StartTimeBox.Text, out TimeOnly actualStartTime);
+            bool isEndTime = TimeOnly.TryParse(EndTimeBox.Text, out TimeOnly actualEndTime);
+
+            if (!isStartTime)
+            {
+                MessageBox.Show("Please input a valid start time!");
+                return;
+            }
+
+            if (!isEndTime)
+            {
+                MessageBox.Show("Please input a valid end time!");
+                return;
+            }
+
+            DateTime startDateTime = onlyStartDate.ToDateTime(actualStartTime);
+            DateTime endDateTime = onlyEndDate.ToDateTime(actualEndTime);
+
+            if (endDateTime <= startDateTime)
+            {
+                MessageBox.Show("End time must be after start time.");
+                return;
+            }
+
+
+
+            int? actualMaxCap = null;
+            if(!isUnlimited)
+            {
+                actualMaxCap = tempMaxCap;
+            }
+            activityService.AddActivity(TitleBox.Text, coach, location, actualMaxCap, startDateTime, endDateTime);
+            router.Navigate(NavigationRouter.Route.Activities);
+
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
