@@ -9,6 +9,7 @@ namespace FoersteSemesterproeve.Presentation.Pages
     /// <summary>
     /// Interaction logic for EditLocationPage.xaml
     /// </summary>
+    /// <author> Rasmus </author>
     public partial class EditLocationPage : UserControl
     {
         NavigationRouter router;
@@ -16,11 +17,11 @@ namespace FoersteSemesterproeve.Presentation.Pages
 
         public EditLocationPage(NavigationRouter router, LocationService locationService)
         {
-            InitializeComponent();
+            InitializeComponent(); // Loader xaml elementer
 
             this.router = router;
             this.locationService = locationService;
-            if (locationService.targetLocation != null)
+            if (locationService.targetLocation != null) // hvis der er valgt en lokation, vises dens nuværende oplysninger
             {
                 TargetLocationName.Text = locationService.targetLocation.name;
 
@@ -31,22 +32,22 @@ namespace FoersteSemesterproeve.Presentation.Pages
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
-        {
+        {// fortsætter kun hvis der er valgt en lokation 
             if (locationService.targetLocation != null)
             {
                 bool flag = false;
                 bool maxCapacityNull = false;
-                if (string.IsNullOrEmpty(LocationNameBox.Text))
+                if (string.IsNullOrEmpty(LocationNameBox.Text)) // validering på navn input
                 {
                     flag = true;
                     LocationNameBox.Visibility = Visibility.Visible;
                 }
-                if (string.IsNullOrEmpty(LocationDescriptionBox.Text))
+                if (string.IsNullOrEmpty(LocationDescriptionBox.Text)) // validering på beskrivelse input
                 {
                     flag = true;
                     LocationDescriptionBox.Visibility = Visibility.Visible;
                 }
-                if (string.IsNullOrEmpty(LocationCapacityBox.Text))
+                if (string.IsNullOrEmpty(LocationCapacityBox.Text)) // håndtere og validere kapacitet input
                 {
                     flag = true;
                     maxCapacityNull = true;
@@ -61,14 +62,14 @@ namespace FoersteSemesterproeve.Presentation.Pages
                     MessageBox.Show("Please use valid numbers, if you wish to limit capacity");
                 }
 
-                if (flag == true)
+                if (flag == true) // hvis der sker fejl stopper funktionen 
                 {
                     return;
                 }
-
+                // opdater oplysninger på lokation
                 locationService.targetLocation.name = LocationNameBox.Text;
                 locationService.targetLocation.description = LocationDescriptionBox.Text;
-                if (maxCapacityNull == true)
+                if (maxCapacityNull == true)// sætter kapacitet, eller null for ubegrænset
                 {
                     locationService.targetLocation.maxCapacity = null;
                 }
@@ -76,7 +77,7 @@ namespace FoersteSemesterproeve.Presentation.Pages
                 {
                     locationService.targetLocation.maxCapacity = capacity;
                 }
-                router.Navigate(NavigationRouter.Route.Locations);
+                router.Navigate(NavigationRouter.Route.Locations); // navigeres tilbage til lokationsoversigten
             }
         }
 
