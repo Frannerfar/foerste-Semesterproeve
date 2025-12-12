@@ -101,7 +101,7 @@ namespace FoersteSemesterproeve.Presentation.Pages
                         columns++;
                     }
 
-                    // Element til at indeholder aktivitet starter her med en border der instantieres
+                    // Element til at indeholde aktivitet starter her med en border der instantieres
                     Border border = new Border();
                     border.BorderThickness = new Thickness(1);
                     border.BorderBrush = new SolidColorBrush(Colors.Black);
