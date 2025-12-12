@@ -2,11 +2,9 @@
 namespace FoersteSemesterproeve.Domain.Models
 {
     /// <summary>
-    /// 
+    ///     User class
     /// </summary>
-    /// <author>Martin</author>
-    /// <created>26-11-2025</created>
-    /// <updated>29-11-2025</updated>
+    /// <author>Rasmus, Marcus, Martin</author>
     public class User
     {
         public int id { get; set; }
@@ -31,11 +29,9 @@ namespace FoersteSemesterproeve.Domain.Models
         public MembershipType membershipType { get; set; }
 
         /// <summary>
-        /// 
+        ///     Constructor til User class
         /// </summary>
-        /// <author>Martin</author>
-        /// <created>26-11-2025</created>
-        /// <updated>28-11-2025</updated>
+        /// <author>Rasmus, Marcus, Martin</author>
         /// <param name="id"></param>
         /// <param name="firstName"></param>
         /// <param name="lastName"></param>
@@ -47,9 +43,7 @@ namespace FoersteSemesterproeve.Domain.Models
         /// <param name="isAdmin"></param>
         /// <param name="dateofBirth"></param>
         /// <param name="postal"></param>
-        /// <param name="hasPaid"></param>
         /// <param name="membershipType"></param>
-        /// <param name="gender"></param>
         public User(int id, string firstName, string lastName, string email, string address, string city, string password, bool isCoach, bool isAdmin, DateOnly dateofBirth, int? postal, MembershipType membershipType) 
         {
             this.id = id;
@@ -70,10 +64,9 @@ namespace FoersteSemesterproeve.Domain.Models
         }
 
         /// <summary>
-        /// 
+        ///     Funktionen bruges til at returnere et unicode symbol, baseret på bool parameteren
         /// </summary>
-        /// <author>Martin</author>
-        /// <created>27-11-2025</created>
+        /// <author>Rasmus, Marcus, Martin</author>
         /// <param name="statement"></param>
         /// <returns></returns>
         private string SetMark(bool statement)
@@ -91,10 +84,10 @@ namespace FoersteSemesterproeve.Domain.Models
         }
 
         /// <summary>
-        /// 
+        ///     Funktionen bruges til at sætte unicode symboler i brugerens isCoachText og isAdminText, 
+        ///     efter brugeren er blevet redigeret i, i EditUserPage.
         /// </summary>
-        /// <author>Martin</author>
-        /// <created>27-11-2025</created>
+        /// <author>Rasmus, Marcus, Martin</author>
         public void CheckBothMarks()
         {
             this.isCoachText = SetMark(isCoach);
