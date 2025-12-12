@@ -10,8 +10,6 @@ namespace FoersteSemesterproeve.Presentation.Pages
     /// Interaction logic for LoginPage.xaml
     /// </summary>
     /// <author>Martin</author>
-    /// <created>26-11-2025</created>
-    /// <updated>27-11-2025</updated>
     public partial class LoginPage : UserControl
     {
         NavigationRouter router;
@@ -21,11 +19,9 @@ namespace FoersteSemesterproeve.Presentation.Pages
         List<Button> adminButtons;
 
         /// <summary>
-        /// 
+        ///     Constructor til LoginPage
         /// </summary>
         /// <author>Martin</author>
-        /// <created>26-11-2025</created>
-        /// <updated>28-11-2025</updated>
         /// <param name="router"></param>
         /// <param name="menuGrid"></param>
         /// <param name="userService"></param>
@@ -34,6 +30,8 @@ namespace FoersteSemesterproeve.Presentation.Pages
         public LoginPage(NavigationRouter router, Grid menuGrid, UserService userService, Button userProfileButton, List<Button> adminButtons)
         {
             InitializeComponent();
+
+            // parametre fra constructoren sættes i fields i objektet
             this.menuGrid = menuGrid;
             this.router = router;
             this.userService = userService;
@@ -42,38 +40,33 @@ namespace FoersteSemesterproeve.Presentation.Pages
         }
 
         /// <summary>
-        /// 
+        ///     Bruges til at prøve at logge ind, baseret på email og password indtastet
         /// </summary>
         /// <author>Martin</author>
-        /// <created>26-11-2025</created>
-        /// <updated>27-11-2025</updated>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            User? possibleUser = null;
-
+            // For hver bruger i systemet
             for (int i = 0; i < userService.users.Count; i++)
             {
+                // Hvis input i Email.Text er det samme som bruger i listens email OG input i PasswordBox er det samme som samme brugers password
+                // Kort sagt: hvis emailen og password begger matcher en bruger i systemet
                 if(userService.users[i].email == EmailBox.Text && userService.users[i].password == PasswordBox.Password)
                 {
-                    possibleUser = userService.users[i];
-                }
-            }
-
-            if (possibleUser != null) 
-            { 
-                bool isCorrect = userService.isUserPasswordCorrect(possibleUser, PasswordBox.Password);
-                if (isCorrect) { 
-                    userService.authenticatedUser = possibleUser;
-                    userProfileButton.Tag = possibleUser;
-                    if(!possibleUser.isAdmin)
+                    // authenticatedUser sættes til at være brugeren der matchede både email og password inputs
+                    userService.authenticatedUser = userService.users[i];
+                    // reference til personen der er logget ind, sættes på knappen til navigering til profil
+                    userProfileButton.Tag = userService.users[i];
+                    // Hvis personen IKKE er admin, så sæt alle admin buttons til at være collapsed (og dermed ikke fylde noget)
+                    if (!userService.users[i].isAdmin)
                     {
                         foreach(Button button in adminButtons)
                         {
                             button.Visibility = Visibility.Collapsed;
                         }
                     }
+                    // ellers så sæt admin buttons til at være synlige / visible
                     else
                     {
                         foreach (Button button in adminButtons)
@@ -81,12 +74,13 @@ namespace FoersteSemesterproeve.Presentation.Pages
                             button.Visibility = Visibility.Visible;
                         }
                     }
-
-                        router.Navigate(NavigationRouter.Route.Home);
+                    // Naviger til HomePage
+                    router.Navigate(NavigationRouter.Route.Home);
+                    // Gør hovedmenuen synlig
                     menuGrid.Visibility = Visibility.Visible;
-
                 }
             }
+            // Hvis ikke password er korrekt til den indtastede email adresse, så clear indholdet i password input boksen
             PasswordBox.Clear();
         }
     }
