@@ -6,19 +6,17 @@ using System.Windows.Media;
 
 namespace FoersteSemesterproeve.Presentation
 {
+
+
     /// <summary>
     ///     Håndterer navigation mellem forskellige pages / usercontrolsi samme Window
     /// </summary>
     /// <author>Martin</author>
-    /// <created>2025-11-25</created>
-    /// <updated></updated>
-    /// <remarks>Bruges af MainWindow til UI routing</remarks>
     public class NavigationRouter
     {
         Route currentRoute;
         ContentControl MainContent;
         Grid menuGrid;
-        Dictionary<Route, Func<UserControl>> routes;
 
         private UserService userService;
         private ActivityService activityService;
@@ -44,14 +42,27 @@ namespace FoersteSemesterproeve.Presentation
 
 
         /// <summary>
-        ///     Constructor der modtager referencer til 
-        ///     ContentControl (Element vi sætter UserControls under) og Grid (Menu).
+        ///     Constructor til NavigationRouter
         /// </summary>
         /// <author>Martin</author>
-        /// <created>2025-11-25</created>
-        /// 
+        /// <param name="contentControl"></param>
+        /// <param name="menuGrid"></param>
+        /// <param name="userProfileButton"></param>
+        /// <param name="adminButtons"></param>
+        /// <param name="userService"></param>
+        /// <param name="activityService"></param>
+        /// <param name="locationService"></param>
+        /// <param name="membershipService"></param>
+        /// <param name="HomeButton"></param>
+        /// <param name="ActivitiesButton"></param>
+        /// <param name="TrainersButton"></param>
+        /// <param name="LocationsButton"></param>
+        /// <param name="MembersButton"></param>
+        /// <param name="MembershipsButton"></param>
         public NavigationRouter(ContentControl contentControl, Grid menuGrid, Button userProfileButton, List<Button> adminButtons, UserService userService, ActivityService activityService, LocationService locationService, MembershipService membershipService, Button HomeButton, Button ActivitiesButton, Button TrainersButton, Button LocationsButton, Button MembersButton, Button MembershipsButton)
         {
+
+            // parametre fra constructoren sættes alle i fields, så de er tilgængelige i resten af klassen
             this.MainContent = contentControl;
             this.menuGrid = menuGrid;
 
@@ -69,23 +80,38 @@ namespace FoersteSemesterproeve.Presentation
             this.MembersButton = MembersButton;
             this.MembershipsButton = MembershipsButton;
 
+            // SolidColorBrush objekter oprettes ud fra pre-definerede colors oppe i fields
+            // SolidColorBrush sættes i menuStaticItem og menuActiveItem, men med forskellige farver.
             menuStaticItem = new SolidColorBrush(menuStaticItemColor);
             menuActiveItem = new SolidColorBrush(menuActiveItemColor);
 
+            // Sætter HomeButton til at være default aktiv button
             currentActiveMenuButton = HomeButton;
+            // Sæt button til at have farve som aktiv.
             SetMenuButtonActive(currentActiveMenuButton, HomeButton);
         }
 
-
+        /// <summary>
+        ///     Bruges til at navigere til en ny "side".
+        /// </summary>
+        /// <author>Martin</author>
+        /// <param name="route"></param>
         public void Navigate(Route route)
         {
+            // parameteren route (enum Route længere ned i filen) sammenlignes med forskellige cases
             switch (route)
             {
+                // Hvis route == Route.Login
                 case Route.Login:
+                    // Så sættes MainContent (som er en reference til ControlContent controller i MainWindow.xaml)
+                    // til at være indholdet af et nyt instantieret "page" / UserControl
                     MainContent.Content = new LoginPage(this, menuGrid, userService, userProfileButton, adminButtons);
                     break;
                 case Route.Home:
+                    // Så sættes MainContent (som er en reference til ControlContent controller i MainWindow.xaml)
+                    // til at være indholdet af et nyt instantieret "page" / UserControl
                     MainContent.Content = new HomePage(this, userService, activityService);
+                    // Kalder funktionen SetMenuButtonActive, der sætter den nye button til at være den aktive og fjerner den gamle som aktiv.
                     SetMenuButtonActive(this.currentActiveMenuButton, this.HomeButton);
                     break;
                 case Route.Activities:
@@ -160,9 +186,9 @@ namespace FoersteSemesterproeve.Presentation
         }
 
         /// <summary>
-        /// Sørger for at visuelt sætte indikation på, hvilken route man befinder sig på.
-        /// Dette gøres ved at sætte den nuværende aktive button tilbage til vores standard menu farve. 
-        /// Derefter sættes den nye Button der er blevet klikket på, til få den nye aktive farve, samt til at være den nye aktive Button.
+        ///     Sørger for at visuelt sætte indikation på, hvilken route man befinder sig på.
+        ///     Dette gøres ved at sætte den nuværende aktive button tilbage til vores standard menu farve. 
+        ///     Derefter sættes den nye Button der er blevet klikket på, til få den nye aktive farve, samt til at være den nye aktive Button.
         /// </summary>
         /// <author>Martin</author>
         /// <param name="originalButton"></param>
@@ -171,15 +197,25 @@ namespace FoersteSemesterproeve.Presentation
         {
             if (originalButton != null)
             {
+                // hovedmenuens button der tidligere var aktiv sættes til at være den 
+                // oprindeligefarve "menuStaticItem" (SolidColorBrush med Color)
                 originalButton.Background = menuStaticItem;
             }
-
+            // Nye button sættes til en anden baggrundsfarve "menuActiveItem" (SolidColorBrush med Color)
             newButton.Background = menuActiveItem;
+            // Nye button sættes til at være active
             currentActiveMenuButton = newButton;
         }
 
+        /// <summary>
+        ///     Bruges til at at sætte den valgte button til oprindelige farve (SolidColorBrush med Color)
+        /// </summary>
+        /// <author>Martin</author>
+        /// <param name="originalButton"></param>
         private void ResetButtonActive(Button originalButton)
         {
+            // hovedmenuens button der tidligere var aktiv sættes til at være den
+            // oprindeligefarve "menuStaticItem" (SolidColorBrush med Color)
             originalButton.Background = menuStaticItem;
         }
 
@@ -188,7 +224,6 @@ namespace FoersteSemesterproeve.Presentation
         ///     Bruges til routing.
         /// </summary>
         /// <author>Martin</author>
-        /// <created>2025-11-25</created>
         public enum Route
         {
             Login,
