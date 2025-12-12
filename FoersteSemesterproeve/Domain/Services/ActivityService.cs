@@ -149,16 +149,16 @@ namespace FoersteSemesterproeve.Domain.Services
         private void GenerateDummyActivities()
         {
                 //AddActivity("Test", userService.users[0], locationService.locations[0], 2, DateTime.Now.AddHours(1).AddMinutes(45), DateTime.Now.AddHours(2).AddMinutes(15));
-                AddActivity("Spinning med Viggo", null, locationService.locations[0], 6, DateTime.Now.AddHours(6).AddMinutes(0), DateTime.Now.AddHours(2).AddMinutes(15));
-                AddActivity("Mordor Maratonløb", null, locationService.locations[0], 7, DateTime.Now.AddHours(9).AddMinutes(20), DateTime.Now.AddHours(2).AddMinutes(45));
-                AddActivity("Second Breakfast Yoga", null, locationService.locations[0], 9, DateTime.Now.AddHours(3).AddMinutes(40), DateTime.Now.AddHours(2).AddMinutes(0));
-                AddActivity("Kampsport med Hugo", null, locationService.locations[0], 5, DateTime.Now.AddHours(20).AddMinutes(3), DateTime.Now.AddHours(1).AddMinutes(30));
-                AddActivity("'Winter is Coming' Powerlift", null, locationService.locations[0], null, DateTime.Now.AddHours(20).AddMinutes(3), DateTime.Now.AddHours(1).AddMinutes(30));
-                AddActivity("Isengaard CrossFit", null, locationService.locations[0], null, DateTime.Now.AddHours(20).AddMinutes(3), DateTime.Now.AddHours(1).AddMinutes(30));
-                AddActivity("Øksekast med John", null, locationService.locations[0], null, DateTime.Now.AddHours(20).AddMinutes(3), DateTime.Now.AddHours(1).AddMinutes(30));
-                AddActivity("Fellowship gruppetræning", null, locationService.locations[0], null, DateTime.Now.AddHours(20).AddMinutes(3), DateTime.Now.AddHours(1).AddMinutes(30));
+                AddActivity("Spinning med Viggo", userService.users[4], locationService.locations[0], 6, DateTime.Now.AddHours(6).AddMinutes(0), DateTime.Now.AddHours(8).AddMinutes(15));
+                AddActivity("Mordor Maratonløb", null, locationService.locations[0], 7, DateTime.Now.AddHours(9).AddMinutes(20), DateTime.Now.AddHours(20).AddMinutes(45));
+                AddActivity("Second Breakfast Yoga", null, locationService.locations[0], 9, DateTime.Now.AddHours(3).AddMinutes(40), DateTime.Now.AddHours(5).AddMinutes(0));
+                AddActivity("Kampsport med Hugo", null, locationService.locations[0], 5, DateTime.Now.AddHours(20).AddMinutes(3), DateTime.Now.AddHours(21).AddMinutes(30));
+                AddActivity("'Winter is Coming' Powerlift", null, locationService.locations[0], null, DateTime.Now.AddHours(17).AddMinutes(3), DateTime.Now.AddHours(19).AddMinutes(30));
+                AddActivity("Isengaard CrossFit", null, locationService.locations[0], null, DateTime.Now.AddHours(5).AddMinutes(3), DateTime.Now.AddHours(7).AddMinutes(30));
+                AddActivity("Øksekast med John", null, locationService.locations[0], null, DateTime.Now.AddHours(7).AddMinutes(3), DateTime.Now.AddHours(9).AddMinutes(30));
+                AddActivity("Fellowship gruppetræning", null, locationService.locations[0], null, DateTime.Now.AddHours(20).AddMinutes(3), DateTime.Now.AddHours(22).AddMinutes(30));
                 // Bueskydning hvor vi tilføjer Orlando Bloom som træner (userService.users[8]. Derudover dynamisk tid.
-                AddActivity("Bueskydning for meget øvede", userService.users[8], locationService.locations[0], null, DateTime.Now.AddHours(20).AddMinutes(3), DateTime.Now.AddHours(1).AddMinutes(30));
+                AddActivity("Bueskydning for meget øvede", userService.users[8], locationService.locations[0], null, DateTime.Now.AddHours(20).AddMinutes(1), DateTime.Now.AddHours(22).AddMinutes(30));
         }
 
 
